@@ -22,19 +22,30 @@ export default {
 
 <style>
 :root{
-  --color-primary: #0096D7;
+  --green-color: #398070;
+  --grey-color: #D9D9D9;   /* border */
+  --light-grey-color: #F6F7F9;
+  --light-green-color: #ECF2F2;
+  --white-color: #FFFFFF;
+  --black-color: #000;
+
+  --text: #1a1919;
+  --background: #f5f5f5;
+  --primary-button: #398070;
+  --secondary-button: #fcfcfc;
+  --accent: #3b56bf;
+
+  --color-primary: var(--green-color);
   --color-secondary: #BAC6FF;
   --color-border: #E5E5E6;
   --color-border-fill: #F9F9FB;
-  --color-white: #FFFFFF;
   --color-secondary-white: #F7F8FC;
-  --black-color: #000;
-
 
   --hero-color: var(--color-primary);
-  --hero-text-color: var(--color-white);
-  --body-background-color: var(--color-secondary-white);
-  --text-color: var(--black-color);
+  --hero-border-color: var(--grey-color);
+  --hero-text-color: var(--white-color);
+  --body-background-color: var(--background);
+  --text-color: var(--text);
 }
 * {
   padding: 0;

@@ -29,7 +29,7 @@ export default {
 
   background-color: var(--hero-color);
 
-  border-bottom: 8px solid #95C6FA;
+  border-bottom: 8px solid var(--hero-border-color);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.16);
 }
 .hero__title{
