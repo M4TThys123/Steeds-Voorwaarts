@@ -3,7 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import SportenView from "@/views/SportenView.vue";
 import ContactView from "@/views/ContactView.vue";
 import PrismicView from "@/views/PrismicView.vue";
-import SportView from "@/views/SportView.vue";
+// import SportView from "@/views/SportView.vue";
 
 const routes = [
     {
@@ -15,21 +15,21 @@ const routes = [
         },
     },
     {
-        path: '/sporten',
-        name: 'Sporten',
+        path: '/lesaanbod',
+        name: 'Lesaanbod',
         component: SportenView,
         meta: {
             hide: false, // Show this route in the navigation
         },
     },
-    {
-        path: '/sporten/:uid',
-        name: 'Sport Detail',
-        component: SportView,
-        meta: {
-            hide: false, // Hide this route in the navigation
-        },
-    },
+    // {
+    //     path: '/sporten/:uid',
+    //     name: 'Sport Detail',
+    //     component: SportView,
+    //     meta: {
+    //         hide: false, // Hide this route in the navigation
+    //     },
+    // },
     {
         path: '/contact',
         name: 'Contact',
@@ -40,7 +40,7 @@ const routes = [
     },
     {
         path: '/primic',
-        name: 'Prismic Data',
+        name: 'Prismic',
         component: PrismicView,
         meta: {
             hide: false, // Show this route in the navigation

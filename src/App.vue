@@ -21,6 +21,7 @@ export default {
 </script>
 
 <style>
+
 :root{
   --green-color: #398070;
   --grey-color: #D9D9D9;   /* border */
@@ -41,17 +42,21 @@ export default {
   --color-border-fill: #F9F9FB;
   --color-secondary-white: #F7F8FC;
 
+  --header-color: var(--primary-button);
   --hero-color: var(--color-primary);
   --hero-border-color: var(--grey-color);
   --hero-text-color: var(--white-color);
   --body-background-color: var(--background);
   --text-color: var(--text);
+
+  --header-height: 45px;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  color: var(--text-color);
 }
 html {
   scroll-behavior: smooth;
@@ -78,13 +83,19 @@ a {
 }
 
 button {
-  background: none;
-  color: white;
-  padding: 10px;
+  color: var(--text);
+  padding: .5rem 1.5rem;
+  border-radius: 6px !important;
   border: none;
-  border-radius: 5px;
 }
-
+.primary-btn{
+  background: var(--green-color);
+  /*font-weight: bold;*/
+  color: var(--secondary-button)
+}
+.secodary-btn{
+  background: var(--secondary-button);
+}
 ul {
   display: flex;
   /*padding: 0 !important;*/

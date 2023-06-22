@@ -1,9 +1,9 @@
 <template>
   <button id="ham-burger" :class="{ 'open': isNavOpen }">
-    <span :class="{'white' : !isScrolled}"></span>
-    <span :class="{'white' : !isScrolled}"></span>
-    <span :class="{'white' : !isScrolled}"></span>
-    <span :class="{'white' : !isScrolled}"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 </template>
 
@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style scoped>
+button{
+  background: none;
+  padding: 0
+}
 #ham-burger {
   width: 32px;
   height: 32px;
@@ -50,7 +54,7 @@ export default {
   position: absolute;
   height: 5px;
   width: 100%;
-  background: #14151a;
+  background: var(--text);
   border-radius: 4px;
   opacity: 1;
   left: 0;

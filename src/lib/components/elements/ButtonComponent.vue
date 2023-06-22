@@ -3,9 +3,9 @@
     <img :src="`/public/assets/images/icons/${iconName}`" :alt="imageAltText" class="button-icon">
     <img src="/public/assets/images/icons/send.png" :alt="imageAltText" class="button-icon">
 
-      <span class="button-text">
-        {{ text }}
-      </span>
+<!--      <span class="button-text">-->
+<!--        {{ text }}-->
+<!--      </span>-->
   </button>
 </template>
 

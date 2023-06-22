@@ -1,6 +1,6 @@
 <template>
   <section class="contact-info">
-    <h2 class="mb-4">J.B. Installatieservice</h2>
+    <h2 class="mb-4">Steeds Voorwaarts</h2>
     <section class="contact-info__item row">
       <strong class="col-4 col-sm-3">Telefoon:</strong>
       <p class="col-6">{{ telephone }}</p>
@@ -25,10 +25,10 @@ export default {
   name: "ContactInformation",
   data() {
     return {
-      address: "Reigerlaan 58,",
-      city: "1713 SM Obdam",
-      telephone: "0226 451616",
-      email: "info@jbinstallatieservice.nl",
+      address: "Burgemeester P. Kromplein 1,",
+      city: "1657 AA Abbekerk",
+      telephone: "06 12345678",
+      email: "svwabbekerk1913@gmail.com",
       kvkNumber: "12345678"
     };
   }
@@ -49,6 +49,6 @@ export default {
   display: flex;
 }
 .contact-info__item > p{
-  text-decoration: underline #95C6FA 2px;
+  text-decoration: underline var(--primary-button) 2px;
 }
 </style>

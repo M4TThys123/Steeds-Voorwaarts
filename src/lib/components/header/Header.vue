@@ -1,8 +1,12 @@
 <template>
   <header :class="{ 'blur': isScrolled }">
     <nav>
-      <router-link to="/" class="logo__link" @click="closeNav">
-        <LogoComponent :class="{ 'color__scroll': isScrolled }"></LogoComponent>
+      <router-link to="/" class="logo__link d-flex" @click="closeNav">
+        <div class="logo-wrapper">
+          <LogoComponent :class="{ 'color__scroll': isScrolled } " fill="#3D95D1"></LogoComponent>
+          <span class="mobile-logo">SVW</span>
+          <span class="desktop-logo">Steeds Voorwaarts</span>
+        </div>
       </router-link>
 
       <div class="nav__menu">
@@ -21,7 +25,7 @@
             </router-link>
           </li>
           <li class="mt-3 mt-lg-0">
-            <ButtonComponent></ButtonComponent>
+            <ButtonComponent text="text" textColor="#fff"></ButtonComponent>
           </li>
         </ul>
       </div>
@@ -168,7 +172,9 @@ nav{
 
 .blur{
   backdrop-filter: blur(24px);
-  background-color: rgba(61, 149, 209, 0.4);
+  /*background-color: rgba(61, 149, 209, 0.4);*/
+  background-color: rgba(57, 128, 112, 0.4);
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -225,4 +231,41 @@ nav{
   visibility: visible;
 }
 
+.logo-wrapper{
+  display: flex;
+  align-items: center;
+}
+.mobile-logo{
+  display: block;
+
+}
+.desktop-logo{
+  display: none;
+}
+
+
+
+/* SM (for tablets - screens ≥ than 768px wide) */
+@media (width >= 768px) {
+  /* CSS rules for tablets go here */
+  .mobile-logo{
+    display: none;
+
+  }
+  .desktop-logo{
+    display: block;
+  }
+}
+
+/* MD (for small laptops - screens ≥ than 992px wide) */
+@media (width >= 992px) {
+  /* CSS rules for small laptops go here */
+
+
+}
+
+/* LG (for laptops and desktops - screens ≥ than 1200px wide) */
+@media (width >= 1200px) {
+  /* CSS rules for laptops and desktops go here */
+}
 </style>
