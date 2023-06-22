@@ -22,6 +22,9 @@ export default {
 </script>
 
 <style scoped>
+.hero__title, .hero__paragraph{
+  color: #FFFFFF;
+}
 .view__hero {
   padding: 80px 16px 32px 16px;
   height: 100vh;

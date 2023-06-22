@@ -88,6 +88,14 @@ button {
   border-radius: 6px !important;
   border: none;
 }
+
+.button {
+  color: var(--text);
+  padding: .5rem 1.5rem;
+  border-radius: 6px !important;
+  border: none;
+}
+
 .primary-btn{
   background: var(--green-color);
   /*font-weight: bold;*/

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from "@/views/HomeView.vue";
-import SportenView from "@/views/SportenView.vue";
+import LesAanbodView from "@/views/LesAanbodView.vue";
 import ContactView from "@/views/ContactView.vue";
 import PrismicView from "@/views/PrismicView.vue";
 // import SportView from "@/views/SportView.vue";
@@ -17,7 +17,7 @@ const routes = [
     {
         path: '/lesaanbod',
         name: 'Lesaanbod',
-        component: SportenView,
+        component: LesAanbodView,
         meta: {
             hide: false, // Show this route in the navigation
         },
