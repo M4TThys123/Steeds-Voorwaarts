@@ -25,7 +25,7 @@
       </ul>
     </section>
 
-    <h3>Knoppten huisstijl met Data render</h3>
+    <h3>Knoppen huisstijl met Data render</h3>
     <section class="row">
       <ul class="d-flex col-12 col-md-4">
         <li v-for="sport in sporten" :key="sport.uid" class="item" >

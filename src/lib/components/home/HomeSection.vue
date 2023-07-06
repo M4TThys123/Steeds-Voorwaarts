@@ -30,7 +30,7 @@
 import HeroVector from "@/lib/components/hero/HeroVector.vue";
 
 export default {
-  name: "HomeHero",
+  name: "HomeSection",
   components: {HeroVector},
   data() {
     return {

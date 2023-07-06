@@ -1,14 +1,11 @@
 @@ -0,0 +1,46 @@
 <template>
-  <section>
   <div class="container">
     <h1 class="mt-5 mb-3">Laatste Nieuws</h1>
     <div class="row">
       <div class="col-md-4 mb-3" v-for="service in services" :key="service.id">
         <div class="card h-100">
-          <figure>
-            <img :src="service.image" class="card-img-top" :alt="service.name">
-          </figure>
+          <img :src="service.image" class="card-img-top" :alt="service.name">
           <div class="card-body">
             <h5 class="card-title">{{ service.name }}</h5>
             <p class="card-text">{{ service.description }}</p>
@@ -20,12 +17,11 @@
       </div>
     </div>
   </div>
-  </section>
 </template>
 
 <script>
 export default {
-  name: 'NieuwsComponent',
+  name: 'NieuwsComponent01',
   data() {
     return {
       services: [
