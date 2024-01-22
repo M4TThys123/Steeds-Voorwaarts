@@ -9,7 +9,6 @@
         </div>
         <h2>
           Kom langs en ontdek de sport die bij jou past!  <br>
-          SVW Staat voor je klaar
         </h2>
       </section>
     </section>
@@ -64,12 +63,15 @@ export default {
   font-size: 56px;
   line-height: 1;
   letter-spacing: -0.04em;
+  color: var(--white-color);
+
 }
 .hero-header h2{
   font-size: 22px;
   font-weight: bold;
   /*margin-top: 11.5rem;*/
   width: auto;
+  color: var(--white-color);
 }
 
 .hero-top{
@@ -77,6 +79,7 @@ export default {
   width: 100%;
   background-size: cover;
   background-position-y: -25px;
+  background: var(--black-color);
 
   /*background-image: url("../public/assets/hero/hero_image.webp");*/
 }

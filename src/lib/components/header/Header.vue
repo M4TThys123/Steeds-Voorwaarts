@@ -72,7 +72,6 @@ export default {
       this.isScrolled = true
       document.body.classList.remove('no-scroll'); // Remove no-scroll class
       this.handleScroll(); // Toggle isScrolled
-
     },
 
     toggleNav() {
@@ -154,7 +153,7 @@ nav{
 }
 
 .nav__link{
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   transition:  .3s;
 
 }
