@@ -1,7 +1,11 @@
 <template>
   <HomeHero class="mb-5 "></HomeHero>
 
-
+  <section>
+    <h2></h2>
+    <p></p>
+  </section>
+  
   <NieuwsComponent class="mb-5"></NieuwsComponent>
 
   <RoosterComponent class="mb-5"></RoosterComponent>

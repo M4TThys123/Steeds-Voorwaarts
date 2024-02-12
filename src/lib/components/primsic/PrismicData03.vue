@@ -3,7 +3,7 @@
     <h3>Key Textfield, Title Field, Rich Textfield & Images van prismic</h3>
 
     <section class="row">
-      <section class="" v-for="sport in sporten" :key="sport.uid">
+      <section class="sport" v-for="sport in sporten" :key="sport.uid">
         <section>
           <ul>
             <li>{{ sport.data.docent }}</li>

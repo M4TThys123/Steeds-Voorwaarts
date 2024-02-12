@@ -1,6 +1,7 @@
 <template>
-  <ViewHero title="Lesaanbod" paragraph="Hier vind je het lesaanbod von onze vereniging
+  <ViewHero title="Lesaanbod" paragraph="Hier vind je het lesaanbod van onze vereniging
 "></ViewHero>
+
   <sport-component></sport-component>
 
   <RoosterComponent></RoosterComponent>
