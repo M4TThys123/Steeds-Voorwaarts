@@ -1,19 +1,19 @@
 <template>
   <section class="hero-wrapper">
-    <section class="hero-header">
-      <section class="hero-header__text">
-        <div class="d-flex justify-content-start">
-          <h1>Steeds Voor-<br>
-            waarts
-          </h1>
-        </div>
-        <h2>
-          Kom langs en ontdek de sport die bij jou past!  <br>
-        </h2>
+    <section class="hero-top">
+<!--             :style="{ backgroundImage: `url(${backgroundImage})` }"-->
+      <section class="hero-header">
+        <section class="hero-header__text">
+          <div class="d-flex justify-content-start">
+            <h1>Steeds Voor-<br>
+              waarts
+            </h1>
+          </div>
+          <h2>
+            Kom langs en ontdek de sport die bij jou past!  <br>
+          </h2>
+        </section>
       </section>
-    </section>
-    <section class="hero-top"
-             :style="{ backgroundImage: `url(${backgroundImage})` }">
 
     </section>
     <section class="hero-bottom">
@@ -28,7 +28,7 @@ export default {
   name: "HomeHero",
   data() {
     return {
-      // backgroundImage: "",
+      backgroundImage: "https://www.gv-westfriesland.nl/back-site/upload/kenvopmeer/de_content_blok/_960x1080/feefc539-75b8-4c2f-a020-ca9b6bf70db7_1_105_c_1__20230908154112.jpeg",
 
     };
   }
@@ -110,6 +110,8 @@ export default {
     height: 100%;
     width: 100%;
     min-width: 50vw;
+
+    /*background-image: url("../public/assets/hero/hero_image.jpeg");*/
   }
   .hero-bottom {
     height: 100%;

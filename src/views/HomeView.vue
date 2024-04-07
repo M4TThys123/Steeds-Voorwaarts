@@ -25,7 +25,8 @@ import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 
 export default {
   name: "HomeView",
-  components: { RoosterComponent, HomeHero, ContactSection, NieuwsComponent, }
+  components: { RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
+
 }
 </script>
 
