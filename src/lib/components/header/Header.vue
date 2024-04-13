@@ -1,11 +1,12 @@
 <template>
-  <header :class="{ 'blur': isScrolled }">
+  <header class="blur" :class="{ 'no-background': !isScrolled }">
     <nav>
       <router-link to="/" class="logo__link d-flex" @click="closeNav">
         <div class="logo-wrapper">
-          <LogoComponent :class="{ 'color__scroll': isScrolled } " fill="#3D95D1"></LogoComponent>
-          <span class="mobile-logo">SVW</span>
-          <span class="desktop-logo">Steeds Voorwaarts</span>
+
+          <LogoComponent :is-scrolled="isScrolled"></LogoComponent>
+          <span class="logo-text mobile-logo" :class="{'text-color__scroll' : isScrolled}">SVW</span>
+          <span class="logo-text desktop-logo" :class="{'text-color__scroll' : isScrolled}">Steeds Voorwaarts</span>
         </div>
       </router-link>
 
@@ -30,7 +31,8 @@
         </ul>
       </div>
 
-      <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled" class="menu__trigger"></hamburger-menu>
+      <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled"
+                      class="menu__trigger"></hamburger-menu>
     </nav>
   </header>
 </template>
@@ -44,10 +46,9 @@ import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 
 export default {
   name: "HeaderComponent",
-  components: {ButtonComponent, HamburgerMenu, LogoComponent },
+  components: {ButtonComponent, HamburgerMenu, LogoComponent},
   data() {
     return {
-      isBlur: false,
       isNavOpen: false,
       isScrolled: false
     }
@@ -59,7 +60,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-    openNav(){
+    openNav() {
       console.log('click op de button')
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false
@@ -105,15 +106,7 @@ export default {
 
 <style scoped>
 
-.color__scroll{
-  fill: #192321;
-}
-/*global*/
-a {
-  text-decoration: none;
-}
-
-header{
+header {
   position: fixed;
   width: 100%;
   z-index: 999;
@@ -123,8 +116,28 @@ header{
   transition: all 0.3s ease;
 }
 
+
+.blur::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(57, 128, 112, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* WebKit (iOS Safari) syntax */
+  transition: background 0.5s, backdrop-filter 0.5s;
+}
+
+.no-background::before {
+  background: none;
+  backdrop-filter: none;
+}
+
 /*Nav*/
-nav{
+nav {
   position: relative;
   height: 45px;
 
@@ -135,27 +148,30 @@ nav{
   max-width: 120rem;
   margin: auto;
 }
-.nav__menu{
+
+.nav__menu {
   /*display: flex;*/
   /*justify-content: center;*/
 }
-.nav__list{
+
+.nav__list {
   margin-bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.nav__item{
+
+.nav__item {
   margin-right: 2em;
 }
-.logo__link{
+
+.logo__link {
   z-index: 999999;
 }
 
-.nav__link{
+.nav__link {
   color: #FFFFFF !important;
-  transition:  .3s;
-
+  transition: .3s;
 }
 
 .nav__link:hover {
@@ -163,36 +179,66 @@ nav{
   color: red;
 }
 
-.menu__trigger{
+.menu__trigger {
   display: none;
   z-index: 99999;
 }
 
 
-.blur{
-  backdrop-filter: blur(24px);
-  /*background-color: rgba(61, 149, 209, 0.4);*/
-  background-color: rgba(57, 128, 112, 0.4);
+
+.text-color__nav-open {
+  color: #FFFFFF;
+}
+
+.nav__list--open {
+  visibility: visible;
+}
+
+.logo-wrapper {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
 
 }
 
+.mobile-logo {
+  display: block;
+}
+
+.desktop-logo {
+  display: none;
+}
+
+.logo-text{
+  color: var(--white-color) ;
+  transition: color 0.3s ease; /* Define the transition property */
+}
+
+.text-color__scroll {
+  color: var(--text);
+}
+
 @media screen and (max-width: 1024px) {
-  .menu__trigger{
+  .menu__trigger {
     display: block;
   }
 
-  header{
+  header {
     padding: 0.75rem 1rem;
   }
 
   nav {
     height: 32px;
   }
-  .nav__menu{
+
+  .nav__menu {
     transition: .4s;
     margin-top: 2em;
   }
-  .nav__list{
+
+  .nav__list {
     position: fixed;
     top: 0;
     left: 0;
@@ -210,48 +256,28 @@ nav{
     transition: transform .3s ease-out;
     transform: translateY(-100%);
   }
-  .nav__list--open{
+
+  .nav__list--open {
     transform: translateY(0);
     padding-top: 5em;
   }
-  .nav__item{
+
+  .nav__item {
     font-size: 48px;
     font-weight: bold;
     font-family: Inter, sans-serif;
   }
 }
-.text-color__scroll{
-  color: #192321;
-}
-.text-color__nav-open{
-  color: #FFFFFF;
-}
-.nav__list--open{
-  visibility: visible;
-}
-
-.logo-wrapper{
-  display: flex;
-  align-items: center;
-}
-.mobile-logo{
-  display: block;
-
-}
-.desktop-logo{
-  display: none;
-}
-
-
 
 /* SM (for tablets - screens ≥ than 768px wide) */
 @media (width >= 768px) {
   /* CSS rules for tablets go here */
-  .mobile-logo{
+  .mobile-logo {
     display: none;
 
   }
-  .desktop-logo{
+
+  .desktop-logo {
     display: block;
   }
 }

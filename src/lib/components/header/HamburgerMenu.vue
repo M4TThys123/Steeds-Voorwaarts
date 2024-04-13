@@ -1,9 +1,9 @@
 <template>
   <button id="ham-burger" :class="{ 'open': isNavOpen }">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    <span :class="{'white' : !isScrolled}"></span>
+    <span :class="{'white' : !isScrolled}"></span>
+    <span :class="{'white' : !isScrolled}"></span>
+    <span :class="{'white' : !isScrolled}"></span>
   </button>
 </template>
 
