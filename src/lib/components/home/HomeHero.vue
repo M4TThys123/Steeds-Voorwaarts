@@ -1,7 +1,8 @@
 <template>
   <section class="hero-wrapper">
-    <section class="hero-top">
-<!--             :style="{ backgroundImage: `url(${backgroundImage})` }"-->
+    <section class="hero-top" >
+
+      <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
       <section class="hero-header">
         <section class="hero-header__text">
           <div class="d-flex justify-content-start">
@@ -28,8 +29,7 @@ export default {
   name: "HomeHero",
   data() {
     return {
-      backgroundImage: "https://www.gv-westfriesland.nl/back-site/upload/kenvopmeer/de_content_blok/_960x1080/feefc539-75b8-4c2f-a020-ca9b6bf70db7_1_105_c_1__20230908154112.jpeg",
-
+      backgroundImage: "/assets/hero/hero_image.jpeg",
     };
   }
 }
@@ -54,7 +54,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15rem 1rem 0 1rem;
+  padding: 12rem 1rem 0 1rem;
   height: 38em;
 }
 .hero-header h1{
@@ -77,11 +77,30 @@ export default {
 .hero-top{
   height: 50%;
   width: 100%;
+  position: relative;
+
+  /*background: var(--black-color);*/
+}
+
+.hero-top__background{
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position-y: -25px;
-  background: var(--black-color);
+}
 
-  /*background-image: url("../public/assets/hero/hero_image.webp");*/
+.hero-top__background::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #398071; /* Your overlay color */
+  opacity: 0.1; /* Adjust the opacity as needed */
+  z-index: 1; /* Ensure the overlay is below the content */
 }
 .hero-bottom{
   height: 50%;
@@ -110,9 +129,9 @@ export default {
     height: 100%;
     width: 100%;
     min-width: 50vw;
-
-    /*background-image: url("../public/assets/hero/hero_image.jpeg");*/
+    position: relative;
   }
+
   .hero-bottom {
     height: 100%;
     width: 100%;

@@ -43,7 +43,7 @@ const routes = [
         name: 'Prismic',
         component: PrismicView,
         meta: {
-            hide: false, // Show this route in the navigation
+            hide: true, // Show this route in the navigation
         },
     },
 ];

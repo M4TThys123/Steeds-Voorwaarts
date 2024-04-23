@@ -203,7 +203,7 @@ nav {
 .nav-text{
   color: var(--white-color);
   transition: color 0.3s ease;
-
+  font-weight: 400 !important;
 }
 
 .text-color__scroll .nav-text {
