@@ -1,7 +1,6 @@
 <template>
-  <button class="button-component">
-
-
+  <button class="button-component" :style="{background: buttonColor}">
+    <i class='bx bxs-envelope' ></i>
       <span class="button-text">
         Mailen
       </span>
@@ -16,21 +15,20 @@ export default {
       type: String,
       default: '#14151a',
     },
-    text:{
-      type: String,
-      default: "Knop"
-    },
-    iconName:{
-      type: String,
-      required: true
-    }
   },
+  computed: {
+    buttonColor() {
+      return this.background
+    }
+  }
 }
 </script>
 
 <style scoped>
+i{
+  color: var(--white-color);
+}
 .button-component{
-  background: rgb(57, 128, 112);
   border-radius: 22px;
   width: 140px;
   height: 40px;

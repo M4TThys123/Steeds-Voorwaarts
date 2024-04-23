@@ -10,19 +10,23 @@
         </div>
       </router-link>
 
-      <div class="nav__menu">
-        <ul class="nav__list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
-          <li class="nav__item" v-for="(route, index) in filteredRoutes" :key="index">
+      <div class="nav-menu">
+        <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
+          <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index">
             <router-link
-                class="nav__link"
+                class="nav-link"
                 :to="route.path"
                 @click="closeNav"
                 :class="{
                 'text-color__scroll': isScrolled,
-                'text-color__nav-open': isNavOpen
-              }"
+                'text-color__nav-open': isNavOpen,
+                'nav-link__active': $route.path === route.path
+
+            }"
             >
-              {{ route.name }}
+              <span class="nav-text">
+                {{ route.name }}
+              </span>
             </router-link>
           </li>
           <li class="mt-3 mt-lg-0">
@@ -149,32 +153,94 @@ nav {
   margin: auto;
 }
 
-.nav__menu {
-  /*display: flex;*/
-  /*justify-content: center;*/
-}
-
-.nav__list {
+.nav-list {
   margin-bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1em;
 }
 
-.nav__item {
+.nav-item {
   margin-right: 2em;
 }
+
+.nav-link {
+  transition: color .5s;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.3em;
+  width: fit-content;
+  display: flex;
+  gap: 0.1em;
+  flex-direction: column;
+  position: relative;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: -16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  /*uitzetten*/
+  clip-path: circle(0 at 50% 50%);
+
+  /*Vastzetten*/
+  /*clip-path: circle(50% at 50% 50%) !important;*/
+  z-index: 99999999;
+  transition: background-color 0.3s ease, clip-path 0.3s ease;
+}
+
+.text-color__scroll.nav-link::before{
+  background-color: var(--black-color);
+
+}
+
+.nav-text{
+  color: var(--white-color);
+  transition: color 0.3s ease;
+
+}
+
+.text-color__scroll .nav-text {
+  color: var(--black-color);
+}
+
+.text-color__scroll .nav-link::before {
+  background-color: var(--black-color) !important;
+}
+
+
+:hover.nav-link::before {
+  clip-path: circle(50% at 50% 50%) !important;
+
+}
+
+.nav-link__scroll {
+  color: var(--text) !important;
+}
+
+.nav-link__active::before {
+  clip-path: circle(50% at 50% 50%) !important;
+}
+
+
+
 
 .logo__link {
   z-index: 999999;
 }
 
-.nav__link {
+.nav-link {
   color: #FFFFFF !important;
   transition: .3s;
 }
 
-.nav__link:hover {
+.nav-link:hover {
   text-decoration: underline;
   color: red;
 }
@@ -183,7 +249,6 @@ nav {
   display: none;
   z-index: 99999;
 }
-
 
 
 .text-color__nav-open {
@@ -211,8 +276,8 @@ nav {
   display: none;
 }
 
-.logo-text{
-  color: var(--white-color) ;
+.logo-text {
+  color: var(--white-color);
   transition: color 0.3s ease; /* Define the transition property */
 }
 
@@ -233,12 +298,12 @@ nav {
     height: 32px;
   }
 
-  .nav__menu {
+  .nav-menu {
     transition: .4s;
     margin-top: 2em;
   }
 
-  .nav__list {
+  .nav-list {
     position: fixed;
     top: 0;
     left: 0;
@@ -262,7 +327,7 @@ nav {
     padding-top: 5em;
   }
 
-  .nav__item {
+  .nav-item {
     font-size: 48px;
     font-weight: bold;
     font-family: Inter, sans-serif;
@@ -285,7 +350,12 @@ nav {
 /* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
   /* CSS rules for small laptops go here */
+  .nav-link::before {
+    /*left: -20px;*/
 
+    width: 8px;
+    height: 8px;
+  }
 
 }
 

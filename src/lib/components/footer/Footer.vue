@@ -4,7 +4,7 @@
       <section class="row">
         <section class="col-12 col-md-4">
           <h3 class="mb-3 text-white">Neem contact op!</h3>
-          <ButtonComponent background="#3D95D1"></ButtonComponent>
+          <ButtonComponent background="rgb(57, 128, 112)"></ButtonComponent>
         </section>
 
         <section class="col-6 col-md-2 mt-3">
