@@ -1,5 +1,5 @@
 <template>
-  <view-hero title="Contact" paragraph=""></view-hero>
+  <view-hero title="Contact" paragraph="Onze vereniging bestaat al ruim 100 jaar!"></view-hero>
 
 
 

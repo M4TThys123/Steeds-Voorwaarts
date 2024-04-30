@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import LesAanbodView from "@/views/LesAanbodView.vue";
 import ContactView from "@/views/ContactView.vue";
 import PrismicView from "@/views/PrismicView.vue";
+import AanmeldenView from "@/views/AanmeldenView.vue";
 // import SportView from "@/views/SportView.vue";
 
 const routes = [
@@ -11,7 +12,7 @@ const routes = [
         name: 'Home',
         component: HomeView,
         meta: {
-            hide: true, // hide this route in the navigation
+            hide: false, // hide this route in the navigation
         },
     },
     {
@@ -38,6 +39,15 @@ const routes = [
             hide: false, // Show this route in the navigation
         },
     },
+    {
+        path: '/aanmelden',
+        name: 'Aanmelden',
+        component: AanmeldenView,
+        meta: {
+            hide: true, // Show this route in the navigation
+        },
+    },
+
     {
         path: '/primic',
         name: 'Prismic',

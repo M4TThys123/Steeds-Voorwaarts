@@ -1,8 +1,8 @@
 <template>
-  <a href="/aanmelden" class="button-component" :style="{background: buttonColor}">
-    <i class='bx bxs-user-plus' ></i>
+  <a :href="'mailto:' + email" class="button-component" :style="{background: buttonColor}">
+    <i class='bx bxs-envelope' ></i>
     <span class="button-text">
-      Aanmelden
+      Mailen
     </span>
   </a>
 </template>
@@ -15,6 +15,10 @@ export default {
       type: String,
       default: '#14151a',
     },
+    email: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     buttonColor() {
@@ -26,19 +30,14 @@ export default {
 
 <style scoped>
 i {
-  color: var(--white-color);
+  color: var(--grey-color);
 }
 .button-component {
-  border-radius: 22px;
-  /*width: 140px;*/
-  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none; /* Ensure it looks like a button */
-  padding: 0 1.5em;
 }
-
 .button-text {
   font-size: 18px;
   margin-left: .5em;

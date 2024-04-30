@@ -30,7 +30,7 @@
             </router-link>
           </li>
           <li class="mt-3 mt-lg-0">
-            <ButtonComponent text="text" textColor="#fff"></ButtonComponent>
+            <ButtonComponent textColor="#fff"></ButtonComponent>
           </li>
         </ul>
       </div>
@@ -101,7 +101,7 @@ export default {
   },
   computed: {
     filteredRoutes() {
-      return router.options.routes.filter(route => !route.hide);
+      return router.options.routes.filter(route => !route.meta.hide);
     }
   }
 };
