@@ -8,6 +8,8 @@
   
   <NieuwsComponent class="mb-5"></NieuwsComponent>
 
+  <HomeLesaanbod></HomeLesaanbod>
+
   <RoosterComponent class="mb-5"></RoosterComponent>
 
   <ContactSection class="mb-5"></ContactSection>
@@ -22,10 +24,11 @@ import NieuwsComponent from "@/lib/components/nieuws/NieuwsComponent.vue";
 import ContactSection from "@/lib/components/contact/ContactSection.vue";
 import HomeHero from "@/lib/components/home/HomeHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
+import HomeLesaanbod from "@/lib/components/home/HomeLesaanbod.vue";
 
 export default {
   name: "HomeView",
-  components: { RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
+  components: {HomeLesaanbod, RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
 
 }
 </script>
