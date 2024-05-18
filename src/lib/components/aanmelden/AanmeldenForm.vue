@@ -3,7 +3,6 @@
     <h2 class="mb-4">Aanmelden</h2>
 
     <div class="">
-
         <form @submit.prevent="submitForm" class="">
           <div class="form-group mb-3">
             <label for="naam" class="form-label"><strong>Naam:</strong></label>

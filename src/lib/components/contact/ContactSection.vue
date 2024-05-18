@@ -10,8 +10,8 @@
               gerust eens langs voor 2 gratis proeflessen.
             </p>
             <p>Wij bieden voor alle leeftijden volop sportieve mogelijkheden,
-              zoals: kleuterdans, hip hop en Freerunning voor jongens en meisjes, Total Body Workout en
-              fysiogym voor volwassenen en seniorengym voor ouderen.
+              zoals: <b>Kleuterdans</b>, <b>Hip Hop</b> en <b>Freerunning</b> voor jongens en meisjes, <b>Total Body Workout</b> en
+              <b>Fysiogym</b> voor volwassenen en <b>Seniorengym</b> voor ouderen.
             </p>
           </div>
 
@@ -19,9 +19,9 @@
             <div>
               <h3>Bestuur</h3>
               <div>
-                <div>Voorzitter: Suzanne Dubbeldam</div>
-                <div>Penningmeester: Eva Poen-Visser</div>
-                <div>Secretaris: Jellie Bangma</div>
+                <div>Voorzitter: <b>Suzanne Dubbeldam</b></div>
+                <div>Penningmeester: <b>Femke van der Linden</b></div>
+                <div>Secretaris: <b>Jellie Bangma</b></div>
               </div>
             </div>
             <div>

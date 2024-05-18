@@ -11,27 +11,31 @@
       <tbody>
       <tr>
         <td>Kleuterdans</td>
-        <td>€ 140,00</td>
+        <td>€ 150,00</td>
       </tr>
       <tr>
         <td>Hip hop</td>
-        <td>€ 185,00</td>
+        <td>€ 190,00</td>
       </tr>
       <tr>
-        <td>Fun Moves</td>
-        <td>€ 130,00</td>
+        <td>Freerunning</td>
+        <td>€ 140,00</td>
       </tr>
       <tr>
         <td>Bootcamp</td>
-        <td>€ 170,00</td>
+        <td>€ 175,00</td>
       </tr>
       <tr>
         <td>Fysio Gym</td>
-        <td>€ 170,00</td>
+        <td>€ 175,00</td>
       </tr>
       <tr>
         <td>Seniorengym</td>
-        <td>€ 140,00</td>
+        <td>€ 150,00</td>
+      </tr>
+      <tr>
+        <td>Demo Dans</td>
+        <td>€ 285,00</td>
       </tr>
       </tbody>
     </table>

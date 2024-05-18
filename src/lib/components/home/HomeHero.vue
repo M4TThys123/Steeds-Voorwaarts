@@ -29,7 +29,7 @@ export default {
   name: "HomeHero",
   data() {
     return {
-      backgroundImage: "/assets/hero/hero_image.jpeg",
+      backgroundImage: "/assets/images/hero/hero_image.jpeg",
     };
   }
 }
