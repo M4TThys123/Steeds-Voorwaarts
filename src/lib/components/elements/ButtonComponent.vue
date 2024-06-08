@@ -30,7 +30,7 @@ i {
 }
 .button-component {
   border-radius: 22px;
-  /*width: 140px;*/
+  width: 160px;
   height: 40px;
   display: flex;
   justify-content: center;

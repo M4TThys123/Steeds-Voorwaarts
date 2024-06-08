@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container py-5">
     <h2>Week Rooster</h2>
     <div class="table-responsive">
       <table class="table table-striped">

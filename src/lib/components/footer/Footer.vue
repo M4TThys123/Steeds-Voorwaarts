@@ -1,9 +1,9 @@
 <template>
   <footer class="py-5 text-grey">
-    <section class="container">
+    <section class="footer-content">
       <section class="footer-top">
         <section class="">
-          <h3 class="mb-3 text-white">Neem contact op!</h3>
+          <h3 class="mb-3 text-white footer-title">Gratis proefles</h3>
           <ButtonComponent background="rgb(57, 128, 112)"></ButtonComponent>
         </section>
 
@@ -126,6 +126,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .text-white {
   color: #fff;
 }
@@ -136,6 +138,14 @@ export default {
 
 footer {
   background: #14151A;
+}
+
+.footer-content{
+  padding: 8.3333333333vw 12.5vw 4.1666666667vw 8.3333333333vw;
+}
+
+.footer-title{
+  font-size: 41px;
 }
 
 .footer-link-list {

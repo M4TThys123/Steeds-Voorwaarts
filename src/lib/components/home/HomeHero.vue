@@ -3,6 +3,7 @@
     <section class="hero-top" >
 
       <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
+
       <section class="hero-header">
         <section class="hero-header__text">
           <div class="d-flex justify-content-start">
@@ -45,8 +46,8 @@ export default {
 
 .hero-header{
   color: white;
-  position: absolute;
-  height: 75vh;
+  position: relative;
+  height: 100%;
 
 }
 
@@ -84,11 +85,11 @@ export default {
 
 .hero-top__background{
   position: absolute;
-
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position-y: -25px;
+  z-index: 0;
 }
 
 .hero-top__background::before{
@@ -98,8 +99,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #398071; /* Your overlay color */
-  opacity: 0.1; /* Adjust the opacity as needed */
+  background-color: var(--black-color); /* Your overlay color */
+  opacity: 0.5; /* Adjust the opacity as needed */
   z-index: 1; /* Ensure the overlay is below the content */
 }
 .hero-bottom{

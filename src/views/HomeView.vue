@@ -1,12 +1,8 @@
 <template>
-  <HomeHero class="mb-5 "></HomeHero>
+  <HomeHero class="mb-5"></HomeHero>
 
-  <section>
-    <h2></h2>
-    <p></p>
-  </section>
+  <HomePar class="mb-5"></HomePar>
   
-  <NieuwsComponent class="mb-5"></NieuwsComponent>
 
   <HomeLesaanbod></HomeLesaanbod>
 
@@ -14,6 +10,7 @@
 
   <ContactSection class="mb-5"></ContactSection>
 
+  <NieuwsComponent></NieuwsComponent>
 
 
 </template>
@@ -25,10 +22,11 @@ import ContactSection from "@/lib/components/contact/ContactSection.vue";
 import HomeHero from "@/lib/components/home/HomeHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import HomeLesaanbod from "@/lib/components/home/HomeLesaanbod.vue";
+import HomePar from "@/lib/components/home/HomePar.vue";
 
 export default {
   name: "HomeView",
-  components: {HomeLesaanbod, RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
+  components: {HomePar, HomeLesaanbod, RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
 
 }
 </script>
