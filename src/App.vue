@@ -82,6 +82,10 @@ a {
   color: var(--text-color) !important;
 }
 
+h2{
+  font-weight: 900 !important;
+}
+
 button {
   color: var(--text);
   padding: .5rem 1.5rem;

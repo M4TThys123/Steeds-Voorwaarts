@@ -1,8 +1,8 @@
 <template>
   <section class="py-5">
     <div class="">
-      <h1 class="mt-5 mb-3 container">Lesaanbod</h1>
-      <swiper :slides-per-view="2.5" :space-between="28" class="swiper">
+<!--      <h2 class="mt-5 mb-3 container">Lesaanbod</h2>-->
+      <swiper :slidesPerView="1.125"  :options="swiperOptions" :space-between="28" class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
           <a :href="sport.data.uid">
             <span class="sport-subtitle">
@@ -43,6 +43,13 @@ export default {
     return {
       sporten: [],
       isLoading: true,
+
+      swiperOptions: {
+        slidesPerView: 1.125,
+        breakpoints: {
+
+        }
+      }
     }
   },
   created() {
@@ -71,8 +78,9 @@ export default {
 <style>
 /* Custom styles for Swiper */
 .swiper {
-  padding: 20px 0 0 105px;
+  padding-left: 1em;
 }
+
 .sport-subtitle{
   font-size: .75rem;
    letter-spacing: -0.0014em;
@@ -83,7 +91,7 @@ export default {
   clip-path: inset(0);
   position: relative;
   width: 100%;
-  height: 25vw;
+  /*height: 25vw;*/
   margin-top: 1rem;
   transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
   max-height: calc(6* 5rem);
@@ -98,6 +106,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  /*width: calc(100vw - 88px);*/
 }
 
 .fixed-card {
@@ -110,5 +119,11 @@ export default {
 .fixed-img {
   height: 200px; /* Set a fixed height for the image */
   object-fit: cover;
+}
+
+@media (width >= 992px) {
+  .swiper {
+    padding: 20px 0 0 105px;
+  }
 }
 </style>
