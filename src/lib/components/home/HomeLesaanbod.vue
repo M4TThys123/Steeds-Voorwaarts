@@ -2,12 +2,15 @@
   <section class="py-5">
     <div class="">
       <h1 class="mt-5 mb-3 container">Lesaanbod</h1>
-      <swiper :slides-per-view="2.5" :space-between="28" class="my-swiper">
-        <swiper-slide v-for="sport in sporten" :key="sport.uid">
+      <swiper :slides-per-view="2.5" :space-between="28" class="swiper">
+        <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
           <a :href="sport.data.uid">
-            <div class="h-100 fixed-card">
+            <span class="sport-subtitle">
+            {{ sport.uid}}
+            </span>
+            <div class="h-100 fixed-card mt-3">
               <figure>
-                <PrismicImage :field="sport.data.image" />
+                <PrismicImage :field="sport.data.image"  class="les-image"/>
               </figure>
               <div class="card-body">
                 <div v-html="asHTML(sport.data.titel)"></div>
@@ -67,15 +70,34 @@ export default {
 
 <style>
 /* Custom styles for Swiper */
-.my-swiper {
+.swiper {
   padding: 20px 0 0 105px;
+}
+.sport-subtitle{
+  font-size: .75rem;
+   letter-spacing: -0.0014em;
+  line-height: 1.6;
+  margin-bottom: 1.5em;
+}
+.les-image{
+  clip-path: inset(0);
+  position: relative;
+  width: 100%;
+  height: 25vw;
+  margin-top: 1rem;
+  transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
+  max-height: calc(6* 5rem);
+  background-color: rgba(20, 21, 26, .1);
+}
+
+:hover.swiper-slide .les-image{
+  clip-path: inset(1.5rem round 1.5rem);
 }
 
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ;
 }
 
 .fixed-card {
