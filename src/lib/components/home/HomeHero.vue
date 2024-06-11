@@ -1,6 +1,7 @@
 <template>
   <section class="hero-wrapper">
     <section class="hero-top" >
+      <div class="hero-top__wrapper">
 
       <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
 
@@ -16,7 +17,7 @@
           </h2>
         </section>
       </section>
-
+      </div>
     </section>
     <section class="hero-bottom">
       <figure>
@@ -38,11 +39,12 @@ export default {
 
 <style scoped>
 .hero-wrapper{
-  height: 75vh;
+  height: 50vw;
   max-height: 620px;
   display: flex;
   flex-direction: column;
 }
+
 
 .hero-header{
   color: white;
@@ -80,6 +82,7 @@ export default {
   width: 100%;
   position: relative;
 
+
   /*background: var(--black-color);*/
 }
 
@@ -87,8 +90,12 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+
+  /*width: 100%;*/
+  /*height: 100%;*/
   background-size: cover;
   background-position-y: -25px;
+
   z-index: 0;
 }
 
@@ -123,14 +130,18 @@ export default {
 @media (width >= 768px) {
   .hero-wrapper {
     flex-direction: row;
-    height: 75vh;
-    max-height: 620px;
+    /*height: 75vh;*/
+    /*max-height: 620px;*/
   }
   .hero-top {
     height: 100%;
     width: 100%;
     min-width: 50vw;
+
     position: relative;
+  }
+  .hero-top__wrapper{
+    /*position: absolute;*/
   }
 
   .hero-bottom {
@@ -160,6 +171,11 @@ export default {
 
 /* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
+  .hero-wrapper{
+    height: 50vw;
+    max-height: none;
+  }
+
   .hero-header__text{
     height: 100%;
     margin-bottom: 2em;
@@ -174,7 +190,7 @@ export default {
   .hero-wrapper{
     font-size: 10vw;
     max-height: none;
-    height: 90vh;
+    /*height: 90vh;*/
   }
   .hero-top{
     background-position-y: 0;

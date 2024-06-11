@@ -13,12 +13,16 @@
                 <PrismicImage :field="sport.data.image"  class="les-image"/>
               </figure>
               <div class="card-body">
-                <div v-html="asHTML(sport.data.titel)"></div>
+                <div v-html="asHTML(sport.data.titel)" class="sport-heading__container"></div>
 
                 <div v-html="asHTML(sport.data.inleiding)"></div>
               </div>
             </div>
           </a>
+        </swiper-slide>
+        <swiper-slide class="swiper-slide__last">
+          <h3 class="heading-bold">Ontdek all onze sporten</h3>
+          <ButtonComponent></ButtonComponent>
         </swiper-slide>
       </swiper>
     </div>
@@ -31,10 +35,12 @@ import 'swiper/swiper-bundle.css';
 import Prismic from "prismic-javascript";
 import {asHTML} from "@prismicio/helpers";
 import { PrismicImage } from '@prismicio/vue'
+import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 
 export default {
   name: 'HomeLesaanbod',
   components: {
+    ButtonComponent,
     Swiper,
     SwiperSlide,
     PrismicImage
@@ -45,15 +51,14 @@ export default {
       isLoading: true,
 
       breakpoints:{
-        // when window width is >= 480px
         750: {
           slidesPerView: 1.885,
-          spaceBetween: 30
         },
-        // when window width is >= 640px
         1024: {
           slidesPerView: 2.25,
-          spaceBetween: 40
+        },
+        1920: {
+          slidesPerView: 3.375,
         }
       },
     }
@@ -85,6 +90,7 @@ export default {
 /* Custom styles for Swiper */
 .swiper {
   padding-left: 1em;
+
 }
 
 .sport-subtitle{
@@ -93,12 +99,15 @@ export default {
   line-height: 1.6;
   margin-bottom: 1.5em;
 }
+.sport-heading__container > *{
+  font-weight: 900;
+}
 .les-image{
   clip-path: inset(0);
   position: relative;
   width: 100%;
   /*height: 25vw;*/
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
   max-height: calc(6* 5rem);
   background-color: rgba(20, 21, 26, .1);
@@ -126,10 +135,45 @@ export default {
   height: 200px; /* Set a fixed height for the image */
   object-fit: cover;
 }
+.swiper-slide__last{
+  background: var(--green-color);
+  position: relative;
+  width: 25vw;
+  height: 25vw;
+  max-width: calc(6* 5rem);
+  max-height: calc(6* 5rem);
+  padding: 4.1666666667vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 2.125rem;
+  clip-path: inset(0);
+  transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
+}
+.swiper-slide__last:hover{
+  clip-path: inset(1.5rem round 1.5rem);
+}
+.heading-bold{
+  font-size: 1.6666666667vw;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+}
 
 @media (width >= 992px) {
   .swiper {
-    padding: 20px 0 0 105px;
+    padding-left: calc((100vw - 120rem) / 2 + calc(1.5 * 5rem));
+
+  }
+}
+
+@media (width >= 1920px) {
+  .heading-bold{
+    font-size: calc(0.4 * 5rem);
+
+
   }
 }
 </style>
