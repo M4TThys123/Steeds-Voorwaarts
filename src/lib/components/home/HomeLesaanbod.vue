@@ -2,7 +2,7 @@
   <section class="py-5">
     <div class="">
 <!--      <h2 class="mt-5 mb-3 container">Lesaanbod</h2>-->
-      <swiper :slidesPerView="1.125"  :options="swiperOptions" :space-between="28" class="swiper">
+      <swiper :slidesPerView="1.125" :breakpoints="breakpoints" :options="swiperOptions" :space-between="28" class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
           <a :href="sport.data.uid">
             <span class="sport-subtitle">
@@ -44,12 +44,18 @@ export default {
       sporten: [],
       isLoading: true,
 
-      swiperOptions: {
-        slidesPerView: 1.125,
-        breakpoints: {
-
+      breakpoints:{
+        // when window width is >= 480px
+        750: {
+          slidesPerView: 1.885,
+          spaceBetween: 30
+        },
+        // when window width is >= 640px
+        1024: {
+          slidesPerView: 2.25,
+          spaceBetween: 40
         }
-      }
+      },
     }
   },
   created() {

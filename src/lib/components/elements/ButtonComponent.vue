@@ -14,7 +14,7 @@ export default {
     background: {
       type: String,
       default: '#14151a',
-    },
+    }
   },
   computed: {
     buttonColor() {

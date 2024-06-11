@@ -12,10 +12,10 @@
 
         <div v-html="asHTML(sport.data.agenda_title)"></div>
         <div v-for="agenda in sport.data.agendas" :key="agenda.id">
-          <div v-html="asHTML(agenda.agenda_content.text)">
+          <div v-html="asHTML(sport.data.agenda_content)">
           </div>-
+          <div>{{ sport.data.docent }}</div>
         </div>
-
 
       </section>
     </section>
@@ -54,6 +54,8 @@ export default {
 
         this.sporten = response.results;
         console.log(this.sporten)
+        console.log(this.sporten.data.titel)
+
         this.isLoading = false;
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
