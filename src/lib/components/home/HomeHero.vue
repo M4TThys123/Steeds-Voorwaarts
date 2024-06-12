@@ -2,26 +2,25 @@
   <section class="hero-wrapper">
     <section class="hero-top" >
       <div class="hero-top__wrapper">
-
       <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
 
-      <section class="hero-header">
-        <section class="hero-header__text">
-          <div class="d-flex justify-content-start">
-            <h1>Steeds Voor-<br>
-              waarts
-            </h1>
-          </div>
-          <h2>
-            Kom langs en ontdek de sport die bij jou past!  <br>
-          </h2>
-        </section>
-      </section>
       </div>
     </section>
     <section class="hero-bottom">
       <figure>
       </figure>
+    </section>
+    <section class="hero-header position-absolute">
+      <section class="hero-header__text">
+        <div class="d-flex justify-content-start">
+          <h1>Steeds Voor-<br>
+            waarts
+          </h1>
+        </div>
+        <h2>
+          Kom langs en ontdek de sport die bij jou past!  <br>
+        </h2>
+      </section>
     </section>
   </section>
 </template>
@@ -39,7 +38,7 @@ export default {
 
 <style scoped>
 .hero-wrapper{
-  height: 50vw;
+  height: 100%;
   max-height: 620px;
   display: flex;
   flex-direction: column;
