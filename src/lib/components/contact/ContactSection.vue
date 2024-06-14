@@ -68,7 +68,7 @@
         <ContactInformation class="mb-5"></ContactInformation>
         <ContactForm class="my-5"></ContactForm>
 
-        <FacebookComponent></FacebookComponent>
+<!--        <FacebookComponent></FacebookComponent>-->
       </div>
     </div>
   </section>
@@ -77,11 +77,10 @@
 <script>
 import ContactForm from "@/lib/components/contact/ContactForm.vue";
 import ContactInformation from "@/lib/components/contact/ContactInformation.vue";
-import FacebookComponent from "@/lib/components/contact/FacebookComponent.vue";
 
 export default {
   name: "ContactSection",
-  components: {FacebookComponent, ContactInformation, ContactForm }
+  components: { ContactInformation, ContactForm }
 }
 </script>
 

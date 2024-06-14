@@ -69,6 +69,11 @@ export default {
 svg {
   width: 32px;
   height: 32px;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: all 0.4s ease; /* For Firefox 4.0 to 15 */
+  -o-transition: all 0.4s ease; /* For Opera 10.50 to 12.00 */
+  -ms-transition: all 0.4s ease; /* For Internet Explorer 10 */
 }
 
 path {

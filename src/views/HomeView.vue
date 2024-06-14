@@ -10,23 +10,23 @@
 
   <ContactSection class="mb-5"></ContactSection>
 
-  <NieuwsComponent></NieuwsComponent>
+<!--  <NieuwsComponent></NieuwsComponent>-->
 
 
 </template>
 
 <script>
+import HomePar from "@/lib/components/home/HomePar.vue";
 
-import NieuwsComponent from "@/lib/components/nieuws/NieuwsComponent.vue";
 import ContactSection from "@/lib/components/contact/ContactSection.vue";
 import HomeHero from "@/lib/components/home/HomeHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import HomeLesaanbod from "@/lib/components/home/HomeLesaanbod.vue";
-import HomePar from "@/lib/components/home/HomePar.vue";
+// import NieuwsComponent from "@/lib/components/nieuws/NieuwsComponent.vue";
 
 export default {
   name: "HomeView",
-  components: {HomePar, HomeLesaanbod, RoosterComponent, HomeHero, ContactSection, NieuwsComponent, },
+  components: {HomePar, HomeLesaanbod, RoosterComponent, HomeHero, ContactSection },
 
 }
 </script>

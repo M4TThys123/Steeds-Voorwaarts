@@ -8,7 +8,7 @@
 <!--            <span class="sport-subtitle">-->
 <!--            {{ sport.uid}}-->
 <!--            </span>-->
-            <div class="h-100 fixed-card mt-3">
+            <div class="h-100 fixed-card">
               <figure>
                 <PrismicImage :field="sport.data.image"  class="les-image"/>
               </figure>
@@ -148,7 +148,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 2.125rem;
+  /*margin-top: 2.125rem;*/
   clip-path: inset(0);
   transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
 }
@@ -160,6 +160,10 @@ export default {
   line-height: 1.25;
   letter-spacing: -0.04em;
   font-weight: 900;
+}
+
+@media (width >= 750px){
+
 }
 
 @media (width >= 992px) {
