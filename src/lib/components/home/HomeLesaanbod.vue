@@ -5,9 +5,9 @@
       <swiper :slidesPerView="1.125" :breakpoints="breakpoints" :options="swiperOptions" :space-between="28" class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
           <a :href="sport.data.uid">
-            <span class="sport-subtitle">
-            {{ sport.uid}}
-            </span>
+<!--            <span class="sport-subtitle">-->
+<!--            {{ sport.uid}}-->
+<!--            </span>-->
             <div class="h-100 fixed-card mt-3">
               <figure>
                 <PrismicImage :field="sport.data.image"  class="les-image"/>
