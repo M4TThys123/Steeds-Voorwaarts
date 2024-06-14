@@ -278,7 +278,6 @@ nav {
 
 .logo-text {
   color: var(--white-color);
-  transition: color 0.3s ease; /* Define the transition property */
 }
 
 .text-color__scroll {
@@ -340,6 +339,10 @@ nav {
   .mobile-logo {
     display: none;
 
+  }
+
+  .logo-text {
+    transition: color 0.5s ease; /* Define the transition property */
   }
 
   .desktop-logo {
