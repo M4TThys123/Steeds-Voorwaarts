@@ -62,17 +62,20 @@ export default {
 .cls-2 {
   fill: #fff;
 }
-.dark .cls-2{
+.dark .cls-2 {
   fill: var(--text);
 }
 
-svg{
+svg {
   width: 32px;
   height: 32px;
 }
 
-path{
+path {
   transition: all 0.4s ease;
-
+  -webkit-transition: all 0.4s ease; /* For Safari 3.1 to 6.0 */
+  -moz-transition: all 0.4s ease; /* For Firefox 4.0 to 15 */
+  -o-transition: all 0.4s ease; /* For Opera 10.50 to 12.00 */
+  -ms-transition: all 0.4s ease; /* For Internet Explorer 10 */
 }
 </style>

@@ -10,7 +10,7 @@
       <figure>
       </figure>
     </section>
-    <section class="hero-header position-absolute">
+    <section class="hero-header">
       <section class="hero-header__text">
         <div class="d-flex justify-content-start">
           <h1>Steeds Voor-<br>
@@ -43,15 +43,12 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
-
 .hero-header{
   color: white;
   position: relative;
   height: 100%;
 
 }
-
 .hero-header__text {
   display: flex;
   flex-direction: column;
@@ -66,38 +63,26 @@ export default {
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--white-color);
-
 }
 .hero-header h2{
   font-size: 22px;
   font-weight: bold;
-  /*margin-top: 11.5rem;*/
   width: auto;
   color: var(--white-color);
 }
-
 .hero-top{
   height: 50%;
   width: 100%;
   position: relative;
-
-
-  /*background: var(--black-color);*/
 }
-
 .hero-top__background{
   position: absolute;
   width: 100%;
   height: 100%;
-
-  /*width: 100%;*/
-  /*height: 100%;*/
   background-size: cover;
   background-position-y: -25px;
-
   z-index: 0;
 }
-
 .hero-top__background::before{
   content: '';
   position: absolute;
@@ -105,9 +90,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--black-color); /* Your overlay color */
-  opacity: 0.5; /* Adjust the opacity as needed */
-  z-index: 1; /* Ensure the overlay is below the content */
+  background-color: var(--black-color);
+  opacity: 0.5;
+  z-index: 1;
 }
 .hero-bottom{
   height: 50%;
@@ -116,17 +101,35 @@ export default {
 
   display: flex;
   justify-content: center;
-  padding: 2em;
+  /*padding: 2em;*/
+  padding: 3em 3em 5em;
 }
 .hero-bottom figure{
   width: 100%;
-  height: 191px;
   background: var(--background);
   border-radius: 18px;
+
 }
+
+/*.hero-header__text h2{*/
+/*  max-width: 21.75rem;*/
+/*}*/
+/*.hero-header__text h2{*/
+/*  max-width: 40rem;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
+
 
 
 @media (width >= 768px) {
+
+  figure {
+    width: 100% !important;
+    aspect-ratio: 9/11!important;; /* aspect ratio of 360px by 460px */
+    max-width: 100vw!important;; /* restrict the maximum width to the viewport width */
+    height: 191px;
+
+  }
   .hero-wrapper {
     flex-direction: row;
     /*height: 75vh;*/
@@ -146,6 +149,9 @@ export default {
   .hero-bottom {
     height: 100%;
     width: 100%;
+    min-width: 50vw;
+    padding: 2em;
+
     align-items: center;
   }
   .hero-bottom figure {
@@ -167,7 +173,6 @@ export default {
   }
 
 }
-
 /* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
   .hero-wrapper{
@@ -200,18 +205,7 @@ export default {
     height: 90vh;
   }
 }
-.hero-header__text h2{
-  max-width: 21.75rem;
-}
-.hero-header__text h2{
-  max-width: 40rem;
-  margin-bottom: 1rem;
-}
-figure {
-  width: 100% !important;
-  aspect-ratio: 9/11!important;; /* aspect ratio of 360px by 460px */
-  max-width: 100vw!important;; /* restrict the maximum width to the viewport width */
-}
+
 
 
 </style>
