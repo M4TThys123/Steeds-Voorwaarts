@@ -130,4 +130,11 @@ li {
   flex: 1; /* Expand to fill remaining space */
 }
 
+/* SM (for tablets - screens ≥ than 768px wide) */
+@media (width >= 768px) { }
+/* MD (for small laptops - screens ≥ than 992px wide) */
+@media (width >= 992px) { }
+/* LG (for laptops and desktops - screens ≥ than 1200px wide) */
+@media (width >= 1200px) {}
+
 </style>

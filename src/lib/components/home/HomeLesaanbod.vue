@@ -2,17 +2,25 @@
   <section class="py-5">
     <div class="">
 <!--      <h2 class="mt-5 mb-3 container">Lesaanbod</h2>-->
-      <swiper :slidesPerView="1.125" :breakpoints="breakpoints" :options="swiperOptions" :space-between="28" class="swiper">
+      <swiper :slidesPerView="1.20"
+              :breakpoints="breakpoints"
+              :options="swiperOptions"
+              :space-between="20"
+              class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
-          <a :href="sport.data.uid">
+          <a :href="`/lesaanbod/#${sport.data.uid}`">
 <!--            <span class="sport-subtitle">-->
 <!--            {{ sport.uid}}-->
 <!--            </span>-->
             <div class="h-100 fixed-card">
-              <figure>
-                <PrismicImage :field="sport.data.image"  class="les-image"/>
-              </figure>
-              <div class="card-body">
+              <div class="swiper-image__wrapper">
+                <a :href="`/sporten/#${sport.data.uid}`" class="swiper-image__link"></a>
+                <figure class="swiper-figure">
+                  <PrismicImage :field="sport.data.image"  class="swiper-image"/>
+                </figure>
+              </div>
+
+              <div class="swiper-body">
                 <div v-html="asHTML(sport.data.titel)" class="sport-heading__container"></div>
 
                 <div v-html="asHTML(sport.data.inleiding)"></div>
@@ -22,7 +30,10 @@
         </swiper-slide>
         <swiper-slide class="swiper-slide__last">
           <h3 class="heading-bold">Ontdek all onze sporten</h3>
-          <ButtonComponent></ButtonComponent>
+<!--          <ButtonComponent></ButtonComponent>-->
+          <GenaricButon   link="/lesaanbod"
+                          icon="bx bx-right-arrow-alt"
+                          text="Lees meer" ></GenaricButon>
         </swiper-slide>
       </swiper>
     </div>
@@ -35,12 +46,12 @@ import 'swiper/swiper-bundle.css';
 import Prismic from "prismic-javascript";
 import {asHTML} from "@prismicio/helpers";
 import { PrismicImage } from '@prismicio/vue'
-import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
+import GenaricButon from "@/lib/components/elements/GenaricButon.vue";
 
 export default {
   name: 'HomeLesaanbod',
   components: {
-    ButtonComponent,
+    GenaricButon,
     Swiper,
     SwiperSlide,
     PrismicImage
@@ -90,7 +101,6 @@ export default {
 /* Custom styles for Swiper */
 .swiper {
   padding-left: 1em;
-
 }
 
 .sport-subtitle{
@@ -102,20 +112,7 @@ export default {
 .sport-heading__container > *{
   font-weight: 900;
 }
-.les-image{
-  clip-path: inset(0);
-  position: relative;
-  width: 100%;
-  /*height: 25vw;*/
-  /*margin-top: 1rem;*/
-  transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
-  max-height: calc(6* 5rem);
-  background-color: rgba(20, 21, 26, .1);
-}
 
-:hover.swiper-slide .les-image{
-  clip-path: inset(1.5rem round 1.5rem);
-}
 
 .swiper-slide {
   display: flex;
@@ -135,6 +132,10 @@ export default {
   height: 200px; /* Set a fixed height for the image */
   object-fit: cover;
 }
+
+
+
+
 .swiper-slide__last{
   background: var(--green-color);
   position: relative;
@@ -152,20 +153,99 @@ export default {
   clip-path: inset(0);
   transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
 }
-.swiper-slide__last:hover{
-  clip-path: inset(1.5rem round 1.5rem);
-}
+
 .heading-bold{
-  font-size: 1.6666666667vw;
+  color: white;
+  font-size: 22px;
   line-height: 1.25;
   letter-spacing: -0.04em;
   font-weight: 900;
 }
 
-@media (width >= 750px){
+/* =================+++++++======+++=+==++==+==+==+ */
+
+/* =================+++++++======+++=+==++==+==+==+ */
+
+
+
+/* All */
+
+.swiper-image__wrapper {
+  position: relative;
+  width: 100%;
+  transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
+  background-color: rgba(20, 21, 26, .1);
+  clip-path: unset;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  clip-path: unset;
+  height: calc((100vw - 88px) / 287* 360);
+  transition: clip-path 1s cubic-bezier(0.17, 0.67, 0, 1);
 
 }
 
+.swiper-slide__last {
+  height: calc((100vw - 88px) / 287* 360);
+  border-radius: 1rem;
+}
+
+.swiper-image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiper-body{
+  margin-top: 1.25em;
+}
+
+
+
+/* SM (for tablets - screens ≥ than 768px wide) */
+@media (width >= 768px) {
+  .swiper{
+    margin-left: 4em;
+  }
+  .swiper-image__wrapper {
+    height: calc((60vw - 88px) / 287* 360);
+    overflow: hidden;
+      border-radius: 0;
+  }
+
+  .swiper-slide__last {
+    height: calc((60vw - 88px) / 287* 360);
+      border-radius: 0;
+  }
+
+}
+
+/* MD (for small laptops - screens ≥ than 992px wide) */
+@media (width >= 992px) {
+  .swiper-image__wrapper {
+    height: 25vw;
+    clip-path: inset(0);
+  }
+  :hover.swiper-slide .swiper-image__wrapper, .swiper-slide__last:hover{
+    clip-path: inset(1.5rem round 1.5rem);
+  }
+
+  .swiper-slide__last {
+    height: 25vw;
+  }
+}
+
+/* LG (for laptops and desktops - screens ≥ than 1200px wide) */
+@media (width >= 1200px) {
+  .heading-bold{
+    font-size: 1.6666666667vw;
+  }
+}
+
+
+
+
+/* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
   .swiper {
     padding-left: calc((100vw - 120rem) / 2 + calc(1.5 * 5rem));
@@ -173,6 +253,7 @@ export default {
   }
 }
 
+/* Wide */
 @media (width >= 1920px) {
   .heading-bold{
     font-size: calc(0.4 * 5rem);

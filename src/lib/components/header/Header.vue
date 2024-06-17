@@ -362,8 +362,10 @@ nav {
 
 }
 
-/* LG (for laptops and desktops - screens ≥ than 1200px wide) */
 @media (width >= 1200px) {
   /* CSS rules for laptops and desktops go here */
 }
+
+
+
 </style>

@@ -24,11 +24,7 @@
                 <div>Secretaris: <b>Jellie Bangma</b></div>
               </div>
             </div>
-            <div>
-              <a href="https://steedsvoorwaarts.nl/wp-content/uploads/2021/11/Jaarverslag-2022_2023.pdf" target="_blank" class="btn btn-primary">
-                Jaarverslag 2022-2023
-              </a>
-            </div>
+
           </div>
         </div>
         <div class="panel-grid-cell">
@@ -40,6 +36,16 @@
                     Burgemeester P. Kromplein 1 1657 AA Abbekerk
                   </a>
                 </p>
+
+                <div>
+                  <genaric-buton class="my-5"
+                                  icon="bx bxs-file-pdf"
+                                 text="Jaarverslag 2022-2023"
+                                 link="https://steedsvoorwaarts.nl/wp-content/uploads/2021/11/Jaarverslag-2022_2023.pdf">
+
+                  </genaric-buton>
+                </div>
+
                 <div id="panel-105-1-2-0" class="so-panel widget widget_sow-editor panel-first-child" data-index="5">
                   <div class="so-widget-sow-editor so-widget-sow-editor-base"><h3 class="widget-title">Contact</h3>
                     <div class="siteorigin-widget-tinymce textwidget">
@@ -65,6 +71,8 @@
       </div>
 
       <div class="col-md-4">
+
+
         <ContactInformation class="mb-5"></ContactInformation>
         <ContactForm class="my-5"></ContactForm>
 
@@ -77,10 +85,11 @@
 <script>
 import ContactForm from "@/lib/components/contact/ContactForm.vue";
 import ContactInformation from "@/lib/components/contact/ContactInformation.vue";
+import GenaricButon from "@/lib/components/elements/GenaricButon.vue";
 
 export default {
   name: "ContactSection",
-  components: { ContactInformation, ContactForm }
+  components: {GenaricButon, ContactInformation, ContactForm }
 }
 </script>
 
