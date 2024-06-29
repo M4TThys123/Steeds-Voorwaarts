@@ -1,27 +1,28 @@
 <template>
-  <section class="hero-wrapper">
-    <section class="hero-top" >
-      <div class="hero-top__wrapper">
-      <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
-
-      </div>
-    </section>
-    <section class="hero-bottom">
-      <figure>
-      </figure>
-    </section>
-    <section class="hero-header">
-      <section class="hero-header__text">
-        <div class="d-flex justify-content-start">
-          <h1>Steeds Voor-<br>
+  <section class="home-header">
+    <section class="homepage-header__fixed-content">
+          <h1 class="homepage-header__title">Steeds Voor-<br>
             waarts
           </h1>
-        </div>
-        <h2>
+        <h2 class="homepage-header__subtitle">
           Kom langs en ontdek de sport die bij jou past!  <br>
         </h2>
-      </section>
     </section>
+    <div class="homepage-header__slider">
+      <div class="homepage-header__wrapper">
+        <div class="homepage-header__slide">
+          <section class="homepage-header__left" >
+              <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
+            <img :src="backgroundImage" alt="">
+
+          </section>
+          <section class="homepage-header__right">
+            <figure>
+            </figure>
+          </section>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -36,12 +37,161 @@ export default {
 }
 </script>
 
+
+
+
 <style scoped>
-.hero-wrapper{
-  height: 100%;
-  max-height: 620px;
+/*Home Header*/
+.home-header{
+  /*--clip-size: 4.1666666667vw;*/
+  /*--clip-size-neg: -4.1666666667vw;*/
+  position: relative;
+  transition: background .6s .1s ease-out;
+  clip-path: inset(0);
+  height: 50vw;
+  min-height: 38.75rem;
+}
+
+/*Header Content*/
+.homepage-header__fixed-content {
+  position: absolute;
+  color: #FFFFFF !important;
+  z-index: 2;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  /*justify-content: flex-end;*/
+  width: 100%;
+  height: 100%;
+  padding: 8.3333333333vw 8.3333333333vw 4.1666666667vw;
+}
+
+.homepage-header__fixed-content::before {
+  content: "";
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  z-index: -1;
+  mix-blend-mode: multiply;
+  /*background-color: rgba(20, 21, 26, .4);*/
+  /*opacity: 0;*/
+  animation: fadeIn 1s .8s ease-out forwards;
+}
+
+.homepage-header__title{
+  color: #FFFFFF;
+  font-size: 6.25vw;
+  line-height: 1;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  margin: 0 auto 2.5vw auto;
+  max-width: 1920px;
+  /*width: 100%;*/
+  /*text-align: center;*/
+  transform: translateY(8.3333333333vw);
+  /*opacity: 0;*/
+  animation: fadeInTransformOut 1s .6s cubic-bezier(0.17, 0.67, 0, 1) forwards;
+}
+
+.homepage-header__subtitle {
+  color: #FFFFFF;
+  /*width: 25vw;*/
+  width: 40vw;
+  max-width: calc(6* 5rem);
+  margin-top: 9.1666666667vw;
+  transform: translateY(8.3333333333vw);
+  /*opacity: 0;*/
+  animation: fadeInTransformOut 1s .68s cubic-bezier(0.17, 0.67, 0, 1) forwards;
+  font-size: 2.5vw;
+  line-height: 1.11;
+  letter-spacing: -0.04em;
+}
+
+/*Header Slider*/
+.homepage-header__slider{
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: clip;
+  margin-bottom: -100vh;
+  position: sticky;
+  top: 0;
+}
+
+.homepage-header__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 50vw;
+  min-height: 38.75rem;
+}
+
+/*Header Slide*/
+.homepage-header__slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100%;
+}
+
+/*Left*/
+.homepage-header__left{
+  position: relative;
+  width: 50%;
+  height: 100%;
+  /*clip-path: inset(100% 0 0 0);*/
+  transition: clip-path 1s 1s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s 1s cubic-bezier(0.17, 0.67, 0, 1);
+  /*opacity: 0;*/
+}
+
+/*Right*/
+.homepage-header__right{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding: 8.3333333333vw;
+  /*opacity: 0;*/
+  transition: opacity 1s 2s cubic-bezier(0.17, 0.67, 0, 1);
+  background: var(--color-primary);
+}
+
+.homepage-header__right figure {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inset(8.3333333333vw round 2rem);
+  transition: clip-path .8s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s cubic-bezier(0.17, 0.67, 0, 1);
+
+  background: var(--background);
+}
+
+
+
+.hero-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 50vw;
+  min-height: 38.75rem;
+}
+
+.hero-slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100%;
 }
 .hero-header{
   color: white;
@@ -71,8 +221,8 @@ export default {
   color: var(--white-color);
 }
 .hero-top{
-  height: 50%;
   width: 100%;
+  height: 50%;
   position: relative;
 }
 .hero-top__background{
@@ -95,20 +245,24 @@ export default {
   z-index: 1;
 }
 .hero-bottom{
+  background: var(--primary-button);
+
+  position: relative;
   height: 50%;
   width: 100%;
-  background: var(--primary-button);
+  padding: 3.75rem 4.5rem 6rem;
+
 
   display: flex;
   justify-content: center;
-  /*padding: 2em;*/
-  padding: 3em 3em 5em;
+  align-items: center;
+
+  transition: opacity 1s 2s cubic-bezier(0.17, 0.67, 0, 1);
 }
 .hero-bottom figure{
   width: 100%;
   background: var(--background);
   border-radius: 18px;
-
 }
 
 /*.hero-header__text h2{*/
@@ -130,15 +284,9 @@ export default {
     height: 191px;
 
   }
-  .hero-wrapper {
-    flex-direction: row;
-    /*height: 75vh;*/
-    /*max-height: 620px;*/
-  }
   .hero-top {
-    height: 100%;
+    width: 50%;
     width: 100%;
-    min-width: 50vw;
 
     position: relative;
   }
@@ -147,16 +295,13 @@ export default {
   }
 
   .hero-bottom {
-    height: 100%;
+    position: relative;
     width: 100%;
-    min-width: 50vw;
-    padding: 2em;
+    height: 50%;
 
-    align-items: center;
   }
   .hero-bottom figure {
-    width: 361px;
-    height: 461px;
+
   }
 
 
@@ -175,11 +320,6 @@ export default {
 }
 /* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
-  .hero-wrapper{
-    height: 50vw;
-    max-height: none;
-  }
-
   .hero-header__text{
     height: 100%;
     margin-bottom: 2em;
@@ -191,11 +331,11 @@ export default {
 }
 
 @media (width >= 1200px) {
-  .hero-wrapper{
-    font-size: 10vw;
-    max-height: none;
-    /*height: 90vh;*/
-  }
+  /*.hero-wrapper{*/
+  /*  font-size: 10vw;*/
+  /*  max-height: none;*/
+  /*  !*height: 90vh;*!*/
+  /*}*/
   .hero-top{
     background-position-y: 0;
     width: 100%;
@@ -203,6 +343,9 @@ export default {
   }
   .hero-header{
     height: 90vh;
+  }
+  .hero-bottom{
+    padding: 8.3333333333vw;
   }
 }
 
