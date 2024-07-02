@@ -8,13 +8,13 @@
               :space-between="20"
               class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
-          <a :href="`/lesaanbod/#${sport.data.uid}`">
-<!--            <span class="sport-subtitle">-->
-<!--            {{ sport.uid}}-->
-<!--            </span>-->
+          <a :href="`/lesaanbod/#${sport.uid}`">
+           <!-- <span class="sport-subtitle">
+           {{ sport.uid}}
+           </span> -->
             <div class="h-100 fixed-card">
               <div class="swiper-image__wrapper">
-                <a :href="`/sporten/#${sport.data.uid}`" class="swiper-image__link"></a>
+                <a :href="`/sporten/#${sport.uid}`" class="swiper-image__link"></a>
                 <figure class="swiper-figure">
                   <PrismicImage :field="sport.data.image"  class="swiper-image"/>
                 </figure>
@@ -87,6 +87,8 @@ export default {
 
         this.sporten = response.results;
         console.log(this.sporten)
+        console.log(this.sporten[0].uid)
+
         this.isLoading = false;
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);

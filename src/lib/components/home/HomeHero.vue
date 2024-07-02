@@ -81,6 +81,8 @@ export default {
 }
 
 .homepage-header__title{
+  font-weight: 900;
+
   color: #FFFFFF;
   font-size: 6.25vw;
   line-height: 1;
@@ -143,8 +145,8 @@ export default {
 /*Left*/
 .homepage-header__left{
   position: relative;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   /*clip-path: inset(100% 0 0 0);*/
   transition: clip-path 1s 1s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s 1s cubic-bezier(0.17, 0.67, 0, 1);
   /*opacity: 0;*/
@@ -156,8 +158,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   padding: 8.3333333333vw;
   /*opacity: 0;*/
   transition: opacity 1s 2s cubic-bezier(0.17, 0.67, 0, 1);
@@ -172,6 +174,21 @@ export default {
   transition: clip-path .8s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s cubic-bezier(0.17, 0.67, 0, 1);
 
   background: var(--background);
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 750px) {
+    .homepage-header__title {
+        font-size: 48px !important;
+        line-height: 1;
+        text-align: left;
+        width: 100%;
+        position: absolute;
+        top: 40%;
+        bottom: auto;
+        margin: 0 auto 0 auto;
+        max-width: 320px;
+    }
 }
 
 
@@ -276,6 +293,10 @@ export default {
 
 
 @media (width >= 768px) {
+  .homepage-header__left, .homepage-header__right{
+    width: 50%;
+    height: 100%;
+  }
 
   figure {
     width: 100% !important;
@@ -327,6 +348,11 @@ export default {
   .hero-header__text h2{
     max-width: 21.75rem;
     font-size: 2vw;
+  }
+
+  .homepage-header__left, .homepage-header__right{
+    width: 50%;
+    height: 100%;
   }
 }
 
