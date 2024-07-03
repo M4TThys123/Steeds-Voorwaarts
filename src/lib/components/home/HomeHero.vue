@@ -193,6 +193,18 @@ export default {
   background-position-x: center !important;
 }
 
+.hero-figure_image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-color);
+  opacity: 0.2;
+  z-index: 1;
+}
+
 .homepage-header__right figure {
   width: 100%;
   height: 100%;
