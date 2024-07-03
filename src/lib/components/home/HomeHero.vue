@@ -38,7 +38,6 @@ export default {
         'inset(var(--clip-size) 0 round 16px)', // LANDSCAPE
         'inset(0 var(--clip-size) round 16px)', // PORTRAIT
         'inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px)', // SQUARE
-        'none', // Reset to no clip-path
       ],
       currentClipPathIndex: 0,
     };
@@ -207,13 +206,25 @@ export default {
 
 
 @media only screen and (min-width: 0px) and (max-width: 750px) {
-    .homepage-header__title {
+    .home-header{
+      --clip-size: 0.5rem;
+      --clip-size-neg: -0.5rem;
+    }
+
+  @media only screen and (min-width: 0px) and (max-width: 1024px) {
+    .home-header {
+      --clip-size: 2rem;
+      --clip-size-neg: -2rem;
+    }
+  }
+
+  .homepage-header__title {
         font-size: 48px !important;
         line-height: 1;
         text-align: left;
         width: 100%;
         position: absolute;
-        top: 40%;
+        top: 15%;
         bottom: auto;
         margin: 0 auto 0 auto;
         max-width: 320px;
@@ -224,10 +235,10 @@ export default {
         line-height: 1.11;
         letter-spacing: -0.04em;
         width: 100%;
-        max-width: 320px;
+        max-width: 400px;
         margin-top: 20px;
         position: absolute;
-        top: 50%;
+        top: 35%;
         bottom: auto;
 }
 }
