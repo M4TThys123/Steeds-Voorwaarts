@@ -13,11 +13,13 @@
         <div class="homepage-header__slide">
           <section class="homepage-header__left" >
               <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
-            <img :src="backgroundImage" alt="">
 
           </section>
           <section  class="homepage-header__right">
-            <figure :style="{ clipPath: currentClipPath, transition: 'clip-path 1s' }">
+            <figure class="hero-figure_image"
+                    :style="{   clipPath: currentClipPath,
+                                transition: 'clip-path 1s',
+                                backgroundImage: `url(${figureImage})` }">
             </figure>
           </section>
         </div>
@@ -32,6 +34,7 @@ export default {
   data() {
     return {
       backgroundImage: "/assets/images/hero/hero_image.jpeg",
+      figureImage: "/assets/images/hero/hero-figure_image.webp",
       figureSize: {},
       currentClipPath: 'inset(var(--clip-size) 0 round 16px)', // Initial clip-path
       clipPaths: [
@@ -184,6 +187,11 @@ export default {
   transition: opacity 1s 2s cubic-bezier(0.17, 0.67, 0, 1);
   background: var(--color-primary);
 }
+.hero-figure_image{
+  background-size: cover !important;
+  background-position-y: center !important;
+  background-position-x: center !important;
+}
 
 .homepage-header__right figure {
   width: 100%;
@@ -231,11 +239,11 @@ export default {
     }
 
     .homepage-header__subtitle {
-        font-size: 16px !important;
+        font-size: 22px !important;
         line-height: 1.11;
         letter-spacing: -0.04em;
-        width: 100%;
-        max-width: 400px;
+        width: 320px;
+        /*max-width: 400px;*/
         margin-top: 20px;
         position: absolute;
         top: 35%;

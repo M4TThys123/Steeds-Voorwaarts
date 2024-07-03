@@ -10,7 +10,7 @@
         <ButtonComponent></ButtonComponent>
       </div>
       <div class="col-md-6 d-flex align-items-center justify-content-center">
-        <a href="">
+        <a href="https://www.facebook.com/steedsvoorwaartsAbbekerk">
           <img src="/assets/images/home/logo_hero.png" alt="Sport Image" class="home-par__image img-fluid rounded-circle">
         </a>
       </div>
