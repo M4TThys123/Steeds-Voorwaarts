@@ -81,21 +81,6 @@ export default {
   opacity: 0.9; /* Adjust the opacity as needed */
 }
 
-
-@media only screen and (min-width: 0px) and (max-width: 750px) {.hero-heading {
-        font-size: 48px !important;
-        line-height: 1;
-        text-align: left;
-        width: 100%;
-        position: absolute;
-        top: 40%;
-        bottom: auto;
-        margin: 0 auto 0 auto;
-        max-width: 320px;
-    }
-}
-
-
 /* MD (for small laptops - screens ≥ than 992px wide) */
 @media (width >= 992px) {
   /* CSS rules for small laptops go here */

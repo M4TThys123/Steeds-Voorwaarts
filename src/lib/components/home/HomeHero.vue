@@ -16,8 +16,8 @@
             <img :src="backgroundImage" alt="">
 
           </section>
-          <section class="homepage-header__right">
-            <figure>
+          <section  class="homepage-header__right">
+            <figure :style="{ clipPath: currentClipPath, transition: 'clip-path 1s' }">
             </figure>
           </section>
         </div>
@@ -32,8 +32,28 @@ export default {
   data() {
     return {
       backgroundImage: "/assets/images/hero/hero_image.jpeg",
+      figureSize: {},
+      currentClipPath: 'inset(var(--clip-size) 0 round 16px)', // Initial clip-path
+      clipPaths: [
+        'inset(var(--clip-size) 0 round 16px)', // LANDSCAPE
+        'inset(0 var(--clip-size) round 16px)', // PORTRAIT
+        'inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px)', // SQUARE
+        'none', // Reset to no clip-path
+      ],
+      currentClipPathIndex: 0,
     };
-  }
+  },
+  mounted() {
+    setInterval(() => {
+      this.updateClipPath();
+    }, 5000); // Change clip-path every 5 seconds
+  },
+  methods: {
+    updateClipPath() {
+      this.currentClipPathIndex = (this.currentClipPathIndex + 1) % this.clipPaths.length;
+      this.currentClipPath = this.clipPaths[this.currentClipPathIndex];
+    },
+  },
 }
 </script>
 
@@ -43,8 +63,8 @@ export default {
 <style scoped>
 /*Home Header*/
 .home-header{
-  /*--clip-size: 4.1666666667vw;*/
-  /*--clip-size-neg: -4.1666666667vw;*/
+  --clip-size: 4.1666666667vw;
+  --clip-size-neg: -4.1666666667vw;
   position: relative;
   transition: background .6s .1s ease-out;
   clip-path: inset(0);
@@ -172,7 +192,16 @@ export default {
   object-fit: cover;
   clip-path: inset(8.3333333333vw round 2rem);
   transition: clip-path .8s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s cubic-bezier(0.17, 0.67, 0, 1);
+  
+  /* lANSCAPE */
+  clip-path: inset(var(--clip-size) 0 round 16px);
 
+  /* PORTRET */
+  clip-path: inset(0 var(--clip-size) round 16px);
+
+  /* SQUARE */
+  clip-path: inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px);
+  
   background: var(--background);
 }
 
@@ -189,6 +218,18 @@ export default {
         margin: 0 auto 0 auto;
         max-width: 320px;
     }
+
+    .homepage-header__subtitle {
+        font-size: 16px !important;
+        line-height: 1.11;
+        letter-spacing: -0.04em;
+        width: 100%;
+        max-width: 320px;
+        margin-top: 20px;
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+}
 }
 
 

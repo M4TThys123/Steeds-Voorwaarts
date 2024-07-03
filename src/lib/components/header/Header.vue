@@ -130,7 +130,7 @@ header {
   bottom: 0;
   z-index: -1;
   background: rgba(57, 128, 112, 0.4);
-  /* background: rgba(255, 255, 255, .5)  ; */
+  /* background: rgba(255, 255, 255, .4)  ; */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* WebKit (iOS Safari) syntax */
   transition: background 0.5s, backdrop-filter 0.5s;

@@ -68,8 +68,8 @@ export default {
         1024: {
           slidesPerView: 2.25,
         },
-        1920: {
-          slidesPerView: 3.375,
+        1700: {
+          slidesPerView: 2.75,
         }
       },
     }
@@ -234,6 +234,8 @@ export default {
 
   .swiper-slide__last {
     height: 25vw;
+    max-height: none;
+    max-width: none;
   }
 }
 
