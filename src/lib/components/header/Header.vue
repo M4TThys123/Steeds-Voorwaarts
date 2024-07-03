@@ -92,12 +92,26 @@ export default {
       return router
     },
     handleScroll() {
-      if (window.pageYOffset > 0) {
-        this.isScrolled = true;
+      const scrollHeightHome = 500;
+      const scrollHeightOther = 0; // Stel een andere hoogte in voor de andere pagina's indien nodig
+      const currentRoute = window.location.pathname;
+      console.log(currentRoute);
+
+      if (currentRoute === '/') {
+        if (window.pageYOffset > scrollHeightHome) {
+          this.isScrolled = true;
+        } else {
+          this.isScrolled = false;
+        }
       } else {
-        this.isScrolled = false;
+        if (window.pageYOffset > scrollHeightOther) {
+          this.isScrolled = true;
+        } else {
+          this.isScrolled = false;
+        }
       }
     }
+
   },
   computed: {
     filteredRoutes() {
