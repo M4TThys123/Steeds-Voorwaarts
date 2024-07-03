@@ -1,51 +1,62 @@
 <template>
   <section class="container py-5">
     <h2>Week Rooster</h2>
-    <v-data-table
-        :headers="headers"
-        :items="schedule"
-        item-key="day"
-        class="elevation-1"
-    >
-      <template v-slot:item="{ item }">
-        <td>{{ item.day }}</td>
-        <td>
-          <ul>
-            <li v-for="activity in item.activities" :key="activity.name">{{ activity.name }}</li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li v-for="activity in item.activities" :key="activity.time">{{ activity.time }}</li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li v-for="activity in item.activities" :key="activity.target">{{ activity.target }}</li>
-          </ul>
-        </td>
-        <td>
-          <ul>
-            <li v-for="activity in item.activities" :key="activity.instructor">{{ activity.instructor }}</li>
-          </ul>
-        </td>
-      </template>
-    </v-data-table>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Dag</th>
+          <th scope="col">Activiteit</th>
+          <th scope="col">Tijd</th>
+          <th scope="col">Doelgroep</th>
+          <th scope="col">Instructeur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="day in schedule" :key="day.day">
+          <td class="fw-bold">{{ day.day }}</td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.name">
+                {{ activity.name }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.time">
+                {{ activity.time }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.target">
+                {{ activity.target }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.instructor">
+                {{ activity.instructor }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </template>
 
+
+
 <script>
 export default {
-  name: "RoosterComponent",
+  name: "RoosterComponent02",
   data() {
     return {
-      headers: [
-        { text: 'Dag', value: 'day' },
-        { text: 'Activiteit', value: 'activities' },
-        { text: 'Tijd', value: 'time' },
-        { text: 'Doelgroep', value: 'target' },
-        { text: 'Instructeur', value: 'instructor' }
-      ],
       schedule: [
         {
           day: "Dinsdag",
@@ -118,6 +129,7 @@ export default {
       ]
     };
   }
+
 }
 </script>
 
@@ -131,5 +143,9 @@ ul {
 
 li {
   margin-bottom: 12px;
+}
+
+.table-responsive {
+  overflow-x: auto;
 }
 </style>
