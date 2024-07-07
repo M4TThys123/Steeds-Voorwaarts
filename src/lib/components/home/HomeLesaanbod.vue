@@ -14,9 +14,13 @@
            </span> -->
             <div class="h-100 fixed-card">
               <div class="swiper-image__wrapper">
-                <a :href="`/sporten/#${sport.uid}`" class="swiper-image__link"></a>
+                <GenaricButon   :link="`/sporten/#${sport.uid}`"
+                                class="swiper-image__link"
+                                icon="bx bx-right-arrow-alt"
+                                text="Lees meer" ></GenaricButon>
                 <figure class="swiper-figure">
                   <PrismicImage :field="sport.data.image"  class="swiper-image"/>
+
                 </figure>
               </div>
 
@@ -198,6 +202,23 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+
+.swiper-image__link{
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease-out;
+}
+
+:hover.swiper-slide .swiper-image__link{
+  opacity: 1;
+}
+
+
 .swiper-body{
   margin-top: 1.25em;
 }
