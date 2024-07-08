@@ -58,8 +58,16 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: var(--text-color);
 }
+
+html ::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   scroll-behavior: smooth;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body{
