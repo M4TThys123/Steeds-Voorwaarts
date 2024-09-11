@@ -1,35 +1,62 @@
 <template>
-  <section class="container">
+  <section class="container py-5">
     <h2>Week Rooster</h2>
-    <v-data-table :items="formattedSchedule" :loading="loading" hide-default-footer>
-      <template v-slot:loading>
-        <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
-      </template>
-
-      <!-- Day column -->
-      <template v-slot:[`item.day`]="{ item }">
-        <strong>{{ item.day }}</strong>
-      </template>
-
-      <!-- Activities column -->
-      <template v-slot:[`item.activities`]="{ item }">
-        <div v-for="(activity, i) in item.activities" :key="'activity-' + i" class="activity-row">
-          <div class="activity-name">{{ activity.name }}</div>
-          <div class="activity-time">{{ activity.time }}</div>
-          <div class="activity-target">{{ activity.target }}</div>
-          <div class="activity-instructor">{{ activity.instructor }}</div>
-        </div>
-      </template>
-    </v-data-table>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Dag</th>
+          <th scope="col">Activiteit</th>
+          <th scope="col">Tijd</th>
+          <th scope="col">Doelgroep</th>
+          <th scope="col">Instructeur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="day in schedule" :key="day.day">
+          <td class="fw-bold">{{ day.day }}</td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.name">
+                {{ activity.name }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.time">
+                {{ activity.time }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.target">
+                {{ activity.target }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li v-for="activity in day.activities" :key="activity.instructor">
+                {{ activity.instructor }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </template>
 
+
+
 <script>
 export default {
-  name: 'RoosterComponent',
+  name: "RoosterComponent02",
   data() {
     return {
-      loading: true,
       schedule: [
         {
           day: "Dinsdag",
@@ -101,26 +128,14 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    formattedSchedule() {
-      // Flatten the activities into a single list of items
-      return this.schedule.map(day => ({
-        day: day.day,
-        activities: day.activities
-      }));
-    }
-  },
-  mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000); // Simulate a loading delay
   }
-};
+
+}
 </script>
 
 <style scoped>
 ul {
+  flex-direction: column;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -130,26 +145,7 @@ li {
   margin-bottom: 12px;
 }
 
-.activity-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* Four equal columns */
-  gap: 10px;
-  padding: 10px 0;
-}
-
-.activity-name {
-  font-weight: bold;
-}
-
-.activity-time, .activity-target, .activity-instructor {
-  font-style: italic;
-}
-
-/* Optionally adjust for responsive layout */
-@media (max-width: 600px) {
-  .activity-row {
-    grid-template-columns: 1fr;
-    gap: 5px;
-  }
+.table-responsive {
+  overflow-x: auto;
 }
 </style>

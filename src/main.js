@@ -2,26 +2,29 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import router from '../src/router/router'
-import 'bootstrap/dist/css/bootstrap.css' // Bootstrap CSS
-import 'bootstrap/dist/js/bootstrap.js'   // Bootstrap JS
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
-// Import Vuetify
+// Vuetify
+import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
-import 'vuetify/styles' // Import Vuetify styles
-import { aliases, mdi } from 'vuetify/iconsets/mdi' // Optional: For Material Design Icons
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
-// Create Vuetify instance
 const vuetify = createVuetify({
-    icons: {
-        defaultSet: 'mdi', // Optional: Specify icon set (Material Design Icons)
-        aliases,
-        sets: { mdi },
-    },
+    components,
+    directives,
 })
 
 const app = createApp(App)
-
 app.use(router)
-app.use(vuetify) // Add Vuetify plugin
-
+app.use(vuetify)
 app.mount('#app')
+
+// const vuetify = createVuetify({
+//     icons: {
+//         defaultSet: 'mdi', // Optional: Specify icon set (Material Design Icons)
+//         aliases,
+//         sets: { mdi },
+//     },
+// })
