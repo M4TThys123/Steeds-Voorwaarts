@@ -1,9 +1,13 @@
 <template>
   <div class="container">
   <section class="sporten-overzicht row">
-    <section class="sport col-md-6" v-for="sport in sporten" :key="sport.uid" id="  ">
+    <template v-if="!isLoading">
+      <section  class="sport col-md-6" v-for="sport in sporten" :key="sport.uid" id="  ">
       <figure class="image-wrapper">
         <PrismicImage :field="sport.data.image" />
+<!--        <div class="aspect-ratio-box">-->
+<!--          <v-skeleton-loader type="image"></v-skeleton-loader>-->
+<!--        </div>-->
       </figure>
       <section class="data-container">
         <div v-html="asHTML(sport.data.titel)"></div>
@@ -19,6 +23,12 @@
 
       </section>
     </section>
+    </template>
+
+
+    <SportComponent v-if="isLoading"></SportComponent>
+    <SportComponent v-if="isLoading"></SportComponent>
+    <SportComponent v-if="isLoading"></SportComponent>
   </section>
   </div>
 </template>
@@ -27,10 +37,12 @@
 import {asHTML} from "@prismicio/helpers";
 import Prismic from 'prismic-javascript';
 import { PrismicImage } from '@prismicio/vue'
+import SportComponent from "@/lib/components/sporten/SportComponent.vue";
 
 export default {
-  name: "SportComponent",
+  name: "SportenSection",
   components: {
+    SportComponent,
     PrismicImage
   },
 
@@ -55,10 +67,11 @@ export default {
         this.sporten = response.results;
         console.log(this.sporten)
         console.log(this.sporten.data.titel)
-
-        this.isLoading = false;
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
+      }
+      finally {
+        this.isLoading = false;
       }
     },
     asHTML,
@@ -67,5 +80,18 @@ export default {
 </script>
 
 <style scoped>
+
+.aspect-ratio-box {
+  position: relative;
+  width: 100%;
+}
+
+.aspect-ratio-box v-skeleton-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 </style>

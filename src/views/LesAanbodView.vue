@@ -2,22 +2,33 @@
   <ViewHero title="Lesaanbod" paragraph="Hier vind je het lesaanbod van onze vereniging
 "></ViewHero>
 
-  <sport-component></sport-component>
+  <SportenSection>
+<!--    /*data*/-->
+
+  </SportenSection>
 
   <RoosterComponent></RoosterComponent>
 </template>
 
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
-import SportComponent from "@/lib/components/sporten/SportCompoent.vue";
+import SportenSection from "@/lib/components/sporten/SportenSection.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 
 export default {
   name: "LesAanbodView",
-  components: {RoosterComponent, SportComponent, ViewHero}
+  components: {RoosterComponent, SportenSection, ViewHero}
 }
 </script>
 
 <style scoped>
+/*isLoaded: false,*/
+
+/*fetch*/
+/*data*/
+
+/*finally*/
+/*isLoaded: true,*/
+
 
 </style>
