@@ -30,11 +30,19 @@
     <div v-if="showSuccessMessage" class="success-message">
       <p>Form submitted successfully!</p>
     </div>
+
+      <v-snackbar
+          v-model="showSnackbar"
+          color="rgb(20, 21, 26)"
+          rounded
+      >
+      <v-icon class="mr-2" color="white">mdi-check-circle</v-icon>
+      <span class="fw-bold" style="color: white;">Form submitted successfully!</span>
+    </v-snackbar>
   </section>
 </template>
 
 <script>
-import Swal from 'sweetalert2';
 import SendButton from "@/lib/components/SendButton.vue";
 
 export default {
@@ -47,6 +55,8 @@ export default {
       message: "",
       isFormSubmitted: false,
       showSuccessMessage: false,
+      showSnackbar: false, // Add this line
+
     };
   },
   methods: {
@@ -61,18 +71,11 @@ export default {
         this.email = "";
         this.message = "";
 
-        // Show success message using Swal
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Form submitted successfully!',
-        });
-
-        // Enable send button and hide loading spinner
         this.isFormSubmitted = false;
 
         // Show the success message div
-        this.showSuccessMessage = true;
+        this.showSnackbar = true; // Add this line
+
 
         // Hide the success message after 3 seconds
         setTimeout(() => {

@@ -1,6 +1,6 @@
 <template>
   <section class="contact-form__section my-5">
-    <h2 class="mb-4">Aanmelden</h2>
+    <h2 class="mb-4">Aanmelden test</h2>
 
     <div class="">
         <form @submit.prevent="submitForm" class="">
@@ -45,6 +45,19 @@
         </form>
 
     </div>
+    <template>
+      <!-- Your existing form code here -->
+
+<v-snackbar
+    v-model="showSnackbar"
+    :timeout="2000"
+    color="rgb(20, 21, 26)"
+    rounded
+>
+  <v-icon class="mr-2" color="white">mdi-check-circle</v-icon>
+  <span style="color: white;">Form submitted successfully!</span>
+</v-snackbar>
+    </template>
   </section>
 </template>
 
@@ -62,7 +75,8 @@ export default {
       activiteit: "",
       opmerkingen: "",
       privacy: false,
-      isFormSubmitted: false
+      isFormSubmitted: false,
+      showSnackbar: false,
     };
   },
   methods: {
@@ -87,7 +101,11 @@ export default {
       setTimeout(() => {
         // Enable send button and hide loading spinner
         this.isFormSubmitted = false;
-      }, 2000); // Simulating a 2-second delay for demonstration purposes
+        this.showSnackbar = true; // Add this line// Simulating a 2-second delay for demonstration purposes
+
+
+
+      }, 2000);
     }
   }
 }

@@ -18,8 +18,14 @@
         <div v-for="agenda in sport.data.agendas" :key="agenda.id">
           <div v-html="asHTML(sport.data.agenda_content)">
           </div>-
-          <div>{{ sport.data.docent }}</div>
         </div>
+
+        <div>
+
+        </div>
+
+        <div>{{ sport.data.docent }}</div>
+
 
       </section>
     </section>
@@ -67,7 +73,8 @@ export default {
         this.sporten = response.results;
         console.log(this.sporten)
         console.log(this.sporten.data.titel)
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error fetching data from Prismic:', error);
       }
       finally {
@@ -79,7 +86,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 .aspect-ratio-box {
   position: relative;
@@ -92,6 +99,10 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+h4{
+  font-size: 50px;
 }
 
 </style>

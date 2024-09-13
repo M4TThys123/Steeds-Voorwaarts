@@ -6,7 +6,7 @@
 
     </div>
 <!--    <v-progress-linear color="rgb(20, 21, 26)" indeterminate></v-progress-linear>-->
-    <v-progress-linear color="blue-lighten-3" indeterminate></v-progress-linear>
+    <v-progress-linear  v-if="pageLoaded" color="blue-lighten-3" indeterminate></v-progress-linear>
 
 
 
@@ -25,6 +25,10 @@ export default {
       type: String,
       required: true,
     },
+    pageLoaded: {
+      type: Boolean,
+      required: true,
+    }
   },
 };
 </script>
