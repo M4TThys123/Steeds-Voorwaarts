@@ -13,27 +13,21 @@
               <router-link to="/" class="footer-link-prm text-white">Home</router-link>
             </li>
             <li>
-              <router-link to="/" class="footer-link">Nieuws</router-link>
+              <router-link to="#lesaanbod" class="footer-link">Lesaanbod</router-link>
             </li>
             <li>
-              <router-link to="/partners" class="footer-link">Rooster</router-link>
+              <router-link to="#rooster" class="footer-link">Rooster</router-link>
+            </li>
+            <li>
+              <router-link to="#over" class="footer-link">Over ons</router-link>
             </li>
           </ul>
           <ul class="list-unstyled footer-link-list">
             <li>
-              <router-link to="/diensten" class="footer-link-prm text-white">Diensten</router-link>
+              <router-link to="/lesaanbod" class="footer-link-prm text-white">Lesaanbod</router-link>
             </li>
-            <li>
-              <router-link to="/diensten" class="footer-link">CV-Installatie</router-link>
-            </li>
-            <li>
-              <router-link to="/diensten" class="footer-link">Onderhoud</router-link>
-            </li>
-            <li>
-              <router-link to="/diensten" class="footer-link">Installatiewerk</router-link>
-            </li>
-            <li>
-              <router-link to="/diensten" class="footer-link">Woningventalatie</router-link>
+            <li v-for="(item, index) in links" :key="index">
+              <router-link :to="`lesaanbod/${item.url}`" class="footer-link">{{ item.name }}</router-link>
             </li>
           </ul>
           <ul class="list-unstyled footer-link-list">
@@ -93,7 +87,7 @@ export default {
   components: {LogoComponent, ButtonComponent},
   data() {
     return {
-      lesAanbod: [
+      links: [
         {
           name: 'Kleuterdans',
           url: 'kleuterdans'
