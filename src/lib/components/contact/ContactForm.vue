@@ -1,6 +1,9 @@
 <template>
   <section class="contact-form__section">
-    <h2 class="mb-4">Direct contact opnemen</h2>
+    <h2 class="mb-4">Direct contact opnemen test </h2>
+    <template>
+      <v-icon icon="mdi-home" color="black"/>
+    </template>
 
     <form @submit.prevent="onSubmit">
       <section class="mb-3">

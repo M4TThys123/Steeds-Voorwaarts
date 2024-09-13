@@ -4,7 +4,7 @@
     <template v-if="!isLoading">
       <section  class="sport col-md-6" v-for="sport in sporten" :key="sport.uid" id="  ">
       <figure class="image-wrapper">
-        <PrismicImage :field="sport.data.image" />
+        <PrismicImage :field="sport.data.image"  @load="onImageLoaded" />
 <!--        <div class="aspect-ratio-box">-->
 <!--          <v-skeleton-loader type="image"></v-skeleton-loader>-->
 <!--        </div>-->
@@ -80,6 +80,9 @@ export default {
       finally {
         this.isLoading = false;
       }
+    },
+    onImageLoaded() {
+      console.log('image loaded')
     },
     asHTML,
   }
