@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@prismicio/vue": "^3.2.0",
+    "@prismicio/client": "^7.8.1",
+    "@prismicio/vue": "^3.2.1",
     "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
     "gsap": "^3.12.2",

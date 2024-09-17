@@ -32,9 +32,9 @@
     </template>
 
 
-    <SportComponent v-if="isLoading"></SportComponent>
-    <SportComponent v-if="isLoading"></SportComponent>
-    <SportComponent v-if="isLoading"></SportComponent>
+    <SportenComponent v-if="isLoading"></SportenComponent>
+    <SportenComponent v-if="isLoading"></SportenComponent>
+    <SportenComponent v-if="isLoading"></SportenComponent>
   </section>
   </div>
 </template>
@@ -43,12 +43,12 @@
 import {asHTML} from "@prismicio/helpers";
 import Prismic from 'prismic-javascript';
 import { PrismicImage } from '@prismicio/vue'
-import SportComponent from "@/lib/components/sporten/SportComponent.vue";
+import SportenComponent from "@/lib/components/sporten/SportenComponent.vue";
 
 export default {
   name: "SportenSection",
   components: {
-    SportComponent,
+    SportenComponent,
     PrismicImage
   },
 
