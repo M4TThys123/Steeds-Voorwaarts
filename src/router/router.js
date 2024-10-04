@@ -4,6 +4,7 @@ import LesAanbodView from "@/views/LesAanbodView.vue";
 import ContactView from "@/views/ContactView.vue";
 import PrismicView from "@/views/PrismicView.vue";
 import AanmeldenView from "@/views/AanmeldenView.vue";
+import NieuwsView from "@/views/NieuwsView.vue";
 import SportView from "@/views/SportView.vue";
 
 const routes = [
@@ -43,6 +44,14 @@ const routes = [
         path: '/aanmelden',
         name: 'Aanmelden',
         component: AanmeldenView,
+        meta: {
+            hide: true, // Show this route in the navigation
+        },
+    },
+    {
+        path: '/nieuws',
+        name: 'Nieuws',
+        component: NieuwsView,
         meta: {
             hide: true, // Show this route in the navigation
         },

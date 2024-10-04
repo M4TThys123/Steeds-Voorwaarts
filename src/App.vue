@@ -138,6 +138,13 @@ li {
   flex: 1; /* Expand to fill remaining space */
 }
 
+.v-data-table-header__content{
+  font-weight: bold;
+}
+.v-icon{
+  transition: color .5s;
+}
+
 /* SM (for tablets - screens ≥ than 768px wide) */
 @media (width >= 768px) { }
 /* MD (for small laptops - screens ≥ than 992px wide) */

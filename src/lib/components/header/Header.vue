@@ -12,6 +12,15 @@
 
       <div class="nav-menu">
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
+          <li class="mr-10 mt-2">
+            <router-link to="/nieuws" style="width: 32px; height: 32px;">
+              <v-badge :content="1" color="red">
+                <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
+                </v-icon>
+              </v-badge>
+            </router-link>
+          </li>
+
           <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index">
             <router-link
                 class="nav-link"
@@ -58,25 +67,24 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    document.body.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    document.body.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
     openNav() {
-      console.log('click op de button')
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false
-      document.body.classList.add('no-scroll'); // Add no-scroll class
-      this.handleScroll(); // Toggle isScrolled
+      document.body.classList.add('no-scroll'); 
+      this.handleScroll(); 
     },
     closeNav() {
       this.isNavOpen = false;
       this.isBlur = true
       this.isScrolled = true
-      document.body.classList.remove('no-scroll'); // Remove no-scroll class
-      this.handleScroll(); // Toggle isScrolled
+      document.body.classList.remove('no-scroll');
+      this.handleScroll(); 
     },
 
     toggleNav() {
@@ -91,13 +99,16 @@ export default {
     router() {
       return router
     },
-    handleScroll() {
-      if (window.pageYOffset > 0) {
+
+    handleScroll(event) {
+      const scrollTop = event.target.scrollTop;
+
+      if (scrollTop > 0) {
         this.isScrolled = true;
       } else {
         this.isScrolled = false;
       }
-    }
+    },
   },
   computed: {
     filteredRoutes() {
