@@ -1,9 +1,10 @@
 <template>
-  <v-dialog :model-value="isOpen" @update:model-value="updateIsOpen" max-width="600px">
+  <v-dialog :model-value="isOpen" @update:model-value="updateIsOpen" max-width="600px" >
     <v-card>
-      <v-card-title class="headline">{{ data.title }}</v-card-title>
+      <v-card-title class="headline">{{ data.onderwerp }}</v-card-title>
       <v-card-text>
         <p>{{ data.message }}</p>
+
         <p><strong>Date:</strong> {{ data.date }}</p>
       </v-card-text>
       <v-card-actions>
@@ -27,6 +28,9 @@ export default {
       required: true,
       default: () => ({ title: '', message: '', date: '' })
     }
+  },
+  mounted() {
+    // console.log(this.data);
   },
   methods: {
     closeDialog() {

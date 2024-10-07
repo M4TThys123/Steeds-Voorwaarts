@@ -6,8 +6,13 @@
       :headers="nieuwsHeaders"
       :items="nieuwsItems"
       height="50vh"
-      class="elevation-1"
+      class="elevation-2 pa-5 rounded-xl"
+      :loading="isLoading"
     >
+      <template v-slot:loading>
+        <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+      </template>
+
       <template v-slot:[`item.info`]="{ item }">
         <NieuwsDialog :isOpen="isDialogOpen" :data="selectedItem" @update:isOpen="isDialogOpen = $event" />
         <v-icon color="primary" @click="openDialog(item)">
@@ -29,18 +34,12 @@ export default {
   data() {
     return {
       nieuwsHeaders: [
-        { title: 'Onderwerp', value: 'onderwerp' },
-        { title: 'Mededeling', value: 'message' },
-        { title: 'Datum', value: 'date' },
-        { title: 'Info', value: 'info', sortable: false },
+        { title: 'Onderwerp', value: 'onderwerp', width: '15vw'},
+        { title: 'Mededeling', value: 'message',  width: '65vw'},
+        { title: 'Datum', value: 'date', width: '10vw',  sortable: true,},
+        { title: 'Info', value: 'info', sortable: false, width: '5vw', align: 'center' },
       ],
-      nieuwsItems: [
-        { id: 1, onderwerp: 'Nieuws 1', message: 'Dit is nieuws 1', date: '2021-01-01' },
-        { id: 2, onderwerp: 'Nieuws 2', message: 'Dit is nieuws 2', date: '2021-01-02' },
-        { id: 3, onderwerp: 'Nieuws 3', message: 'Dit is nieuws 3', date: '2021-01-03' },
-        { id: 4, onderwerp: 'Nieuws 4', message: 'Dit is nieuws 4', date: '2021-01-04' },
-        { id: 5, onderwerp: 'Nieuws 5', message: 'Dit is nieuws 5', date: '2021-01-05' },
-      ],
+
 
       isDialogOpen: false,
       selectedItem: { title: '', message: '', date: '' },
@@ -62,11 +61,24 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'club_nieuws'));
 
         this.prismicData = response.results;
-        console.log(this.prismicData);
+
+        console.log('data:', this.prismicData );
+
+        // Map de Prismic data naar het juiste format voor nieuwsItems
+        this.nieuwsItems = this.prismicData.map((doc) => {
+          return {
+            onderwerp: doc.data.onderwerp || "Geen onderwerp",  // Onderwerp veld uit Prismic
+            message: doc.data.mededeling[0]?.text || "Geen mededeling",  // Eerste paragraaf tekst uit mededeling veld
+            date: doc.data.datum || "Onbekende datum",  // Datum veld uit Prismic
+          };
+        });
+
+        console.log("Mapped nieuwsItems:", this.nieuwsItems);
 
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {
+        console.log('Done fetching data from Prismic');
         this.isLoading = false;
       }
     },

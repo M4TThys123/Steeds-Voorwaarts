@@ -1,7 +1,11 @@
 <template>
   <section class="container">
     <h2>Week Rooster</h2>
-    <v-data-table :items="formattedSchedule" :loading="loading" hide-default-footer>
+    <v-data-table
+        :items="formattedSchedule"
+        :loading="loading"
+        class="elevation-2 pa-5 rounded-xl"
+        hide-default-footer>
       <template v-slot:loading>
         <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
       </template>
