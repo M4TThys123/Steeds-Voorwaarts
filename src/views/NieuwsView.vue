@@ -21,6 +21,7 @@
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
 import NieuwsDialog from "@/lib/components/dialogs/NieuwsDialog.vue";
+import Prismic from "prismic-javascript";
 
 export default {
   name: "NieuwsView",
@@ -40,16 +41,41 @@ export default {
         { id: 4, onderwerp: 'Nieuws 4', message: 'Dit is nieuws 4', date: '2021-01-04' },
         { id: 5, onderwerp: 'Nieuws 5', message: 'Dit is nieuws 5', date: '2021-01-05' },
       ],
+
       isDialogOpen: false,
-      selectedItem: { title: '', message: '', date: '' }
+      selectedItem: { title: '', message: '', date: '' },
+      prismicData: null,
+      isLoading: false,
     };
   },
   methods: {
     openDialog(item) {
       this.selectedItem = item;
       this.isDialogOpen = true;
-    }
-  }
+    },
+    async fetchPrismicData() {
+      try {
+        this.isLoading = true;
+
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(Prismic.Predicates.at('document.type', 'club_nieuws'));
+
+        this.prismicData = response.results;
+        console.log(this.prismicData);
+
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
+
+  created() {
+    console.log('test')
+    this.fetchPrismicData();
+  },
 };
 </script>
 

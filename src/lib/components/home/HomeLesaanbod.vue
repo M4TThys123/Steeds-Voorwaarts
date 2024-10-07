@@ -83,7 +83,6 @@ export default {
   },
   methods:{
     async fetchSporten() {
-      console.log("fetchSporten werkt")
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
