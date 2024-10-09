@@ -8,6 +8,7 @@
       height="50vh"
       class="elevation-2 pa-5 rounded-xl"
       :loading="isLoading"
+      :item-class="getRowClass"
     >
       <template v-slot:loading>
         <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
@@ -35,11 +36,10 @@ export default {
     return {
       nieuwsHeaders: [
         { title: 'Onderwerp', value: 'onderwerp', width: '15vw'},
-        { title: 'Mededeling', value: 'message',  width: '65vw'},
+        { title: 'Mededeling', value: 'mededeling',  width: '65vw'},
         { title: 'Datum', value: 'date', width: '10vw',  sortable: true,},
         { title: 'Info', value: 'info', sortable: false, width: '5vw', align: 'center' },
       ],
-
 
       isDialogOpen: false,
       selectedItem: { title: '', message: '', date: '' },
@@ -58,7 +58,10 @@ export default {
 
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
-        const response = await api.query(Prismic.Predicates.at('document.type', 'club_nieuws'));
+        const response = await api.query(
+            Prismic.Predicates.at('document.type', 'club_nieuws'),
+            { orderings: '[document.last_publication_date desc]' }
+        );
 
         this.prismicData = response.results;
 
@@ -67,9 +70,13 @@ export default {
         // Map de Prismic data naar het juiste format voor nieuwsItems
         this.nieuwsItems = this.prismicData.map((doc) => {
           return {
+            id: doc.id,
             onderwerp: doc.data.onderwerp || "Geen onderwerp",  // Onderwerp veld uit Prismic
-            message: doc.data.mededeling[0]?.text || "Geen mededeling",  // Eerste paragraaf tekst uit mededeling veld
+            mededeling: doc.data.mededeling[0]?.text || "Geen mededeling",  // Eerste paragraaf tekst uit mededeling veld
+            body: doc.data.mededeling,
             date: doc.data.datum || "Onbekende datum",  // Datum veld uit Prismic
+            // unread: doc.data.unread || false,  // Ongelezen veld uit Prismic
+            unread: true,
           };
         });
 
@@ -82,6 +89,10 @@ export default {
         this.isLoading = false;
       }
     },
+    getRowClass(item) {
+      console.log(item)
+      return item.unread ? 'highlight' : '';
+    },
   },
 
   created() {
@@ -93,4 +104,7 @@ export default {
 
 <style scoped>
 /* Add your styles here */
+.highlight {
+  background-color: #f5f5f5;
+}
 </style>
