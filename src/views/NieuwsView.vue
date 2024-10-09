@@ -3,24 +3,38 @@
 
   <section class="container my-5">
     <v-data-table
-      :headers="nieuwsHeaders"
-      :items="nieuwsItems"
-      height="50vh"
-      class="elevation-2 pa-5 rounded-xl"
-      :loading="isLoading"
-      :item-class="getRowClass"
+        :headers="nieuwsHeaders"
+        :items="nieuwsItems"
+        height="50vh"
+        class="elevation-2 pa-5 rounded-xl"
+        :loading="isLoading"
     >
+      <!-- Loading template -->
       <template v-slot:loading>
         <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
       </template>
 
-      <template v-slot:[`item.info`]="{ item }">
-        <NieuwsDialog :isOpen="isDialogOpen" :data="selectedItem" @update:isOpen="isDialogOpen = $event" />
-        <v-icon color="primary" @click="openDialog(item)">
-          mdi-information
-        </v-icon>
+      <!-- Slot voor het aanpassen van volledige rijen -->
+      <template v-slot:item="{ item }">
+        <tr :class="getRowClass(item)">
+          <td>{{ item.onderwerp }}</td>
+          <td>{{ item.mededeling }}</td>
+          <td>{{ item.date }}</td>
+          <td class="text-center">
+            <v-icon color="primary" @click="openDialog(item)">
+              mdi-information
+            </v-icon>
+          </td>
+        </tr>
       </template>
     </v-data-table>
+
+    <!-- NieuwsDialog component -->
+    <NieuwsDialog
+        :isOpen="isDialogOpen"
+        :data="selectedItem"
+        @update:isOpen="isDialogOpen = $event"
+    />
   </section>
 </template>
 
@@ -35,12 +49,12 @@ export default {
   data() {
     return {
       nieuwsHeaders: [
-        { title: 'Onderwerp', value: 'onderwerp', width: '15vw'},
-        { title: 'Mededeling', value: 'mededeling',  width: '65vw'},
-        { title: 'Datum', value: 'date', width: '10vw',  sortable: true,},
+        { title: 'Onderwerp', value: 'onderwerp', width: '15vw' },
+        { title: 'Mededeling', value: 'mededeling', width: '65vw' },
+        { title: 'Datum', value: 'date', width: '10vw', sortable: true },
         { title: 'Info', value: 'info', sortable: false, width: '5vw', align: 'center' },
       ],
-
+      nieuwsItems: [],
       isDialogOpen: false,
       selectedItem: { title: '', message: '', date: '' },
       prismicData: null,
@@ -51,14 +65,14 @@ export default {
   },
   methods: {
     openDialog(item) {
-      console.log('item.id', item.id)
+      console.log('item.id', item.id);
       this.selectedItem = item;
       this.isDialogOpen = true;
+      this.markAsRead(item)
     },
     async fetchPrismicData() {
       try {
         this.isLoading = true;
-
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
         const response = await api.query(
@@ -68,7 +82,6 @@ export default {
 
         this.prismicData = response.results;
 
-
         this.nieuwsItems = this.prismicData.map((doc) => {
           const messageDate = new Date(doc.data.datum);
           const now = new Date();
@@ -76,26 +89,20 @@ export default {
           oneMonthAgo.setMonth(now.getMonth() - 1);
           const isWithinOneMonth = messageDate >= oneMonthAgo;
 
-          if(isWithinOneMonth){
+          if (isWithinOneMonth) {
             this.newNewsItems.push(doc.id);
-            console.log('newNewsItems:', this.newNewsItems);
-            this.saveUnreadNewsItems()
+            this.saveUnreadNewsItems();
           }
-
-
 
           return {
             id: doc.id,
-            onderwerp: doc.data.onderwerp || "Geen onderwerp",  // Onderwerp veld uit Prismic
-            mededeling: doc.data.mededeling[0]?.text || "Geen mededeling",  // Eerste paragraaf tekst uit mededeling veld
+            onderwerp: doc.data.onderwerp || "Geen onderwerp",
+            mededeling: doc.data.mededeling[0]?.text || "Geen mededeling",
             body: doc.data.mededeling,
-            date: doc.data.datum || "Onbekende datum",  // Datum veld uit Prismic
-            // unread: doc.data.unread || false,  // Ongelezen veld uit Prismic
+            date: doc.data.datum || "Onbekende datum",
             unread: isWithinOneMonth,
           };
         });
-
-        console.log("Mapped nieuwsItems:", this.nieuwsItems);
 
       } catch (error) {
         console.error(error);
@@ -104,23 +111,37 @@ export default {
       }
     },
     getRowClass(item) {
-      // Controleer of het item ongelezen is en geef de juiste class
       return item.unread ? 'highlight' : '';
     },
     saveUnreadNewsItems() {
       localStorage.setItem('unreadNewsItems', JSON.stringify(this.newNewsItems));
     },
-  },
+    markAsRead(item) {
+      // Haal de huidige ongelezen items op uit localStorage
+      const unreadItems = JSON.parse(localStorage.getItem('unreadNewsItems')) || [];
 
+      // Verwijder de ID van het artikel uit de lijst van ongelezen items
+      const updatedUnreadItems = unreadItems.filter(id => id !== item.id);
+
+      // Update localStorage
+      localStorage.setItem('unreadNewsItems', JSON.stringify(updatedUnreadItems));
+
+      // Update de status van het artikel lokaal
+      item.unread = false;
+
+      // Forceer een re-render door de items opnieuw in te stellen
+      this.nieuwsItems = [...this.nieuwsItems];
+    }
+  },
   created() {
     this.fetchPrismicData();
   },
 };
 </script>
 
-<style scoped>
-/* Add your styles here */
+<style>
+/* Voeg hier je stijlen toe */
 .highlight {
-  background-color: red;
+  background-color: var(--light-green-color);
 }
 </style>
