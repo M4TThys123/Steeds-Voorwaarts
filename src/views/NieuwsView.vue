@@ -45,10 +45,13 @@ export default {
       selectedItem: { title: '', message: '', date: '' },
       prismicData: null,
       isLoading: false,
+      newNewsItems: [],
+      unreadNewsItems: [],
     };
   },
   methods: {
     openDialog(item) {
+      console.log('item.id', item.id)
       this.selectedItem = item;
       this.isDialogOpen = true;
     },
@@ -65,10 +68,22 @@ export default {
 
         this.prismicData = response.results;
 
-        console.log('data:', this.prismicData );
 
-        // Map de Prismic data naar het juiste format voor nieuwsItems
         this.nieuwsItems = this.prismicData.map((doc) => {
+          const messageDate = new Date(doc.data.datum);
+          const now = new Date();
+          const oneMonthAgo = new Date();
+          oneMonthAgo.setMonth(now.getMonth() - 1);
+          const isWithinOneMonth = messageDate >= oneMonthAgo;
+
+          if(isWithinOneMonth){
+            this.newNewsItems.push(doc.id);
+            console.log('newNewsItems:', this.newNewsItems);
+            this.saveUnreadNewsItems()
+          }
+
+
+
           return {
             id: doc.id,
             onderwerp: doc.data.onderwerp || "Geen onderwerp",  // Onderwerp veld uit Prismic
@@ -76,27 +91,28 @@ export default {
             body: doc.data.mededeling,
             date: doc.data.datum || "Onbekende datum",  // Datum veld uit Prismic
             // unread: doc.data.unread || false,  // Ongelezen veld uit Prismic
-            unread: true,
+            unread: isWithinOneMonth,
           };
         });
 
         console.log("Mapped nieuwsItems:", this.nieuwsItems);
 
       } catch (error) {
-        console.error('Error fetching data from Prismic:', error);
+        console.error(error);
       } finally {
-        console.log('Done fetching data from Prismic');
         this.isLoading = false;
       }
     },
     getRowClass(item) {
-      console.log(item)
+      // Controleer of het item ongelezen is en geef de juiste class
       return item.unread ? 'highlight' : '';
+    },
+    saveUnreadNewsItems() {
+      localStorage.setItem('unreadNewsItems', JSON.stringify(this.newNewsItems));
     },
   },
 
   created() {
-    console.log('test')
     this.fetchPrismicData();
   },
 };
@@ -105,6 +121,6 @@ export default {
 <style scoped>
 /* Add your styles here */
 .highlight {
-  background-color: #f5f5f5;
+  background-color: red;
 }
 </style>
