@@ -77,14 +77,12 @@ export default {
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false
       document.body.classList.add('no-scroll'); 
-      this.handleScroll(); 
     },
     closeNav() {
       this.isNavOpen = false;
       this.isBlur = true
       this.isScrolled = true
       document.body.classList.remove('no-scroll');
-      this.handleScroll(); 
     },
 
     toggleNav() {
@@ -101,6 +99,10 @@ export default {
     },
 
     handleScroll(event) {
+      if(!event) {
+        return;
+      }
+
       const scrollTop = event.target.scrollTop;
 
       if (scrollTop > 0) {
