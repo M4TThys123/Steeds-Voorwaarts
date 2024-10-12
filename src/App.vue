@@ -90,6 +90,10 @@ a {
   color: var(--text-color) !important;
 }
 
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
 h2{
   font-weight: 900 !important;
 }

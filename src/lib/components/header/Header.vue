@@ -56,6 +56,7 @@ import LogoComponent from "@/lib/components/header/LogoComponent.vue";
 import HamburgerMenu from "@/lib/components/header/HamburgerMenu.vue";
 import router from "@/router/router";
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
+import Prismic from "prismic-javascript";
 
 export default {
   name: "HeaderComponent",
@@ -63,16 +64,46 @@ export default {
   data() {
     return {
       isNavOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      isNewsLoaded: false,
     }
   },
   mounted() {
     document.body.addEventListener('scroll', this.handleScroll);
+    this.fetchUnreadNewsItems();
   },
   beforeUnmount() {
     document.body.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+      async fetchUnreadNewsItems() {
+        try{
+          const prismicUrl = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+          const api = await Prismic.api(prismicUrl);
+          const response = await api.query(
+              Prismic.Predicates.at('document.type', 'club_nieuws'),
+              {orderings: '[my.club_nieuws.date desc]',
+                fetch: ['document.id', 'document.data.datum']}
+          );
+
+          this.newNewsItems = response.results;
+          console.log('id: ', this.newNewsItems[0].id)
+          console.log('datum: ', this.newNewsItems[0].data.datum)
+
+
+
+
+
+          console.log('newNewsItems', this.newNewsItems);
+      }
+      catch (error) {
+        console.error('Error fetching unread news items', error);
+      }
+      finally {
+        this.isNewsLoaded = true;
+      }
+    },
+
     openNav() {
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false

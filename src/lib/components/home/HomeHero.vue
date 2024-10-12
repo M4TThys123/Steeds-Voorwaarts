@@ -16,10 +16,11 @@
 
           </section>
           <section  class="homepage-header__right">
-            <figure class="hero-figure_image"
+            <figure class="hero-figure_image position-relative"
                     :style="{   clipPath: currentClipPath,
-                                transition: 'clip-path 1s',
-                                backgroundImage: `url(${figureImage})` }">
+                                transition: 'clip-path 1s'}">
+              <v-skeleton-loader type="image" width="100%" height="100%"></v-skeleton-loader>
+              <v-img :src="figureImage" absolute width="100%" height="100%" class=""></v-img>
             </figure>
           </section>
         </div>
