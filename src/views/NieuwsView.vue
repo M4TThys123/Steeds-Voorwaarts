@@ -91,7 +91,7 @@ export default {
 
           if (isWithinOneMonth) {
             this.newNewsItems.push(doc.id);
-            this.saveUnreadNewsItems();
+            this.saveReadNewsItems();
           }
 
           return {
@@ -113,25 +113,28 @@ export default {
     getRowClass(item) {
       return item.unread ? 'highlight' : '';
     },
-    saveUnreadNewsItems() {
-      localStorage.setItem('unreadNewsItems', JSON.stringify(this.newNewsItems));
+    saveReadNewsItems() {
+      localStorage.setItem('readNewsItems', JSON.stringify(this.newNewsItems));
     },
-    markAsRead(item) {
-      // Haal de huidige ongelezen items op uit localStorage
-      const unreadItems = JSON.parse(localStorage.getItem('unreadNewsItems')) || [];
+   markAsRead(item) {
+    // Retrieve the current read items from localStorage
+    const readItems = JSON.parse(localStorage.getItem('readNewsItems')) || [];
 
-      // Verwijder de ID van het artikel uit de lijst van ongelezen items
-      const updatedUnreadItems = unreadItems.filter(id => id !== item.id);
+    // Check if the ID of the item is not in the list of read items
+    if (!readItems.includes(item.id)) {
+      // Add the ID of the item to the list of read items
+      readItems.push(item.id);
 
       // Update localStorage
-      localStorage.setItem('unreadNewsItems', JSON.stringify(updatedUnreadItems));
+      localStorage.setItem('readNewsItems', JSON.stringify(readItems));
 
-      // Update de status van het artikel lokaal
-      item.unread = false;
+      // Update the status of the item locally
+      item.read = true;
 
-      // Forceer een re-render door de items opnieuw in te stellen
+      // Force a re-render by reassigning the items
       this.nieuwsItems = [...this.nieuwsItems];
     }
+  }
   },
   created() {
     this.fetchPrismicData();

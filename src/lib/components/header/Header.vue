@@ -66,6 +66,8 @@ export default {
       isNavOpen: false,
       isScrolled: false,
       isNewsLoaded: false,
+      newNewsItems: [],
+      newsItemsThisMonth: [],
     }
   },
   mounted() {
@@ -87,20 +89,33 @@ export default {
           );
 
           this.newNewsItems = response.results;
+          console.log('newNewsItems', this.newNewsItems);
           console.log('id: ', this.newNewsItems[0].id)
           console.log('datum: ', this.newNewsItems[0].data.datum)
 
+          this.newNewsItems.map((doc) => {
+            const messageDate = new Date(doc.data.datum);
+            const now = new Date();
+            const oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(now.getMonth() - 1);
+            const isWithinOneMonth = messageDate >= oneMonthAgo;
 
+            if (isWithinOneMonth) {
+              this.newsItemsThisMonth.push(doc.id, doc.data.datum, doc.data.onderwerp);
+            }
+            return{
+              id: doc.id,
+              date: doc.data.datum,
 
-
-
-          console.log('newNewsItems', this.newNewsItems);
+            }
+          })
       }
       catch (error) {
         console.error('Error fetching unread news items', error);
       }
       finally {
         this.isNewsLoaded = true;
+        console.log('newsItemsThisMonth', this.newsItemsThisMonth);
       }
     },
 
