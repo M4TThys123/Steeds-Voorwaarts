@@ -2,7 +2,7 @@
   <div class="container">
     <section class="sporten-overzicht row">
       <template v-if="!isLoading">
-        <section class="sport col-md-6" v-for="(sport, index) in sporten" :key="sport.uid" v-if="index === 0">
+        <section class="sport col-md-6" v-for="sport in filteredSporten" :key="sport.uid">
           <figure class="image-wrapper">
             <PrismicImage :field="sport.data.image" @load="onImageLoaded" />
           </figure>
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import {asHTML} from "@prismicio/helpers";
+import { asHTML } from "@prismicio/helpers";
 import Prismic from 'prismic-javascript';
-import { PrismicImage } from '@prismicio/vue'
+import { PrismicImage } from '@prismicio/vue';
 
 export default {
   name: "SportDetailSection",
@@ -39,11 +39,17 @@ export default {
     };
   },
 
+  computed: {
+    filteredSporten() {
+      return this.sporten.slice(0, 1);
+    }
+  },
+
   created() {
     this.fetchSporten();
   },
 
-  methods:{
+  methods: {
     async fetchSporten() {
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
@@ -51,18 +57,16 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'sporten'));
 
         this.sporten = response.results;
-        console.log(this.sporten)
-        console.log(this.sporten.data.titel)
-      }
-      catch (error) {
+        console.log(this.sporten);
+        console.log(this.sporten.data.titel);
+      } catch (error) {
         console.error('Error fetching data from Prismic:', error);
-      }
-      finally {
+      } finally {
         this.isLoading = false;
       }
     },
     onImageLoaded() {
-      console.log('image loaded')
+      console.log('image loaded');
     },
     asHTML,
   }
@@ -70,7 +74,6 @@ export default {
 </script>
 
 <style>
-
 .aspect-ratio-box {
   position: relative;
   width: 100%;
@@ -84,8 +87,7 @@ export default {
   height: 100%;
 }
 
-h4{
+h4 {
   font-size: 50px;
 }
-
 </style>
