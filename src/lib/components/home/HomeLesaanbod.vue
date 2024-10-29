@@ -8,7 +8,7 @@
               :space-between="20"
               class="swiper">
         <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
-          <a :href="`/lesaanbod/#${sport.uid}`">
+          <a :href="`/lesaanbod/${sport.uid}`">
            <!-- <span class="sport-subtitle">
            {{ sport.uid}}
            </span> -->

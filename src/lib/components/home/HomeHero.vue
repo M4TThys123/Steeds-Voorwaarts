@@ -12,15 +12,18 @@
       <div class="homepage-header__wrapper">
         <div class="homepage-header__slide">
           <section class="homepage-header__left" >
-              <div class="hero-top__background " :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
+              <figure class="hero-top__background ">
+                <v-skeleton-loader v-if="loading"   type="image" width="100%" height="100%"></v-skeleton-loader>
+                <v-img :src="backgroundImage" cover absolute width="100%" height="100%" class=""></v-img>
+              </figure>
 
           </section>
           <section  class="homepage-header__right">
             <figure class="hero-figure_image position-relative"
                     :style="{   clipPath: currentClipPath,
                                 transition: 'clip-path 1s'}">
-              <v-skeleton-loader type="image" width="100%" height="100%"></v-skeleton-loader>
-              <v-img :src="figureImage" absolute width="100%" height="100%" class=""></v-img>
+              <v-skeleton-loader v-if="loading"  cover type="image" width="100%" height="100%"></v-skeleton-loader>
+              <v-img :src="figureImage" cover absolute width="100%" height="100%" class=""></v-img>
             </figure>
           </section>
         </div>
@@ -44,12 +47,18 @@ export default {
         'inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px)', // SQUARE
       ],
       currentClipPathIndex: 0,
+      loading: true, // Add loading state
+
     };
   },
   mounted() {
     setInterval(() => {
       this.updateClipPath();
     }, 5000); // Change clip-path every 5 seconds
+    // Set loading to false after 1 second
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   },
   methods: {
     updateClipPath() {
@@ -323,7 +332,9 @@ export default {
   background-position-y: -25px;
   z-index: 0;
 }
-.hero-top__background::before{
+.hero-top__background::before
+/*, .hero-figure_image::before*/
+{
   content: '';
   position: absolute;
   top: 0;
@@ -450,4 +461,11 @@ export default {
 
 
 
+</style>
+
+
+<style>
+.v-skeleton-loader__bone{
+  height: 100% !important;
+}
 </style>

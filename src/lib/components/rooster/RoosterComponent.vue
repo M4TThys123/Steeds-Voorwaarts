@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h2>Week Rooster</h2>
+    <h2 class="mb-3">Week Rooster</h2>
     <v-data-table
         :items="formattedSchedule"
         :loading="loading"
@@ -11,17 +11,19 @@
       </template>
 
       <!-- Day column -->
-      <template v-slot:[`item.day`]="{ item }">
-        <strong>{{ item.day }}</strong>
+      <template v-slot:[`item.dag`]="{ item }">
+        <strong class="dag">{{ item.dag }}</strong>
       </template>
 
       <!-- Activities column -->
-      <template v-slot:[`item.activities`]="{ item }">
-        <div v-for="(activity, i) in item.activities" :key="'activity-' + i" class="activity-row">
-          <div class="activity-name">{{ activity.name }}</div>
-          <div class="activity-time">{{ activity.time }}</div>
-          <div class="activity-target">{{ activity.target }}</div>
-          <div class="activity-instructor">{{ activity.instructor }}</div>
+      <template v-slot:[`item.sporten`]="{ item }">
+        <div v-for="(activity, i) in item.sporten" :key="'activity-' + i" >
+          <router-link :to="`/lesaanbod/${activity.route}`" class="activity-row">
+            <div class="activity-name">{{ activity.name }}</div>
+            <div class="activity-time">{{ activity.time }}</div>
+            <div class="activity-target">{{ activity.target }}</div>
+            <div class="activity-instructor">{{ activity.instructor }}</div>
+          </router-link>
         </div>
       </template>
     </v-data-table>
@@ -36,33 +38,37 @@ export default {
       loading: true,
       schedule: [
         {
-          day: "Dinsdag",
-          activities: [
+          dag: "Dinsdag",
+          sporten: [
             {
               name: "Kleuterdans",
+              route: "kleuterdans",
               time: "15.15 - 16.00",
               target: "Groep 1, 2 en 3",
               instructor: "Beau Smits"
             },
             {
               name: "Hiphop 1",
+              route: "hiphop",
               time: "16.00 - 17.00",
               target: "Groep 3, 4 en 5",
               instructor: "Beau Smits"
             },
             {
               name: "Hiphop 2",
+              route: "hiphop",
               time: "17.00 - 18.00",
-              target: "Groep 6, 7 en 8",
+                target: "Groep 6, 7 en 8",
               instructor: "Beau Smits"
             }
           ]
         },
         {
-          day: "Woensdag",
-          activities: [
+          dag: "Woensdag",
+          sporten: [
             {
               name: "Seniorengym",
+              route: "seniorengym",
               time: "9.00 - 10.00",
               target: "senioren",
               instructor: "Marjan Schrama"
@@ -70,22 +76,25 @@ export default {
           ]
         },
         {
-          day: "Donderdag",
-          activities: [
+          dag: "Donderdag",
+          sporten: [
             {
               name: "Freerunnen 1",
+              route: "freerunnen",
               time: "17.30 - 18.30",
               target: "Groep 5 t/m 8",
               instructor: "Matthijs Blauw"
             },
             {
               name: "Freerunnen 2",
+              route: "freerunnen",
               time: "19.30 - 20.30",
               target: "vanaf 12 jaar",
               instructor: "Matthijs Blauw"
             },
             {
               name: "Bootcamp",
+              route: "bootcamp",
               time: "19.30 - 20.30",
               target: "Volwassenen",
               instructor: "Loraine Besseling"
@@ -93,10 +102,11 @@ export default {
           ]
         },
         {
-          day: "Vrijdag",
-          activities: [
+          dag: "Vrijdag",
+          sporten: [
             {
               name: "Fysiogym",
+              route: "fysiogym",
               time: "9.00 - 10.00",
               target: "Volwassenen",
               instructor: "Dorien Sybenga"
@@ -108,10 +118,10 @@ export default {
   },
   computed: {
     formattedSchedule() {
-      // Flatten the activities into a single list of items
-      return this.schedule.map(day => ({
-        day: day.day,
-        activities: day.activities
+      // Flatten the sporten into a single list of items
+      return this.schedule.map(dag => ({
+        dag: dag.dag,
+        sporten: dag.sporten
       }));
     }
   },
@@ -140,9 +150,23 @@ li {
   gap: 10px;
   padding: 10px 0;
 }
+.dag{
+  font-size: 1.125rem;
+}
+
+.activity-row:hover {
+   background-color: var(--light-green-color);
+ }
 
 .activity-name {
   font-weight: bold;
+  text-decoration: underline;
+  color: var(--color-primary) !important;
+  padding-left: 16px;
+}
+
+.activity-row:hover .activity-name {
+  color: var(--accent) !important;
 }
 
 .activity-time, .activity-target, .activity-instructor {
@@ -156,4 +180,15 @@ li {
     gap: 5px;
   }
 }
+</style>
+
+<style>
+thead > tr > th:nth-child(2) .v-data-table-header__content {
+  padding-left: 16px;
+}
+
+  th  span {
+    font-size: 22px;
+    margin-right: 4px;
+  }
 </style>
