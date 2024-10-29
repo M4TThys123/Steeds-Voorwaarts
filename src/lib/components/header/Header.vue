@@ -12,8 +12,12 @@
 
       <div class="nav-menu">
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
-          <li class="mr-10 mt-2">
-            <router-link to="/nieuws" style="width: 32px; height: 32px;">
+          <li class="mr-10 mt-2" >
+
+<!--          Waarom werkt deze niet?-->
+<!--          <li class="mr-10 mt-2"  v-show="$vuetify.display.mdAndUp">-->
+            
+            <router-link to="/nieuws" style="width: 32px; height: 32px;" >
               <v-badge :content="1" color="red">
                 <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
                 </v-icon>
@@ -21,7 +25,7 @@
             </router-link>
           </li>
 
-          <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index">
+          <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index"  :class="{'nav-item__current' : $route.path === route.path}">
             <router-link
                 class="nav-link"
                 :to="route.path"
@@ -57,10 +61,18 @@ import HamburgerMenu from "@/lib/components/header/HamburgerMenu.vue";
 import router from "@/router/router";
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 import Prismic from "prismic-javascript";
+import { useDisplay } from 'vuetify';
+
 
 export default {
   name: "HeaderComponent",
   components: {ButtonComponent, HamburgerMenu, LogoComponent},
+  setup() {
+    const { mdAndDown } = useDisplay();
+    return {
+      isSmallScreen: mdAndDown,
+    };
+  },
   data() {
     return {
       isNavOpen: false,
@@ -223,6 +235,9 @@ nav {
 
 .nav-item {
   margin-right: 2em;
+}
+.nav-item__current{
+  padding-left: 0;
 }
 
 .nav-link {
@@ -390,6 +405,10 @@ nav {
     font-size: 48px;
     font-weight: bold;
     font-family: Inter, sans-serif;
+  }
+
+  .nav-item__current{
+    padding-left: 20px;
   }
 }
 
