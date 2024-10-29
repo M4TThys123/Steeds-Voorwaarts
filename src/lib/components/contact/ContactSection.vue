@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-8">
         <div>
-          <h2>Over ons</h2>
+          <h2 class="mb-3">Over ons</h2>
           <p>
             Plezierig sporten in een ongedwongen sfeer onder gemotiveerde,
             vakbekwame leiding staat bij ons centraal. Wil je kennismaken met

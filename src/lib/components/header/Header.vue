@@ -16,7 +16,7 @@
 
 <!--          Waarom werkt deze niet?-->
 <!--          <li class="mr-10 mt-2"  v-show="$vuetify.display.mdAndUp">-->
-            
+
             <router-link to="/nieuws" style="width: 32px; height: 32px;" >
               <v-badge :content="1" color="red">
                 <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">

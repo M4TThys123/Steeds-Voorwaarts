@@ -1,38 +1,23 @@
 <template>
   <div class="container">
-  <section class="sporten-overzicht row">
-    <template v-if="!isLoading">
-      <section  class="sport col-md-6" v-for="sport in sporten" :key="sport.uid" id="  ">
-      <figure class="image-wrapper">
-        <PrismicImage :field="sport.data.image"  @load="onImageLoaded" />
-<!--        <div class="aspect-ratio-box">-->
-<!--          <v-skeleton-loader type="image"></v-skeleton-loader>-->
-<!--        </div>-->
-      </figure>
-
-      <section class="data-container">
-        <div v-html="asHTML(sport.data.titel)"></div>
-
-        <div v-html="asHTML(sport.data.inleiding)"></div>
-
-        <div v-html="asHTML(sport.data.agenda_title)"></div>
-        <div v-for="agenda in sport.data.agendas" :key="agenda.id">
-          <div v-html="asHTML(sport.data.agenda_content)">
-          </div>-
-        </div>
-
-        <div>
-
-        </div>
-
-        <div>{{ sport.data.docent }}</div>
-
-
-      </section>
+    <section class="sporten-overzicht row">
+      <template v-if="!isLoading">
+        <section class="sport col-md-6" v-for="(sport, index) in sporten" :key="sport.uid" v-if="index === 0">
+          <figure class="image-wrapper">
+            <PrismicImage :field="sport.data.image" @load="onImageLoaded" />
+          </figure>
+          <section class="data-container">
+            <div v-html="asHTML(sport.data.titel)"></div>
+            <div v-html="asHTML(sport.data.inleiding)"></div>
+            <div v-html="asHTML(sport.data.agenda_title)"></div>
+            <div v-for="agenda in sport.data.agendas" :key="agenda.id">
+              <div v-html="asHTML(sport.data.agenda_content)"></div>
+            </div>
+            <div>{{ sport.data.docent }}</div>
+          </section>
+        </section>
+      </template>
     </section>
-    </template>
-
-  </section>
   </div>
 </template>
 
@@ -42,7 +27,7 @@ import Prismic from 'prismic-javascript';
 import { PrismicImage } from '@prismicio/vue'
 
 export default {
-  name: "SportenSection",
+  name: "SportDetailSection",
   components: {
     PrismicImage
   },

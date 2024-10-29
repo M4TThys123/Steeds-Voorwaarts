@@ -1,15 +1,24 @@
 <template>
   <ViewHero title="Sportet x" paragraph="infomratie over deze sport"></ViewHero>
 
-  <!-- <pre v-html="JSON.stringify(response, null, 2)"></pre> -->
+  <BreadCrubmsComponent></BreadCrubmsComponent>
+  <!--   <pre v-html="JSON.stringify(response, null, 2)"></pre>-->
+
+
+  <SportDetailSection></SportDetailSection>
+
+  <RoosterComponent></RoosterComponent>
 </template>
 
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
+import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
+import BreadCrubmsComponent from "@/lib/components/breadcrums/BreadCrubmsComponent.vue";
+import SportDetailSection from "@/lib/components/sporten/detail/SportDetailSection.vue";
 
 export default {
   name: "SportenView",
-  components: {ViewHero},
+  components: {SportDetailSection, BreadCrubmsComponent, ViewHero, RoosterComponent},
   data() {
     return {
       response: null

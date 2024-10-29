@@ -1,43 +1,76 @@
 <template>
   <section class="py-5">
     <div class="">
-<!--      <h2 class="mt-5 mb-3 container">Lesaanbod</h2>-->
       <swiper :slidesPerView="1.20"
               :breakpoints="breakpoints"
               :options="swiperOptions"
               :space-between="20"
               class="swiper">
-        <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
-          <a :href="`/lesaanbod/${sport.uid}`">
-           <!-- <span class="sport-subtitle">
-           {{ sport.uid}}
-           </span> -->
+
+        <swiper-slide class="swiper-slide" v-if="true">
+          <div class="swiper-slide__first">
             <div class="h-100 fixed-card">
               <div class="swiper-image__wrapper">
-                <GenaricButon   :link="`/sporten/#${sport.uid}`"
-                                class="swiper-image__link"
-                                icon="bx bx-right-arrow-alt"
-                                text="Lees meer" ></GenaricButon>
-                <figure class="swiper-figure">
-                  <PrismicImage :field="sport.data.image"  class="swiper-image"/>
+                <figure>
+                  <v-skeleton-loader  type="image" color="grey" />
 
                 </figure>
               </div>
+              <v-skeleton-loader type="article"  color="grey" class="mt-4"></v-skeleton-loader>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="swiper-slide" v-if="isLoading">
+          <div class="swiper-slide__first">
+            <div class="h-100 fixed-card">
+              <div class="swiper-image__wrapper">
+                <figure>
+                  <v-skeleton-loader  type="image" color="grey" />
 
+                </figure>
+              </div>
+              <v-skeleton-loader type="article"  color="grey" class="mt-4"></v-skeleton-loader>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="swiper-slide" v-if="isLoading">
+          <div class="swiper-slide__first">
+            <div class="h-100 fixed-card">
+              <div class="swiper-image__wrapper">
+                <figure>
+                  <v-skeleton-loader  type="image" color="grey" />
+
+                </figure>
+              </div>
+              <v-skeleton-loader type="article"  color="grey" class="mt-4"></v-skeleton-loader>
+            </div>
+          </div>
+        </swiper-slide>
+
+        <swiper-slide v-for="sport in sporten" :key="sport.uid" class="swiper-slide">
+          <a :href="`/lesaanbod/${sport.uid}`">
+            <div class="h-100 fixed-card">
+              <div class="swiper-image__wrapper">
+                <GenaricButon :link="`/sporten/#${sport.uid}`"
+                              class="swiper-image__link"
+                              icon="bx bx-right-arrow-alt"
+                              text="Lees meer"></GenaricButon>
+                <figure class="swiper-figure">
+                  <PrismicImage v-if="sport && sport.data" :field="sport.data.image" class="swiper-image"/>
+                </figure>
+              </div>
               <div class="swiper-body">
-                <div v-html="asHTML(sport.data.titel)" class="sport-heading__container"></div>
-
-                <div v-html="asHTML(sport.data.inleiding)"></div>
+                <div v-if="sport && sport.data" v-html="asHTML(sport.data.titel)" class="sport-heading__container"></div>
+                <div v-if="sport && sport.data" v-html="asHTML(sport.data.inleiding)"></div>
               </div>
             </div>
           </a>
         </swiper-slide>
         <swiper-slide class="swiper-slide__last">
           <h3 class="heading-bold">Ontdek all onze sporten</h3>
-<!--          <ButtonComponent></ButtonComponent>-->
-          <GenaricButon   link="/lesaanbod"
-                          icon="bx bx-right-arrow-alt"
-                          text="Lees meer" ></GenaricButon>
+          <GenaricButon link="/lesaanbod"
+                        icon="bx bx-right-arrow-alt"
+                        text="Lees meer"></GenaricButon>
         </swiper-slide>
       </swiper>
     </div>
@@ -138,7 +171,9 @@ export default {
   object-fit: cover;
 }
 
-
+.swiper-slide__first {
+  width: 100%;
+}
 
 
 .swiper-slide__last{
