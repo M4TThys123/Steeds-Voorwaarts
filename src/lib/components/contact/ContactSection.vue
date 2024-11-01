@@ -7,7 +7,7 @@
 
     <UpdatedContactItem02/>
 
-    <UpdatedInformationPar/>
+<!--    <UpdatedInformationPar/>-->
 
 
     <div class="row">
@@ -94,12 +94,10 @@ import ContactInformation from "@/lib/components/contact/ContactInformation.vue"
 import GenaricButon from "@/lib/components/elements/GenaricButon.vue";
 import UpdatedContactItem01 from "@/lib/components/contact/ContactInfromation/ContactInformation.vue";
 import UpdatedContactItem02 from "@/lib/components/contact/ContactInfromation/ContactInformation.vue";
-import UpdatedInformationPar from "@/lib/components/contact/ContactInfromation/UpdatedInformationPar.vue";
 
 export default {
   name: "ContactSection",
   components: {
-    UpdatedInformationPar,
     UpdatedContactItem02, UpdatedContactItem01, GenaricButon, ContactInformation, ContactForm },
 };
 </script>
