@@ -1,5 +1,15 @@
 <template>
   <section class="contact-section container">
+
+    <ContactInformation class="mb-5"></ContactInformation>
+
+    <UpdatedContactItem01/>
+
+    <UpdatedContactItem02/>
+
+    <UpdatedInformationPar/>
+
+
     <div class="row">
       <div class="col-md-8">
         <div>
@@ -72,7 +82,6 @@
       </div>
 
       <div class="col-md-4">
-        <ContactInformation class="mb-5"></ContactInformation>
         <ContactForm class="my-5"></ContactForm>
       </div>
     </div>
@@ -83,10 +92,15 @@
 import ContactForm from "@/lib/components/contact/ContactForm.vue";
 import ContactInformation from "@/lib/components/contact/ContactInformation.vue";
 import GenaricButon from "@/lib/components/elements/GenaricButon.vue";
+import UpdatedContactItem01 from "@/lib/components/contact/ContactInfromation/ContactInformation.vue";
+import UpdatedContactItem02 from "@/lib/components/contact/ContactInfromation/ContactInformation.vue";
+import UpdatedInformationPar from "@/lib/components/contact/ContactInfromation/UpdatedInformationPar.vue";
 
 export default {
   name: "ContactSection",
-  components: { GenaricButon, ContactInformation, ContactForm },
+  components: {
+    UpdatedInformationPar,
+    UpdatedContactItem02, UpdatedContactItem01, GenaricButon, ContactInformation, ContactForm },
 };
 </script>
 

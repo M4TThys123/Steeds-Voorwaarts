@@ -21,6 +21,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
 
 :root{
   --green-color: #398070;
@@ -55,7 +59,7 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
   color: var(--text-color);
 }
 
@@ -95,8 +99,23 @@ a:focus:not(:focus-visible) {
 }
 
 h2{
-  font-weight: 900 !important;
+  font-weight: bold !important;
 }
+.xsmall-heading{
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.04em;
+  font-weight: bold;
+}
+
+.mono {
+  font-family: "Chivo Mono", monospace !important;
+}
+
+.mono * {
+  font-family: "Chivo Mono", monospace !important;
+}
+
 
 button {
   color: var(--text);
@@ -150,9 +169,15 @@ li {
 }
 
 /* SM (for tablets - screens ≥ than 768px wide) */
-@media (width >= 768px) { }
+@media (width >= 768px) {
+
+}
 /* MD (for small laptops - screens ≥ than 992px wide) */
-@media (width >= 992px) { }
+@media (width >= 992px) {
+  .xsmall-heading {
+    font-size: 1.3888888889vw;
+  }
+}
 /* LG (for laptops and desktops - screens ≥ than 1200px wide) */
 @media (width >= 1200px) {}
 

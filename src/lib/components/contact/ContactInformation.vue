@@ -1,36 +1,44 @@
 <template>
   <section class="contact-info">
-    <h2 class="mb-4">Steeds Voorwaarts</h2>
-    <section class="contact-info__item row">
-      <strong class="col-4 col-sm-3">Telefoon:</strong>
-      <a class="col-6" @click.prevent="callPhone(telephone)" href="#">
-        {{ telephone }}
-      </a>
-    </section>
-    <section class="contact-info__item row">
-      <strong class="col-4 col-sm-3">Email:</strong>
-      <a class="col-6" @click.prevent="sendEmail(email)" href="#">
-        {{ email }}
-      </a>
-    </section>
-    <section class="contact-info__item row">
-      <strong class="col-4 col-sm-3 col-xs-1">Adres:</strong>
-      <p class="col-6" @click="openInGoogleMaps(address)">
-        {{ address.street }} <br>
-        {{ address.postalcode }} {{ address.city }}
-      </p>
-    </section>
-    <section class="contact-info__item row">
-      <strong class="col-4 col-sm-3 col-xs-1">Postadres:</strong>
-      <p class="col-6" @click="openInGoogleMaps(postaddress)">
-        {{ postaddress.street }} <br>
-        {{ postaddress.postalcode }} {{ postaddress.city }}
-      </p>
-    </section>
-    <section class="contact-info__item row">
-      <strong class="col-4 col-sm-3">Iban:</strong>
-      <p @click="copyIban" class="col-6">{{ iban }}</p>
-    </section>
+    <h3 class="mb-4 xsmall-heading">Steeds Voorwaarts Abbekerk</h3>
+    <div class="mono">
+      <dl class="contact-info__list">
+        <div class="contact-info__item">
+          <dt>Telefoon:</dt>
+          <dd>
+            <a @click.prevent="callPhone(telephone)" href="#">
+              {{ telephone }}
+            </a>
+          </dd>
+        </div>
+        <div class="contact-info__item">
+          <dt>Email:</dt>
+          <dd>
+            <a @click.prevent="sendEmail(email)" href="#">
+              {{ email }}
+            </a>
+          </dd>
+        </div>
+        <div class="contact-info__item">
+          <dt>Adres:</dt>
+          <dd @click="openInGoogleMaps(address)">
+            {{ address.street }} <br>
+            {{ address.postalcode }} {{ address.city }}
+          </dd>
+        </div>
+        <div class="contact-info__item">
+          <dt>Postadres:</dt>
+          <dd @click="openInGoogleMaps(postaddress)">
+            {{ postaddress.street }} <br>
+            {{ postaddress.postalcode }} {{ postaddress.city }}
+          </dd>
+        </div>
+        <div class="contact-info__item">
+          <dt>Iban:</dt>
+          <dd @click="copyIban">{{ iban }}</dd>
+        </div>
+      </dl>
+    </div>
   </section>
 </template>
 
@@ -43,15 +51,15 @@ export default {
         street: "Burgemeester P. Kromplein 1",
         postalcode: "1657 AA",
         city: "Abbekerk"
-      }, 
+      },
       postaddress: {
         street: "Zuideinde 4",
         postalcode: "1657 ED",
         city: "Abbekerk"
-      }, 
+      },
       telephone: "06 12345678",
       email: "svwabbekerk1913@gmail.com",
-      iban: " NL36INGB0004638688"
+      iban: "NL36INGB0004638688"
     };
   },
   methods: {
@@ -80,21 +88,35 @@ export default {
   flex-direction: column;
 }
 
-.contact-info__item {
-  margin-bottom: 8px;
+.contact-info__list {
   display: flex;
-}
-.contact-info__item {
-  display: flex;
+  flex-direction: column;
 }
 
-.contact-info__item > a{
-  text-decoration: underline var(--primary-button) 2px !important;
+.contact-info__item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12px; /* Increase space between rows for cleaner look */
 }
-.contact-info__item > p{
+
+/* Ensure consistent space between dt and dd */
+.contact-info__item dt {
+  min-width: 100px; /* Set a fixed width for dt to align dd elements */
+  margin-right: 16px; /* Adds spacing between dt and dd */
+  font-weight: bold;
+  text-align: left; /* Ensure left alignment */
+}
+
+/* Align dd elements consistently to the left of each row */
+.contact-info__item dd {
+  margin: 0;
   text-decoration: underline var(--primary-button) 2px;
+  cursor: pointer; /* Indicate clickable items */
 }
-p.col-6 {
-  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+
+/* Apply the specified font size for all dl children */
+dl > * {
+  font-size: 0.75rem;
 }
+
 </style>

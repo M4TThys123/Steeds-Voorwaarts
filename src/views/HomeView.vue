@@ -8,9 +8,8 @@
 
   <RoosterComponent class="mb-5"></RoosterComponent>
 
-  <ContactSection class="mb-5"></ContactSection>
+  <UpdatedInformationSection />
 
-<!--  <NieuwsComponent></NieuwsComponent>-->
 
 
 </template>
@@ -18,15 +17,17 @@
 <script>
 import HomePar from "@/lib/components/home/HomePar.vue";
 
-import ContactSection from "@/lib/components/contact/ContactSection.vue";
 import HomeHero from "@/lib/components/home/HomeHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import HomeLesaanbod from "@/lib/components/home/HomeLesaanbod.vue";
+import UpdatedInformationSection from "@/lib/components/contact/ContactInfromation/UpdatedInformationSection.vue";
 // import NieuwsComponent from "@/lib/components/nieuws/NieuwsComponent.vue";
 
 export default {
   name: "HomeView",
-  components: {HomePar, HomeLesaanbod, RoosterComponent, HomeHero, ContactSection },
+  components: {
+    UpdatedInformationSection,
+  HomePar, HomeLesaanbod, RoosterComponent, HomeHero,  },
 
 }
 </script>

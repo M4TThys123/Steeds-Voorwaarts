@@ -18,7 +18,7 @@ const routes = [
     },
     {
         path: '/lesaanbod',
-        name: 'lesaanbod',
+        name: 'Lesaanbod',
         component: LesAanbodView,
         meta: {
             hide: false, // Show this route in the navigation

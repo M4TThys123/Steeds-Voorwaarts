@@ -1,7 +1,7 @@
 <template>
   <a href="/aanmelden" class="button-component" :style="{background: buttonColor}">
     <i class='bx bxs-user-plus' ></i>
-    <span class="button-text">
+    <span class="button-text mono">
       Aanmelden
     </span>
   </a>
