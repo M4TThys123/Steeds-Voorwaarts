@@ -13,7 +13,7 @@ const routes = [
         name: 'Home',
         component: HomeView,
         meta: {
-            hide: false, // hide this route in the navigation
+            hide: false,
         },
     },
     {
@@ -21,15 +21,15 @@ const routes = [
         name: 'Lesaanbod',
         component: LesAanbodView,
         meta: {
-            hide: false, // Show this route in the navigation
+            hide: false,
         },
     },
     {
         path: '/lesaanbod/:les',
-        name: 'lesaanbod - :les',
+        name: 'Lesaanbod - :les',
         component: SportView,
         meta: {
-            hide: true, // Hide this route in the navigation
+            hide: true,
         },
     },
     {
@@ -37,7 +37,7 @@ const routes = [
         name: 'Contact',
         component: ContactView,
         meta: {
-            hide: false, // Show this route in the navigation
+            hide: false,
         },
     },
     {
@@ -45,7 +45,7 @@ const routes = [
         name: 'Aanmelden',
         component: AanmeldenView,
         meta: {
-            hide: true, // Show this route in the navigation
+            hide: true,
         },
     },
     {
@@ -53,7 +53,7 @@ const routes = [
         name: 'Nieuws',
         component: NieuwsView,
         meta: {
-            hide: true, // Show this route in the navigation
+            hide: true,
         },
     },
 
@@ -69,10 +69,13 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
-    scrollBehavior(/* to, from, savedPosition */) {
-        // always scroll to the top
-        return { x: 0, y: 0 };
+    routes: routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0 };
+        }
     }
 });
 

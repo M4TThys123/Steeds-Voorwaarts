@@ -122,8 +122,7 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'sporten'));
 
         this.sporten = response.results;
-        console.log(this.sporten)
-        console.log(this.sporten[0].uid)
+
 
         this.isLoading = false;
       } catch (error) {

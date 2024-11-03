@@ -34,7 +34,6 @@
                 'text-color__scroll': isScrolled,
                 'text-color__nav-open': isNavOpen,
                 'nav-link__active': $route.path === route.path
-
             }"
             >
               <span class="nav-text">
@@ -101,9 +100,9 @@ export default {
           );
 
           this.newNewsItems = response.results;
-          console.log('newNewsItems', this.newNewsItems);
-          console.log('id: ', this.newNewsItems[0].id)
-          console.log('datum: ', this.newNewsItems[0].data.datum)
+          // console.log('newNewsItems', this.newNewsItems);
+          // console.log('id: ', this.newNewsItems[0].id)
+          // console.log('datum: ', this.newNewsItems[0].data.datum)
 
           this.newNewsItems.map((doc) => {
             const messageDate = new Date(doc.data.datum);
@@ -127,7 +126,7 @@ export default {
       }
       finally {
         this.isNewsLoaded = true;
-        console.log('newsItemsThisMonth', this.newsItemsThisMonth);
+        // console.log('newsItemsThisMonth', this.newsItemsThisMonth);
       }
     },
 

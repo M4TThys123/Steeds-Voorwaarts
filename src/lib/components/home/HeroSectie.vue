@@ -1,28 +1,29 @@
 <template>
   <section class="home-header">
     <section class="homepage-header__fixed-content">
-          <h1 class="homepage-header__title">Steeds Voor-<br>
-            waarts
-          </h1>
-        <h2 class="homepage-header__subtitle">
-          Kom langs en ontdek de sport die bij jou past!  <br>
-        </h2>
+      <h1 class="homepage-header__title">Steeds Voor-<br>
+        waarts
+      </h1>
+
+      <h2 class="homepage-header__subtitle">
+        Kom langs en ontdek de sport die bij jou past!  <br>
+      </h2>
     </section>
     <div class="homepage-header__slider">
       <div class="homepage-header__wrapper">
         <div class="homepage-header__slide">
           <section class="homepage-header__left" >
-              <figure class="hero-top__background ">
-                <v-skeleton-loader v-if="loading"   type="image" width="100%" height="100%"></v-skeleton-loader>
-                <v-img :src="backgroundImage" cover absolute width="100%" height="100%" class=""></v-img>
-              </figure>
+            <figure class="hero-top__background ">
+              <v-skeleton-loader v-if="isLoading"   type="image" width="100%" height="100%"></v-skeleton-loader>
+              <v-img :src="backgroundImageSource" :alt="backgroundImageAlt" cover absolute width="100%" height="100%" class=""></v-img>
+            </figure>
 
           </section>
           <section  class="homepage-header__right">
             <figure class="hero-figure_image position-relative"
                     :style="{   clipPath: currentClipPath,
                                 transition: 'clip-path 1s'}">
-              <v-skeleton-loader v-if="loading"  cover type="image" width="100%" height="100%"></v-skeleton-loader>
+              <v-skeleton-loader v-if="isLoading"  cover type="image" width="100%" height="100%"></v-skeleton-loader>
               <v-img :src="figureImage" cover absolute width="100%" height="100%" class=""></v-img>
             </figure>
           </section>
@@ -34,7 +35,7 @@
 
 <script>
 export default {
-  name: "HomeHero",
+  name: "HeroSectie",
   props: {
     heroSectieData: {
       type: Array,
@@ -45,9 +46,28 @@ export default {
       required: true
     }
   },
+
   data() {
     return {
-      backgroundImage: "/assets/images/hero/hero_image.jpeg",
+      diashow:
+        {
+          afbeelding_1: {
+            url: "",
+            alt: "",
+            ClipPath: 'inset(var(--clip-size) 0 round 16px)', // LANDSCAPE
+          },
+          afbeelding_2: {
+            url: "",
+            alt: "",
+            ClipPath:  'inset(0 var(--clip-size) round 16px)', // PORTRAIT
+          },
+          afbeelding_3: {
+            url: "",
+            alt: "",
+            ClipPath: 'inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px)', // SQUARE
+          },
+        },
+
       figureImage: "/assets/images/hero/hero-figure_image.webp",
       figureSize: {},
       currentClipPath: 'inset(var(--clip-size) 0 round 16px)', // Initial clip-path
@@ -60,14 +80,36 @@ export default {
       loading: true, // Add loading state
     };
   },
+
+  computed:{
+    backgroundImageSource() {
+      return this.heroSectieData && this.heroSectieData.achtergrond_afbeelding
+          ? this.heroSectieData.achtergrond_afbeelding.url
+          : ""; // Fallback als er geen data is
+    },
+    backgroundImageAlt() {
+      return this.heroSectieData && this.heroSectieData.achtergrond_afbeelding
+          ? this.heroSectieData.achtergrond_afbeelding.alt
+          : "Fallback alt tekst"; // Fallback alt tekst
+    }
+  },
+
   mounted() {
     setInterval(() => {
       this.updateClipPath();
     }, 5000); // Change clip-path every 5 seconds
-    // Set loading to false after 1 second
-    setTimeout(() => {
-      this.loading = false;
-    }, 1000);
+
+    console.log('heroSectieDataComponent' ,this.heroSectieData);
+  },
+
+  watch: {
+    heroSectieData: {
+      handler: function () {
+        console.log('heroSectieDataComponent' ,this.heroSectieData);
+        console.log('diashow' ,this.heroSectieData.diashow);
+      },
+      deep: true
+    }
   },
   methods: {
     updateClipPath() {
@@ -77,9 +119,6 @@ export default {
   },
 }
 </script>
-
-
-
 
 <style scoped>
 /*Home Header*/
@@ -230,7 +269,7 @@ export default {
   object-fit: cover;
   clip-path: inset(8.3333333333vw round 2rem);
   transition: clip-path .8s cubic-bezier(0.17, 0.67, 0, 1), opacity 1s cubic-bezier(0.17, 0.67, 0, 1);
-  
+
   /* lANSCAPE */
   clip-path: inset(var(--clip-size) 0 round 16px);
 
@@ -239,16 +278,16 @@ export default {
 
   /* SQUARE */
   clip-path: inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px);
-  
+
   background: var(--background);
 }
 
 
 @media only screen and (min-width: 0px) and (max-width: 750px) {
-    .home-header{
-      --clip-size: 0.5rem;
-      --clip-size-neg: -0.5rem;
-    }
+  .home-header{
+    --clip-size: 0.5rem;
+    --clip-size-neg: -0.5rem;
+  }
 
   @media only screen and (min-width: 0px) and (max-width: 1024px) {
     .home-header {
@@ -258,28 +297,28 @@ export default {
   }
 
   .homepage-header__title {
-        font-size: 48px !important;
-        line-height: 1;
-        text-align: left;
-        width: 100%;
-        position: absolute;
-        top: 15%;
-        bottom: auto;
-        margin: 0 auto 0 auto;
-        max-width: 320px;
-    }
+    font-size: 48px !important;
+    line-height: 1;
+    text-align: left;
+    width: 100%;
+    position: absolute;
+    top: 15%;
+    bottom: auto;
+    margin: 0 auto 0 auto;
+    max-width: 320px;
+  }
 
-    .homepage-header__subtitle {
-        font-size: 22px !important;
-        line-height: 1.11;
-        letter-spacing: -0.04em;
-        width: 320px;
-        /*max-width: 400px;*/
-        margin-top: 20px;
-        position: absolute;
-        top: 35%;
-        bottom: auto;
-}
+  .homepage-header__subtitle {
+    font-size: 22px !important;
+    line-height: 1.11;
+    letter-spacing: -0.04em;
+    width: 320px;
+    /*max-width: 400px;*/
+    margin-top: 20px;
+    position: absolute;
+    top: 35%;
+    bottom: auto;
+  }
 }
 
 
@@ -342,7 +381,7 @@ export default {
   z-index: 0;
 }
 .hero-top__background::before
-/*, .hero-figure_image::before*/
+  /*, .hero-figure_image::before*/
 {
   content: '';
   position: absolute;
@@ -467,14 +506,11 @@ export default {
     padding: 8.3333333333vw;
   }
 }
-
-
-
 </style>
 
 
 <style>
-.v-skeleton-loader__bone{
-  height: 100% !important;
-}
+ .v-skeleton-loader__bone{
+   height: 100% !important;
+ }
 </style>

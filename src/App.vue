@@ -1,11 +1,11 @@
 <template>
-  <Header></Header>
+    <Header></Header>
 
-  <main class="content">
-    <router-view class="views"/>
-  </main>
+    <main class="content">
+      <router-view class="views"/>
+    </main>
 
-  <Footer class="footer"></Footer>
+    <Footer class="footer"></Footer>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
   components: {
     Header,
     Footer
-  }
+  },
 }
 </script>
 
@@ -55,6 +55,7 @@ export default {
 
   --header-height: 45px;
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -69,16 +70,20 @@ html ::-webkit-scrollbar {
 
 html {
   scroll-behavior: smooth;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
 body{
   max-width: 100vw;
-  overflow-x: hidden;
-  background: var(--body-background-color) !important;
+  background  : var(--body-background-color) !important;
   color: var(--text-color);
+
+  /*Verwijderd vanwege de scrollbehavior van de router links.*/
+}
+
+.body-wrapper{
+  overflow-x: hidden;
 }
 
 img {
