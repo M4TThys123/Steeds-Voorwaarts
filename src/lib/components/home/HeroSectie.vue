@@ -49,24 +49,6 @@ export default {
 
   data() {
     return {
-      diashow:
-        {
-          afbeelding_1: {
-            url: "",
-            alt: "",
-            ClipPath: 'inset(var(--clip-size) 0 round 16px)', // LANDSCAPE
-          },
-          afbeelding_2: {
-            url: "",
-            alt: "",
-            ClipPath:  'inset(0 var(--clip-size) round 16px)', // PORTRAIT
-          },
-          afbeelding_3: {
-            url: "",
-            alt: "",
-            ClipPath: 'inset(var(--clip-size) var(--clip-size) var(--clip-size) var(--clip-size) round 16px)', // SQUARE
-          },
-        },
 
       figureImage: "/assets/images/hero/hero-figure_image.webp",
       figureSize: {},
@@ -107,6 +89,12 @@ export default {
       handler: function () {
         console.log('heroSectieDataComponent' ,this.heroSectieData);
         console.log('diashow' ,this.heroSectieData.diashow);
+        console.log(this.heroSectieData.diashow[0].afbeelding_1);
+        console.log(this.heroSectieData.diashow[0].afbeelding_1.url);
+        console.log(this.heroSectieData.diashow[0].afbeelding_1.alt);
+        console.log(this.heroSectieData.diashow[0].afbeelding_2);
+        console.log(this.heroSectieData.diashow[0].afbeelding_3);
+
       },
       deep: true
     }
