@@ -12,10 +12,10 @@
 
       <div class="nav-menu">
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
-          <li class="mr-10 mt-2" >
+          <!-- <li class="mr-10 mt-2" > -->
 
 <!--          Waarom werkt deze niet?-->
-<!--          <li class="mr-10 mt-2"  v-show="$vuetify.display.mdAndUp">-->
+         <li class="mr-10 mt-2"  v-show="$vuetify.display.mdAndUp">
 
             <router-link to="/nieuws" style="width: 32px; height: 32px;" >
               <v-badge :content="1" color="red">
@@ -47,8 +47,17 @@
         </ul>
       </div>
 
-      <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled"
-                      class="menu__trigger"></hamburger-menu>
+      <div class="d-flex gap-3">
+        <router-link to="/nieuws" style="width: 32px; height: 32px;" v-show="$vuetify.display.mdAndDown">
+          <v-badge :content="1" color="red" style="padding-top: 5px">
+            <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
+            </v-icon>
+          </v-badge>
+        </router-link>
+
+        <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled"
+                        class="menu__trigger"></hamburger-menu>
+      </div>
     </nav>
   </header>
 </template>
