@@ -2,12 +2,21 @@
   <section class="home-par__section container py-5">
     <div class="row">
       <div class="col-md-6 d-flex flex-column justify-content-center mb-5">
-        <h2 class="home-par__heading mb-4">Dit is de ontwikkeling van een vooruitstrevende sportvereniging</h2>
-        <p class="home-par__sub_heading mb-4">Steedsvoorwaarts biedt volop sportieve mogelijkheden voor alle leeftijden in een ongedwongen sfeer.</p>
-        <p class="home-par__text mb-4">
-          Vandaag de dag hebben mensen meer sportkeuzes dan ooit tevoren. Maar wat Steedsvoorwaarts onderscheidt in dit ruime aanbod, is ons erfgoed, onze vakmanschap en ons vermogen om ons aan te passen aan een snel veranderende sportwereld. We zijn gedreven om activiteiten van het hoogste niveau aan te bieden die mensen zowel lokaal als regionaal verbinden.
+        <h2 class="home-par__heading mb-4">
+          {{ introductieData.titel }}
+        </h2>
+
+
+        <p class="home-par__sub_heading mb-4">
+          {{ introductieData.beschrijving_subtitel }}
         </p>
-        <ButtonComponent></ButtonComponent>
+
+        <p class="home-par__text mb-4">
+          {{ introductieData.beschrijving }}
+        </p>
+
+        <ButtonComponent  :knop-text="introductieData.knop_tekst"
+                          :knop-link="introductieData.knop_link"/>
       </div>
       <div class="col-md-6 d-flex align-items-center justify-content-center">
         <a href="https://www.facebook.com/steedsvoorwaartsAbbekerk">
@@ -16,23 +25,48 @@
       </div>
     </div>
   </section>
-
 </template>
 
 <script>
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 
 export default {
-  name: 'HomePar',
+  name: 'IntroductieSection',
   components: {ButtonComponent},
+  props: {
+    introductieData: {
+      type: Array,
+      required: true
+    },
+    isLoading: {
+      type: Boolean,
+      required: true
+    }
+  },
+  mounted() {
+    console.log('introductieData', this.introductieData);
+  },
+  methods: {
+  },
+  watch: {
+    introductieData: {
+      handler: function () {
+        console.log('introductieData', this.introductieData);
+        console.log('titel', this.introductieData.titel);
+        console.log('beschrijving', this.introductieData.beschrijving);
+        console.log('beschrijving_subtitel', this.introductieData.beschrijving_subtitel);
+      },
+      deep: true
+    }
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .home-par__section{
 
 }
-.home-par__heading {
+.home-par__heading{
   font-weight: 900;
   font-size: 20px;
   line-height: 1.25;

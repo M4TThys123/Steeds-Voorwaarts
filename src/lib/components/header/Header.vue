@@ -15,7 +15,7 @@
           <!-- <li class="mr-10 mt-2" > -->
 
 <!--          Waarom werkt deze niet?-->
-         <li class="mr-10 mt-2"  v-show="$vuetify.display.mdAndUp">
+         <li class="mr-10 mt-2" v-if="$vuetify.display.mdAndUp">
 
             <router-link to="/nieuws" style="width: 32px; height: 32px;" >
               <v-badge :content="1" color="red">
@@ -47,8 +47,8 @@
         </ul>
       </div>
 
-      <div class="d-flex gap-3">
-        <router-link to="/nieuws" style="width: 32px; height: 32px;" v-show="$vuetify.display.mdAndDown">
+      <div class="d-flex gap-3" v-if="$vuetify.display.mdAndDown">
+        <router-link to="/nieuws" style="width: 32px; height: 32px;" >
           <v-badge :content="1" color="red" style="padding-top: 5px">
             <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
             </v-icon>

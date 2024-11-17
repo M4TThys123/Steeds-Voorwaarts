@@ -23,7 +23,7 @@
 <script>
 // import HeroSectie from "@/lib/components/home/HomeHero.vue";
 import HeroSectie from "@/lib/components/home/HeroSectie.vue";
-import Introductie from "@/lib/components/home/HomePar.vue";
+import Introductie from "@/lib/components/home/Introductie.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import UitgelichteActiviteiten from "@/lib/components/home/HomeLesaanbod.vue";
 import UpdatedInformationSection from "@/lib/components/contact/ContactInfromation/UpdatedInformationSection.vue";
@@ -61,7 +61,6 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'hero_sectie'));
 
         this.heroSectieData = response.results[0].data;
-        console.log('fetchHeroSectie', this.heroSectieData)
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {
@@ -70,12 +69,15 @@ export default {
 
     },
     async fetchIntroductie() {
+      console.log('deze functie start. fetchIntroductie')
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
+        console.log('fetchHeroSectie', this.heroSectieData)
         const response = await api.query(Prismic.Predicates.at('document.type', 'introductie'));
 
         this.introductieData = response.results[0].data;
+        console.log('fetchIntroductie uit de HomeView', this.introductieData)
 
         this.isDocumentLoading = false;
       } catch (error) {
