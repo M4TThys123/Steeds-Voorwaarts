@@ -18,12 +18,15 @@
                              :over-ons-data="overOnsData"
                              :is-over-ons-loading="isOverOnsDataLoading"
                              class="mb-5"/>
+
+  <ContactOpnemenSection class="mb-5"/>
 </template>
 
 <script>
 // import HeroSectie from "@/lib/components/home/HomeHero.vue";
 import HeroSectie from "@/lib/components/home/HeroSectie.vue";
 import Introductie from "@/lib/components/home/Introductie.vue";
+import ContactOpnemenSection from "@/lib/components/home/ContactOpnemenSection.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import UitgelichteActiviteiten from "@/lib/components/home/HomeLesaanbod.vue";
 import UpdatedInformationSection from "@/lib/components/contact/ContactInfromation/UpdatedInformationSection.vue";
@@ -32,7 +35,7 @@ import Prismic from "prismic-javascript";
 
 export default {
   name: "HomeView",
-  components: { UpdatedInformationSection, Introductie, UitgelichteActiviteiten, RoosterComponent, HeroSectie },
+  components: { UpdatedInformationSection, Introductie, UitgelichteActiviteiten, RoosterComponent, HeroSectie, ContactOpnemenSection },
   data() {
     return {
       heroSectieData: [],
@@ -66,20 +69,15 @@ export default {
       } finally {
         this.isHeroSectieDataLoading = false;
       }
-
     },
     async fetchIntroductie() {
-      console.log('deze functie start. fetchIntroductie')
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
-        console.log('fetchHeroSectie', this.heroSectieData)
         const response = await api.query(Prismic.Predicates.at('document.type', 'introductie'));
 
         this.introductieData = response.results[0].data;
-        console.log('fetchIntroductie uit de HomeView', this.introductieData)
-
-        this.isDocumentLoading = false;
+        this.isIntroductieDataLoading = false;
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       }
@@ -95,20 +93,20 @@ export default {
         console.error('Error fetching data from Prismic:', error);
       }
     },
-    async fetchContactInformatie() {
-      try {
-        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
-        const api = await Prismic.api(apiEndpoint);
-        const response = await api.query(Prismic.Predicates.at('document.type', 'contactinformatie'));
-
-        this.contactInformatieData = response.results;
-        // console.log('fetchContactInformatie', this.contactInformatieData)
-
-        this.isDocumentLoading = false;
-      } catch (error) {
-        console.error('Error fetching data from Prismic:', error);
-      }
-    },
+    // async fetchContactInformatie() {
+    //   try {
+    //     const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+    //     const api = await Prismic.api(apiEndpoint);
+    //     const response = await api.query(Prismic.Predicates.at('document.type', 'contactinformatie'));
+    //
+    //     this.contactInformatieData = response.results;
+    //     // console.log('fetchContactInformatie', this.contactInformatieData)
+    //
+    //     this.isDocumentLoading = false;
+    //   } catch (error) {
+    //     console.error('Error fetching data from Prismic:', error);
+    //   }
+    // },
     async fetchOverOns() {
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
@@ -127,7 +125,7 @@ export default {
   async mounted() {
     await this.fetchHeroSectie();
     this.fetchIntroductie();
-    this.fetchContactInformatie();
+    // this.fetchContactInformatie();
     this.fetchOverOns();
     this.fetchUitgelichteActiviteiten();
   }

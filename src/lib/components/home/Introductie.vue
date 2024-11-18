@@ -2,6 +2,7 @@
   <section class="home-par__section container py-5">
     <div class="row">
       <div class="col-md-6 d-flex flex-column justify-content-center mb-5">
+
         <h2 class="home-par__heading mb-4">
           {{ introductieData.titel }}
         </h2>
@@ -44,20 +45,8 @@ export default {
     }
   },
   mounted() {
-    console.log('introductieData', this.introductieData);
   },
   methods: {
-  },
-  watch: {
-    introductieData: {
-      handler: function () {
-        console.log('introductieData', this.introductieData);
-        console.log('titel', this.introductieData.titel);
-        console.log('beschrijving', this.introductieData.beschrijving);
-        console.log('beschrijving_subtitel', this.introductieData.beschrijving_subtitel);
-      },
-      deep: true
-    }
   },
 };
 </script>

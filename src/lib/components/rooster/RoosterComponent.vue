@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import Prismic from "prismic-javascript";
+
 export default {
   name: 'RoosterComponent',
   data() {
@@ -113,8 +115,30 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      schemaData: [],
     };
+  },
+  methods: {
+    async fetchRoosters() {
+      try {
+        console.log('functie voert uit');
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(
+            Prismic.Predicates.at('document.type', 'Rooster')
+        );
+        this.schemaData = response.results; // Haal alle resultaten op
+        console.log(response);
+        console.log('einde');
+
+        console.log('fetchRoosters', this.schemaData);
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      } finally {
+        this.loading = false;
+      }
+    },
   },
   computed: {
     formattedSchedule() {
@@ -126,9 +150,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000); // Simulate a loading delay
+    this.fetchRoosters();
   }
 };
 </script>

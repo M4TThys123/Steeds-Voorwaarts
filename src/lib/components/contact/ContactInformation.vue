@@ -43,28 +43,62 @@
 </template>
 
 <script>
+import Prismic from "prismic-javascript";
+
 export default {
   name: "ContactInformation",
   data() {
     return {
       address: {
-        street: "Burgemeester P. Kromplein 1",
-        postalcode: "1657 AA",
-        city: "Abbekerk"
+        street: null,
+        postalcode: null,
+        city: null
       },
       postaddress: {
-        street: "Zuideinde 4",
-        postalcode: "1657 ED",
-        city: "Abbekerk"
+        street: null,
+        postalcode: null,
+        city: null
       },
-      telephone: "06 12345678",
-      email: "svwabbekerk1913@gmail.com",
-      iban: "NL36INGB0004638688"
+      telephone: null,
+      email: null,
+      iban: null,
+
+      contactInformatieData: [],
+      isContactInformatieDataLoading: true,
     };
   },
   methods: {
+    async fetchContactInformatie() {
+      try {
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(Prismic.Predicates.at('document.type', 'contactinformatie'));
+
+        this.contactInformatieData = response.results[0].data;
+        console.log('fetchContactInformatie', this.contactInformatieData)
+
+        // Adres
+        this.address.street = this.contactInformatieData.adres[0].straat
+        this.address.postalcode = this.contactInformatieData.adres[0].postcode
+        this.address.city = this.contactInformatieData.adres[0].stad
+
+        // Postadres
+        this.postaddress.street = this.contactInformatieData.post_adres[0].straat
+        this.postaddress.postalcode = this.contactInformatieData.post_adres[0].postcode
+        this.postaddress.city = this.contactInformatieData.post_adres[0].stad
+
+        this.telephone = this.contactInformatieData.telefoonnummer
+        this.email = this.contactInformatieData.email
+        this.iban = this.contactInformatieData.bank
+
+        this.isContactInformatieDataLoading = false;
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      }
+    },
+
     openInGoogleMaps(address) {
-      const query = `${address.street}, ${address.postalcode} ${address.city}`;
+      console.log('adress', address)
       const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
       window.open(url, '_blank');
     },
@@ -78,6 +112,9 @@ export default {
     sendEmail(emailAddress) {
       window.location.href = `mailto:${emailAddress}`;
     },
+  },
+  mounted() {
+    this.fetchContactInformatie();
   },
 };
 </script>

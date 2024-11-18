@@ -81,24 +81,8 @@ export default {
       this.updateClipPath();
     }, 5000); // Change clip-path every 5 seconds
 
-    console.log('heroSectieDataComponent' ,this.heroSectieData);
   },
 
-  watch: {
-    heroSectieData: {
-      handler: function () {
-        console.log('heroSectieDataComponent' ,this.heroSectieData);
-        console.log('diashow' ,this.heroSectieData.diashow);
-        console.log(this.heroSectieData.diashow[0].afbeelding_1);
-        console.log(this.heroSectieData.diashow[0].afbeelding_1.url);
-        console.log(this.heroSectieData.diashow[0].afbeelding_1.alt);
-        console.log(this.heroSectieData.diashow[0].afbeelding_2);
-        console.log(this.heroSectieData.diashow[0].afbeelding_3);
-
-      },
-      deep: true
-    }
-  },
   methods: {
     updateClipPath() {
       this.currentClipPathIndex = (this.currentClipPathIndex + 1) % this.clipPaths.length;
