@@ -43,7 +43,32 @@
             <li>
               <router-link to="/contact" class="footer-link">
                 <i class='bx bxs-envelope'></i>
-                <span class="ml">Mailen</span>
+                <span class="ml">
+                  Mailen
+                </span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/contact" class="footer-link">
+                <i class='bx bxs-message'></i>
+                <span class="ml">
+                  Bericht sturen
+                </span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/contact" class="footer-link">
+                <i class='bx bxs-user-plus'></i>
+                <span class="ml">
+                  Aanmelden
+                </span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/contact" class="footer-link">
+                <span class="ml">
+                  Over ons
+                </span>
               </router-link>
             </li>
           </ul>
@@ -56,22 +81,23 @@
         <section class="col-12 col-md-4">
           <section class="row">
             <section class="col-12 col-sm-6 mb-3 mb-sm-0">
-              <LogoComponent fill="#fff"></LogoComponent>
+              <router-link to="/">
+                <LogoComponent fill="#fff"></LogoComponent>
+              </router-link>
+              <a href="https://www.facebook.com/steedsvoorwaartsAbbekerk">
+                <v-icon class="ml-2" color="white" size="32">mdi-facebook</v-icon>
+              </a>
             </section>
           </section>
         </section>
 
-        <section class="col-12 col-md-6 order-md-2 mb-3 mb-md-0">
-          <ul class="list-inline text-center text-md-end mb-0">
-            <!--            <li class="list-inline-item"><a href="#"><i class='bx bxl-github'></i></a></li>-->
-            <!--            <li class="list-inline-item"><a href="#"><i class='bx bxl-linkedin-square' ></i></a></li>-->
-          </ul>
+        <section class="col-12 col-md-8 order-md-2 mb-3 mb-md-0">
+          <section>
+          <p class=" footer-link text-end">&copy; Steeds Voorwaarts {{ new Date().getFullYear() }} - <a href="www.matthijsblauw.nl" style="color: white !important; font-weight: ;">Matthijs Blauw</a></p>
+        </section>
         </section>
 
-        <section>
-          <p class="text-center">&copy; JBI Installatietechniek {{ new Date().getFullYear() }} | Website ontworpen en
-            ontwikkeld door Matthijs Blauw</p>
-        </section>
+
       </section>
     </section>
   </footer>
@@ -148,7 +174,7 @@ footer {
   flex-direction: column;
 }
 
-.footer-link {
+.footer-link, .footer-link > *{
   text-decoration: none;
   font-size: 16px;
   color: #9C9C9D !important;

@@ -91,6 +91,7 @@ export default {
     }
   },
   mounted() {
+    console.log('mounted');
     document.body.addEventListener('scroll', this.handleScroll);
     this.fetchUnreadNewsItems();
   },
@@ -165,16 +166,24 @@ export default {
     },
 
     handleScroll(event) {
+    console.log('handleScroll');
+
       if(!event) {
         return;
       }
+
+      console.log('return');
+
 
       const scrollTop = event.target.scrollTop;
 
       if (scrollTop > 0) {
         this.isScrolled = true;
+        console.log('scrolled');
       } else {
         this.isScrolled = false;
+        console.log('scrolled back');
+
       }
     },
   },
