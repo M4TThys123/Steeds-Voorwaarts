@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="mb-3">Tarieven 2023-2024</h2>
+    <h2 class="mb-3">Tarieven {{ new Date().getFullYear() }}</h2>
     <table class="table">
       <thead>
       <tr>

@@ -1,23 +1,17 @@
 <template>
   <div>
-    <h2 class="mb-3">Tarieven 2023-2024</h2>
+    <h2 class="mb-3">Tarieven {{ new Date().getFullYear() }}</h2>
 
     <v-data-table
         :headers="tariefHeaders"
         :items="tariefContent"
-        class="elevation-0"
+        class="elevation-0 class"
         dense
         hide-default-footer
+        style="background: none !important;"
     >
       <template v-slot:top></template>
     </v-data-table>
-
-    <h3>Headers</h3>
-    <pre>{{ tariefHeaders }}</pre>
-    <h3>Items</h3>
-    <pre>{{ tariefContent }}</pre>
-
-    {{aanmeldenTarievenData}}
   </div>
 </template>
 
@@ -37,8 +31,8 @@ export default {
   computed: {
     tariefHeaders() {
       return [
-        { name: this.aanmeldenTarievenData?.tarief_headers?.[0]?.kolom1 || "Activiteit", value: "activiteit" },
-        { name: this.aanmeldenTarievenData?.tarief_headers?.[0]?.kolom2 || "Tarief", value: "tarief" },
+        { title: this.aanmeldenTarievenData?.tarief_headers?.[0]?.kolom1 || "Activiteit", value: "activiteit" },
+        { title: this.aanmeldenTarievenData?.tarief_headers?.[0]?.kolom2 || "Tarief", value: "tarief" },
       ];
     },
     tariefContent() {
@@ -56,5 +50,9 @@ export default {
 .v-data-table th {
   text-align: left;
   font-weight: bold;
+}
+.class, class *, class > * {
+  /*background: none !important;*/
+  background-color: transparent !important;
 }
 </style>

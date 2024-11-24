@@ -7,13 +7,29 @@
             <PrismicImage :field="sport.data.image" @load="onImageLoaded" />
           </figure>
           <section class="data-container">
-            <div v-html="asHTML(sport.data.titel)"></div>
-            <div v-html="asHTML(sport.data.inleiding)"></div>
-            <div v-html="asHTML(sport.data.agenda_title)"></div>
-            <div v-for="agenda in sport.data.agendas" :key="agenda.id">
-              <div v-html="asHTML(sport.data.agenda_content)"></div>
+            <!-- Toon de titel -->
+            <PrismicRichText :field="sport.data.titel" />
+
+            <!-- Toon de inleiding -->
+            <PrismicRichText :field="sport.data.inleiding" />
+
+            <!-- Toon agenda titel -->
+            <PrismicRichText :field="sport.data.agenda_title" />
+
+            <!-- Itereer door de agenda items -->
+            <div v-for="(agenda, index) in sport.data.agenda" :key="index">
+              <PrismicRichText :field="agenda.agenda_content" />
             </div>
-            <div>{{ sport.data.docent }}</div>
+
+            <!-- Toon docent -->
+            <div><strong>Docent:</strong> {{ sport.data.docent }}</div>
+
+            <!-- Toon bio (lijst en paragrafen) -->
+            <div class="bio">
+              <PrismicRichText :field="sport.data.bio" />
+            </div>
+
+            {{ sport }}
           </section>
         </section>
       </template>
@@ -41,6 +57,7 @@ export default {
 
   computed: {
     filteredSporten() {
+      // "uid": "freerunning",
       return this.sporten.slice(0, 1);
     }
   },
@@ -54,8 +71,12 @@ export default {
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
-        const response = await api.query(Prismic.Predicates.at('document.type', 'sporten'));
-
+        const response = await api.query(
+            [
+              Prismic.Predicates.at('document.type', 'sporten'),
+              Prismic.Predicates.at('my.sporten.uid', 'freerunning')
+            ]
+        );
         this.sporten = response.results;
         console.log(this.sporten);
         console.log(this.sporten.data.titel);

@@ -1,7 +1,7 @@
 <template>
   <ViewHero title="Sportet x" paragraph="infomratie over deze sport"></ViewHero>
 
-  <BreadCrubmsComponent></BreadCrubmsComponent>
+<!--  <BreadCrubmsComponent></BreadCrubmsComponent>-->
   <!--   <pre v-html="JSON.stringify(response, null, 2)"></pre>-->
 
 
@@ -13,12 +13,14 @@
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
-import BreadCrubmsComponent from "@/lib/components/breadcrums/BreadCrubmsComponent.vue";
+// import BreadCrubmsComponent from "@/lib/components/breadcrums/BreadCrubmsComponent.vue";
 import SportDetailSection from "@/lib/components/sporten/detail/SportDetailSection.vue";
 
 export default {
   name: "SportenView",
-  components: {SportDetailSection, BreadCrubmsComponent, ViewHero, RoosterComponent},
+  components: {SportDetailSection,
+    // BreadCrubmsComponent,
+    ViewHero, RoosterComponent},
   data() {
     return {
       response: null

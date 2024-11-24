@@ -93,11 +93,9 @@
 
         <section class="col-12 col-md-8 order-md-2 mb-3 mb-md-0">
           <section>
-          <p class=" footer-link text-end">&copy; Steeds Voorwaarts {{ new Date().getFullYear() }} - <a href="www.matthijsblauw.nl" style="color: white !important; font-weight: ;">Matthijs Blauw</a></p>
+          <p class=" footer-link text-end">&copy; Steeds Voorwaarts {{ new Date().getFullYear() }} - <a href="https://www.matthijsblauw.nl/" style="color: white !important; font-weight: ;">Matthijs Blauw</a></p>
         </section>
         </section>
-
-
       </section>
     </section>
   </footer>

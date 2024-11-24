@@ -205,9 +205,9 @@ li {
 </style>
 
 <style>
-thead > tr > th:nth-child(2) .v-data-table-header__content {
-  padding-left: 16px;
-}
+/*thead > tr > th:nth-child(2) .v-data-table-header__content {*/
+/*  padding-left: 16px;*/
+/*}*/
 
   th  span {
     font-size: 22px;

@@ -51,7 +51,7 @@
           <a :href="`/lesaanbod/${sport.uid}`">
             <div class="h-100 fixed-card">
               <div class="swiper-image__wrapper">
-                <GenaricButon :link="`/sporten/#${sport.uid}`"
+                <GenaricButon :link="`/lesaanbod/#${sport.uid}`"
                               class="swiper-image__link"
                               icon="bx bx-right-arrow-alt"
                               text="Lees meer"></GenaricButon>

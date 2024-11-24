@@ -1,50 +1,61 @@
 <template>
   <div class="container">
-  <section class="sporten-overzicht row">
-    <template v-if="!isLoading">
-      <section  class="sport col-md-6" v-for="sport in sporten" :key="sport.uid" id="  ">
-      <figure class="image-wrapper">
-        <PrismicImage :field="sport.data.image"  @load="onImageLoaded" />
-<!--        <div class="aspect-ratio-box">-->
-<!--          <v-skeleton-loader type="image"></v-skeleton-loader>-->
-<!--        </div>-->
-      </figure>
+    <section class="sporten-overzicht row">
+      <template v-if="!isLoading">
+        <section class="sport col-md-6" v-for="sport in sporten" :key="sport.uid">
+          <figure class="image-wrapper">
+            <!-- Toon de afbeelding -->
+            <PrismicImage :field="sport.data.image" @load="onImageLoaded" />
+          </figure>
 
-      <section class="data-container">
-        <div v-html="asHTML(sport.data.titel)"></div>
+          <GenaricButon   :link="`lesaanbod/${sport.uid}`"
+                          icon="bx bx-right-arrow-alt"
+                          text="Lees meer"
+                          style=""
+            />
 
-        <div v-html="asHTML(sport.data.inleiding)"></div>
+          <section class="data-container">
+            <!-- Toon de titel -->
+            <PrismicRichText :field="sport.data.titel" />
 
-        <div v-html="asHTML(sport.data.agenda_title)"></div>
-        <div v-for="agenda in sport.data.agendas" :key="agenda.id">
-          <div v-html="asHTML(sport.data.agenda_content)">
-          </div>-
-        </div>
+            <!-- Toon de inleiding -->
+            <PrismicRichText :field="sport.data.inleiding" />
 
-        <div>
+            <!-- Toon agenda titel -->
+            <PrismicRichText :field="sport.data.agenda_title" />
 
-        </div>
+            <!-- Itereer door de agenda items -->
+            <div v-for="(agenda, index) in sport.data.agenda" :key="index">
+              <PrismicRichText :field="agenda.agenda_content" />
+            </div>
 
-        <div>{{ sport.data.docent }}</div>
+            <!-- Toon docent -->
+            <div><strong>Docent:</strong> {{ sport.data.docent }}</div>
 
+            <!-- Toon bio (lijst en paragrafen) -->
+            <div class="bio">
+              <PrismicRichText :field="sport.data.bio" />
+            </div>
 
-      </section>
+            {{ sport }}
+          </section>
+        </section>
+      </template>
     </section>
-    </template>
-
-  </section>
   </div>
 </template>
 
 <script>
-import {asHTML} from "@prismicio/helpers";
-import Prismic from 'prismic-javascript';
-import { PrismicImage } from '@prismicio/vue'
+import { PrismicImage, PrismicRichText } from "@prismicio/vue";
+import Prismic from "prismic-javascript";
+import GenaricButon from "@/lib/components/elements/GenaricButon.vue";
 
 export default {
   name: "SportenSection",
   components: {
-    PrismicImage
+    GenaricButon,
+    PrismicImage,
+    PrismicRichText,
   },
 
   data() {
@@ -58,49 +69,40 @@ export default {
     this.fetchSporten();
   },
 
-  methods:{
+  methods: {
     async fetchSporten() {
       try {
-        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const apiEndpoint = "https://streeds-voorwaarts.cdn.prismic.io/api/v2";
         const api = await Prismic.api(apiEndpoint);
-        const response = await api.query(Prismic.Predicates.at('document.type', 'sporten'));
+        const response = await api.query(
+            Prismic.Predicates.at("document.type", "sporten")
+        );
 
         this.sporten = response.results;
-        console.log(this.sporten)
-        console.log(this.sporten.data.titel)
-      }
-      catch (error) {
-        console.error('Error fetching data from Prismic:', error);
-      }
-      finally {
+        console.log(this.sporten); // Controleer de volledige structuur van de data
+      } catch (error) {
+        console.error("Error fetching data from Prismic:", error);
+      } finally {
         this.isLoading = false;
       }
     },
     onImageLoaded() {
-      console.log('image loaded')
+      console.log("image loaded");
     },
-    asHTML,
-  }
-}
+  },
+};
 </script>
 
-<style>
-
-.aspect-ratio-box {
-  position: relative;
-  width: 100%;
+<style scoped>
+.image-wrapper {
+  margin-bottom: 20px;
 }
 
-.aspect-ratio-box v-skeleton-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.data-container {
+  margin-top: 10px;
 }
 
-h4{
-  font-size: 50px;
+.bio {
+  margin-top: 20px;
 }
-
 </style>
