@@ -99,8 +99,13 @@ a {
   color: var(--text-color) !important;
 }
 
-a:focus:not(:focus-visible) {
-  outline: none;
+.v-icon:focus,
+.v-icon:active,
+a:focus:not(:focus-visible),
+a:focus,
+a:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 h2{
@@ -185,5 +190,7 @@ li {
 }
 /* LG (for laptops and desktops - screens ≥ than 1200px wide) */
 @media (width >= 1200px) {}
+
+
 
 </style>

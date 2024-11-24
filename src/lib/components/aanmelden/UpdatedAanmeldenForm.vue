@@ -1,7 +1,7 @@
  <template>
     <v-container class="py-5">
       <v-card class="mx-auto" elevation="2" max-width="600" rounded="lg">
-        <v-card-title class="text-h5"><h2 class="mb-4">Aanmelden</h2></v-card-title>
+        <v-card-title class="text-h5"><h2 class="mb-4">Aanmelden TEST</h2></v-card-title>
 
 
         <v-card-text>
@@ -15,7 +15,7 @@
                 dense
                 required
                 variant="outlined"
-                class="mb-4"
+                class="mb-2"
             ></v-text-field>
 
             <!-- E-mailadres -->
@@ -28,7 +28,7 @@
                 type="email"
                 required
                 variant="outlined"
-                class="mb-4"
+                class="mb-2"
             ></v-text-field>
 
             <!-- Telefoonnummer -->
@@ -41,7 +41,7 @@
                 type="tel"
                 required
                 variant="outlined"
-                class="mb-4"
+                class="mb-2"
             ></v-text-field>
 
             <!-- Activiteit -->
@@ -54,7 +54,7 @@
                 dense
                 required
                 variant="outlined"
-                class="mb-4"
+                class="mb-2"
             ></v-select>
 
             <!-- Opmerkingen -->
@@ -65,7 +65,7 @@
                 dense
                 rows="3"
                 variant="outlined"
-                class="mb-4"
+                class="mb-1"
             ></v-textarea>
 
             <!-- Privacy -->
@@ -75,7 +75,7 @@
                 :rules="[privacyRule]"
                 dense
                 required
-                class="mb-4"
+                class="mb-3"
             ></v-checkbox>
           </v-form>
         </v-card-text>
@@ -83,9 +83,8 @@
         <!-- Verzenden -->
         <v-card-actions>
           <v-btn
-              :disabled="!isFormValid || isSubmitting"
-              color="primary"
-              block
+              class="custom-btn"
+              rounded
               @click="submitForm"
           >
             <v-icon left>mdi-send</v-icon>
@@ -175,5 +174,12 @@
   <style scoped>
   .v-card {
     padding: 16px;
+  }
+   .custom-btn {
+     background-color: #398070 !important;
+     color: #FFFFFF !important;
+   }
+  .custom-btn .v-icon {
+    color: #FFFFFF !important;
   }
   </style>

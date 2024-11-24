@@ -4,44 +4,118 @@
     <div class="mono">
       <dl class="contact-info__list">
         <div class="contact-info__item">
-          <dt>Telefoon:</dt>
+          <dt>
+            <v-icon
+                color="black"
+                class="mr-2"
+                size="large"
+                @click="callPhone(telephone)"
+                style="cursor: pointer;"
+            >
+              mdi-phone
+            </v-icon>
+          </dt>
           <dd>
             <a @click.prevent="callPhone(telephone)" href="#">
-              {{ telephone }}
+              <v-btn text style="background-color: transparent; box-shadow: none; text-transform: none;">
+                {{ telephone }}
+              </v-btn>
             </a>
           </dd>
         </div>
         <div class="contact-info__item">
-          <dt>Email:</dt>
+          <dt>
+            <v-icon
+                color="black"
+                class="mr-2"
+                size="large"
+                @click="sendEmail(email)"
+                style="cursor: pointer;"
+            >
+              mdi-email
+            </v-icon>
+          </dt>
           <dd>
             <a @click.prevent="sendEmail(email)" href="#">
-              {{ email }}
+              <v-btn text style="background-color: transparent; box-shadow: none; text-transform: none;">
+                {{ email }}
+              </v-btn>
             </a>
           </dd>
         </div>
         <div class="contact-info__item">
-          <dt>Adres:</dt>
+          <dt>
+            <v-icon
+                color="black"
+                class="mr-2"
+                size="large"
+                @click="openInGoogleMaps(address)"
+                style="cursor: pointer;"
+            >
+              mdi-map-marker
+            </v-icon>
+          </dt>
           <dd @click="openInGoogleMaps(address)">
-            {{ address.street }} <br>
-            {{ address.postalcode }} {{ address.city }}
+            <v-btn text style="background-color: transparent; box-shadow: none; text-transform: none; text-align: left">
+              {{ address.street }} <br>
+              {{ address.postalcode }} {{ address.city }}
+            </v-btn>
           </dd>
         </div>
         <div class="contact-info__item">
-          <dt>Postadres:</dt>
+          <dt>
+            <v-icon
+                color="black"
+                class="mr-2"
+                size="large"
+                @click="openInGoogleMaps(postaddress)"
+                style="cursor: pointer;"
+            >
+              mdi-home-map-marker
+            </v-icon>
+          </dt>
           <dd @click="openInGoogleMaps(postaddress)">
-            {{ postaddress.street }} <br>
-            {{ postaddress.postalcode }} {{ postaddress.city }}
+            <v-btn text style="background-color: transparent; box-shadow: none; text-transform: none; text-align: left">
+              {{ postaddress.street }} <br>
+              {{ postaddress.postalcode }} {{ postaddress.city }}
+            </v-btn>
           </dd>
         </div>
         <div class="contact-info__item">
-          <dt>Iban:</dt>
-          <dd @click="copyIban">{{ iban }}</dd>
+          <dt>
+            <v-icon
+                color="black"
+                class="mr-2"
+                size="large"
+                @click="handleCopyIban"
+                style="cursor: pointer;"
+            >
+              mdi-bank
+            </v-icon>
+          </dt>
+          <dd @click="handleCopyIban" class="copy-iban">
+            <v-btn
+                text
+                style="background-color: transparent; box-shadow: none; text-transform: none;"
+                :class="{ 'text-copied': copied }"
+            >
+              {{ iban }}
+              <v-icon
+                  color="black"
+                  class="ml-2"
+                  size="x-small"
+                  style="cursor: pointer;"
+                  :class="{ 'icon-copied': copied }"
+              >
+                mdi-content-copy
+              </v-icon>
+            </v-btn>
+          </dd>
         </div>
       </dl>
     </div>
   </section>
 </template>
-
 <script>
 import Prismic from "prismic-javascript";
 
@@ -49,6 +123,7 @@ export default {
   name: "ContactInformation",
   data() {
     return {
+      copied: false,
       address: {
         street: null,
         postalcode: null,
@@ -98,13 +173,24 @@ export default {
     },
 
     openInGoogleMaps(address) {
-      console.log('adress', address)
-      // const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-      // window.open(url, '_blank');
+      console.log('address', address);
+      const query = `${address.street}, ${address.postalcode}, ${address.city}`;
+      const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+      window.open(url, '_blank');
+    },
+    handleCopyIban() {
+      this.copyIban(); // Voer de IBAN kopieeractie uit
+      this.copied = true; // Zet 'copied' op true voor de visuele feedback
+      setTimeout(() => {
+        this.copied = false; // Reset de status na 1 seconde
+      }, 1000); // Duur van het groene effect
     },
     copyIban() {
-      navigator.clipboard.writeText(this.iban).then(() => {
-      })
+      // Hier implementeer je de daadwerkelijke IBAN-kopieerfunctionaliteit
+      const iban = this.iban;
+      navigator.clipboard.writeText(iban).then(() => {
+        console.log('IBAN gekopieerd:', iban);
+      });
     },
     callPhone(phoneNumber) {
       window.location.href = `tel:${phoneNumber}`;
@@ -120,6 +206,7 @@ export default {
 </script>
 
 <style scoped>
+
 .contact-info {
   display: flex;
   flex-direction: column;
@@ -138,8 +225,7 @@ export default {
 
 /* Ensure consistent space between dt and dd */
 .contact-info__item dt {
-  min-width: 100px; /* Set a fixed width for dt to align dd elements */
-  margin-right: 16px; /* Adds spacing between dt and dd */
+  margin-right: 8px; /* Adds spacing between dt and dd */
   font-weight: bold;
   text-align: left; /* Ensure left alignment */
 }
@@ -147,7 +233,8 @@ export default {
 /* Align dd elements consistently to the left of each row */
 .contact-info__item dd {
   margin: 0;
-  text-decoration: underline var(--primary-button) 2px;
+  font-size: 16px;
+  /*text-decoration: underline var(--primary-button) 2px;*/
   cursor: pointer; /* Indicate clickable items */
 }
 
@@ -155,5 +242,15 @@ export default {
 dl > * {
   font-size: 0.75rem;
 }
+
+.button-copied {
+  background-color: green !important; /* Groene kleur voor visuele feedback */
+  color: white !important; /* Tekstkleur */
+}
+
+.icon-copied, .text-copied {
+  color: var(--green-color) !important; /* Groene kleur voor het icoon */
+}
+
 
 </style>
