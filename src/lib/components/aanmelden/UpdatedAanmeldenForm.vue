@@ -14,6 +14,8 @@
                 outlined
                 dense
                 required
+                variant="outlined"
+                class="mb-4"
             ></v-text-field>
 
             <!-- E-mailadres -->
@@ -25,6 +27,8 @@
                 dense
                 type="email"
                 required
+                variant="outlined"
+                class="mb-4"
             ></v-text-field>
 
             <!-- Telefoonnummer -->
@@ -36,6 +40,8 @@
                 dense
                 type="tel"
                 required
+                variant="outlined"
+                class="mb-4"
             ></v-text-field>
 
             <!-- Activiteit -->
@@ -47,6 +53,8 @@
                 outlined
                 dense
                 required
+                variant="outlined"
+                class="mb-4"
             ></v-select>
 
             <!-- Opmerkingen -->
@@ -56,6 +64,8 @@
                 outlined
                 dense
                 rows="3"
+                variant="outlined"
+                class="mb-4"
             ></v-textarea>
 
             <!-- Privacy -->
@@ -65,6 +75,7 @@
                 :rules="[privacyRule]"
                 dense
                 required
+                class="mb-4"
             ></v-checkbox>
           </v-form>
         </v-card-text>

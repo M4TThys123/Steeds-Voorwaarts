@@ -17,7 +17,6 @@
                                    :is-loading="isAanmeldenTarievenDataLoading"
                                    class="pb-10"/>
 
-        <AanmeldenForm></AanmeldenForm>
         <UpdatedAanmeldenForm/>
       </div>
 
@@ -29,7 +28,6 @@
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
 import AanmeldenVoorwaarden from "@/lib/components/aanmelden/AanmeldenVoorwaarden.vue";
-import AanmeldenForm from "@/lib/components/aanmelden/AanmeldenForm.vue";
 import FacebookLink from "@/lib/components/elements/FacebookLink.vue";
 
 import Prismic from "prismic-javascript";
@@ -41,7 +39,7 @@ export default {
   name: "AanmeldenView",
   components: {
     UpdatedAanmeldenForm,
-    UpdatedAanmeldenTarieven, FacebookLink, AanmeldenForm, AanmeldenVoorwaarden, ViewHero },
+    UpdatedAanmeldenTarieven, FacebookLink, AanmeldenVoorwaarden, ViewHero },
   data() {
     return {
       aanmeldenVoorwaardenData: [],

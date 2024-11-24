@@ -99,8 +99,8 @@ export default {
 
     openInGoogleMaps(address) {
       console.log('adress', address)
-      const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-      window.open(url, '_blank');
+      // const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+      // window.open(url, '_blank');
     },
     copyIban() {
       navigator.clipboard.writeText(this.iban).then(() => {
