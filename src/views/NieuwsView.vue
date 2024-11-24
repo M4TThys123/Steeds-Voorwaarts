@@ -35,6 +35,11 @@
         :data="selectedItem"
         @update:isOpen="isDialogOpen = $event"
     />
+    <h3>Headers</h3>
+    <pre>{{ nieuwsHeaders }}</pre>
+    <h3>Items</h3>
+    <pre>{{ nieuwsItems }}</pre>
+
   </section>
 </template>
 

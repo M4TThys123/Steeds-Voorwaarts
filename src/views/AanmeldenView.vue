@@ -3,9 +3,22 @@
 
   <section class="container my-5">
     <div class="row">
-      <AanmeldenVoorwaarden class="col-12 col-md-6 col-lg-8"></AanmeldenVoorwaarden>
+      <div class="col-12 col-md-6 col-lg-8">
+        <AanmeldenVoorwaarden :aanmeldenVoorwaardenData="aanmeldenVoorwaardenData"
+                              :is-loading="isAanmeldenVoorwaardenDataLoading"
+                              class="pb-10"/>
+
+        <FacebookLink width="320px" class="py-10" />
+      </div>
       <div class="col-12 col-md-6 col-lg-4">
-        <aanmelden-tarieven class=""></aanmelden-tarieven>
+        <AanmeldenTarieven :aanmelden-tarieven-data="aanmeldenTarievenData"
+                          :is-loading="isAanmeldenTarievenDataLoading"
+                          class="pb-10"
+          />
+        <UpdatedAanmeldenTarieven  :aanmelden-tarieven-data="aanmeldenTarievenData"
+                                   :is-loading="isAanmeldenTarievenDataLoading"
+                                   class="pb-10"/>
+
         <AanmeldenForm></AanmeldenForm>
       </div>
 
@@ -19,11 +32,61 @@ import ViewHero from "@/lib/components/hero/ViewHero.vue";
 import AanmeldenVoorwaarden from "@/lib/components/aanmelden/AanmeldenVoorwaarden.vue";
 import AanmeldenTarieven from "@/lib/components/aanmelden/AanmeldenTarieven.vue";
 import AanmeldenForm from "@/lib/components/aanmelden/AanmeldenForm.vue";
+import FacebookLink from "@/lib/components/elements/FacebookLink.vue";
+
+import Prismic from "prismic-javascript";
+import UpdatedAanmeldenTarieven from "@/lib/components/aanmelden/UpdateAanmeldenTarieven.vue";
+
 
 export default {
   name: "AanmeldenView",
-  components: {AanmeldenForm, AanmeldenTarieven, AanmeldenVoorwaarden, ViewHero },
+  components: {UpdatedAanmeldenTarieven, FacebookLink, AanmeldenForm, AanmeldenTarieven, AanmeldenVoorwaarden, ViewHero },
+  data() {
+    return {
+      aanmeldenVoorwaardenData: [],
+      isAanmeldenVoorwaardenDataLoading: true,
 
+      aanmeldenTarievenData: [],
+      isAanmeldenTarievenDataLoading: true,
+    };
+  },
+  methods:{
+    async fetchAanmeldenVoorwaarden() {
+      console.log('fetchAanmeldenVoorwaarden');
+
+      try {
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(Prismic.Predicates.at('document.type', 'verenigingsjaar'));
+
+        this.aanmeldenVoorwaardenData = response.results[0].data;
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      } finally {
+        this.isAanmeldenVoorwaardenDataLoading = false;
+      }
+    },
+    async fetchAanmeldenTarieven() {
+      console.log('fetchAanmeldenTarieven');
+
+      try {
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(Prismic.Predicates.at('document.type', 'tarieven'));
+
+        this.aanmeldenTarievenData = response.results[0].data;
+        console.log('aanmeldenTarieven: ', this.aanmeldenTarievenData);
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      } finally {
+        this.isAanmeldenTarievenDataLoading = false;
+      }
+    },
+  },
+  mounted() {
+    this.fetchAanmeldenVoorwaarden();
+    this.fetchAanmeldenTarieven();
+  }
 };
 </script>
 

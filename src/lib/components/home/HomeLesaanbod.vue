@@ -7,7 +7,7 @@
               :space-between="20"
               class="swiper">
 
-        <swiper-slide class="swiper-slide" v-if="true">
+        <swiper-slide class="swiper-slide" v-if="false">
           <div class="swiper-slide__first">
             <div class="h-100 fixed-card">
               <div class="swiper-image__wrapper">

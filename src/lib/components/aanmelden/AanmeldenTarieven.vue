@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Tarieven 2023-2024</h2>
+    <h2 class="mb-3">Tarieven 2023-2024</h2>
     <table class="table">
       <thead>
       <tr>
@@ -39,12 +39,14 @@
       </tr>
       </tbody>
     </table>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: "AanmeldenTarieven"
+  name: "AanmeldenTarieven",
+
 }
 </script>
 

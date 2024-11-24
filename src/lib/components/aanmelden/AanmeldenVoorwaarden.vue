@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Verenigingsjaar</h2>
+    <h2 class="mb-3">Verenigingsjaar</h2>
     <p>Het verenigingsjaar start na de zomervakantie van regio noord en eindigt bij de start van zomervakantie het jaar erop.</p>
     <p>Zie <a href="https://www.rijksoverheid.nl/onderwerpen/schoolvakanties/overzicht-schoolvakanties-per-schooljaar/overzicht-schoolvakanties-2023-2024" target="_blank">rijksoverheid: vakanties naar regio</a>.</p>
     <p>Bij aanmelding is een bedrag van € 5,- aan inschrijfgeld verschuldigd.</p>
@@ -9,12 +9,27 @@
     <p>Beëindiging lidmaatschap: Het lidmaatschap kan per email beëindigd worden vóór het eind van het verenigingsjaar. Stuur je mail voor de zomervakantie naar <a href="mailto:svwabbekerk@quicknet.nl">svwabbekerk@quicknet.nl</a>.</p>
     <p>Betaling inschrijfgeld en contributie: Na aanmelding ontvangt u een nota waarna het verschuldigde bedrag kan worden overgemaakt op NL36 INGB0004638688 t.n.v. Gymnastiekvereniging Steeds Voorwaarts</p>
     <p>Privacyverklaring: Bij aanmelding wordt gevraagd om akkoord te gaan met de privacyverklaring van onze vereniging.</p>
+
+    {{ aanmeldenVoorwaardenData }}
   </div>
+
 </template>
 
 <script>
 export default {
-  name: "AanmeldenVoorwaarden"
+  name: "AanmeldenVoorwaarden",
+  props: {
+    aanmeldenVoorwaardenData: {
+      type: Object,
+      required: true
+    },
+    isAanmeldenVoorwaardenDataLoading: {
+      type: Boolean,
+      required: true
+    }
+  },
+  mounted() {
+  },
 }
 </script>
 
