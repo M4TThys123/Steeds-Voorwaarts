@@ -18,6 +18,7 @@
             <!-- Toon de titel -->
             <PrismicRichText :field="sport.data.titel" />
 
+
             <!-- Toon de inleiding -->
             <PrismicRichText :field="sport.data.inleiding" />
 

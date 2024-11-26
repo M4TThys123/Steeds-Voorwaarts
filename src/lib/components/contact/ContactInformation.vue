@@ -179,14 +179,13 @@ export default {
       window.open(url, '_blank');
     },
     handleCopyIban() {
-      this.copyIban(); // Voer de IBAN kopieeractie uit
-      this.copied = true; // Zet 'copied' op true voor de visuele feedback
+      this.copyIban();
+      this.copied = true;
       setTimeout(() => {
-        this.copied = false; // Reset de status na 1 seconde
-      }, 1000); // Duur van het groene effect
+        this.copied = false;
+      }, 1000);
     },
     copyIban() {
-      // Hier implementeer je de daadwerkelijke IBAN-kopieerfunctionaliteit
       const iban = this.iban;
       navigator.clipboard.writeText(iban).then(() => {
         console.log('IBAN gekopieerd:', iban);

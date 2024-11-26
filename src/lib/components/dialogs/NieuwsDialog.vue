@@ -3,21 +3,25 @@
     <v-card>
       <v-card-title class="headline">{{ data.onderwerp }}</v-card-title>
       <v-card-text>
-        <p>{{ data.message }}</p>
+        <PrismicRichText :field="data.body" />
+
 
         <p><strong>Date:</strong> {{ data.date }}</p>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" @click="closeDialog">Close</v-btn>
+        <v-btn color="primary" @click="closeDialog">Sluiten</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import {  PrismicRichText } from "@prismicio/vue";
+
 export default {
   name: 'NieuwsDialog',
+  components: { PrismicRichText },
   props: {
     isOpen: {
       type: Boolean,

@@ -38,84 +38,6 @@ export default {
   data() {
     return {
       loading: true,
-      schedule: [
-        {
-          dag: "Dinsdag",
-          sporten: [
-            {
-              name: "Kleuterdans",
-              route: "kleuterdans",
-              time: "15.15 - 16.00",
-              target: "Groep 1, 2 en 3",
-              instructor: "Beau Smits"
-            },
-            {
-              name: "Hiphop 1",
-              route: "hiphop",
-              time: "16.00 - 17.00",
-              target: "Groep 3, 4 en 5",
-              instructor: "Beau Smits"
-            },
-            {
-              name: "Hiphop 2",
-              route: "hiphop",
-              time: "17.00 - 18.00",
-                target: "Groep 6, 7 en 8",
-              instructor: "Beau Smits"
-            }
-          ]
-        },
-        {
-          dag: "Woensdag",
-          sporten: [
-            {
-              name: "Seniorengym",
-              route: "seniorengym",
-              time: "9.00 - 10.00",
-              target: "senioren",
-              instructor: "Marjan Schrama"
-            }
-          ]
-        },
-        {
-          dag: "Donderdag",
-          sporten: [
-            {
-              name: "Freerunnen 1",
-              route: "freerunnen",
-              time: "17.30 - 18.30",
-              target: "Groep 5 t/m 8",
-              instructor: "Matthijs Blauw"
-            },
-            {
-              name: "Freerunnen 2",
-              route: "freerunnen",
-              time: "19.30 - 20.30",
-              target: "vanaf 12 jaar",
-              instructor: "Matthijs Blauw"
-            },
-            {
-              name: "Bootcamp",
-              route: "bootcamp",
-              time: "19.30 - 20.30",
-              target: "Volwassenen",
-              instructor: "Loraine Besseling"
-            }
-          ]
-        },
-        {
-          dag: "Vrijdag",
-          sporten: [
-            {
-              name: "Fysiogym",
-              route: "fysiogym",
-              time: "9.00 - 10.00",
-              target: "Volwassenen",
-              instructor: "Dorien Sybenga"
-            }
-          ]
-        }
-      ],
       schemaData: [],
     };
   },
@@ -126,13 +48,9 @@ export default {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
         const response = await api.query(
-            Prismic.Predicates.at('document.type', 'Rooster')
+            Prismic.Predicates.at('document.type', 'schedule')
         );
         this.schemaData = response.results; // Haal alle resultaten op
-        console.log(response);
-        console.log('einde');
-
-        console.log('fetchRoosters', this.schemaData);
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {
@@ -142,12 +60,18 @@ export default {
   },
   computed: {
     formattedSchedule() {
-      // Flatten the sporten into a single list of items
-      return this.schedule.map(dag => ({
-        dag: dag.dag,
-        sporten: dag.sporten
+      // Format Prismic data naar gewenste structuur
+      return this.schemaData.map(doc => ({
+        dag: doc.data.dag,
+        sporten: doc.data.sporten.map(sport => ({
+          name: sport.sport,
+          route: sport.route,
+          time: sport.tijd,
+          target: sport.doelgroep,
+          instructor: sport.docent,
+        })),
       }));
-    }
+    },
   },
   mounted() {
     this.fetchRoosters();
