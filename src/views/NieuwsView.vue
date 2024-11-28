@@ -8,6 +8,7 @@
         height="50vh"
         class="elevation-2 pa-5 rounded-xl"
         :loading="isLoading"
+        @click:row="openDialog"
     >
       <!-- Loading template -->
       <template v-slot:loading>
@@ -16,7 +17,11 @@
 
       <!-- Slot voor het aanpassen van volledige rijen -->
       <template v-slot:item="{ item }">
-        <tr :class="getRowClass(item)">
+        <tr
+            :class="[getRowClass(item), hoveredRow === item ? 'hover-class' : '']"
+            @click="openDialog(item)"
+            @mouseenter="hoveredRow = item"
+            @mouseleave="hoveredRow = null">
           <td>{{ item.onderwerp }}</td>
           <td>{{ item.mededeling }}</td>
           <td>{{ item.date }}</td>
@@ -59,6 +64,7 @@ export default {
         { title: 'Datum', value: 'date', width: '10vw', sortable: true },
         { title: 'Info', value: 'info', sortable: false, width: '5vw', align: 'center' },
       ],
+      hoveredRow: null,
       nieuwsItems: [],
       isDialogOpen: false,
       selectedItem: { title: '', message: '', date: '' },
@@ -151,5 +157,14 @@ export default {
 /* Voeg hier je stijlen toe */
 .highlight {
   background-color: var(--light-green-color);
+}
+
+.hover-class {
+  background-color: var(--light-green-color);
+  transition: background-color 0.2s ease;
+}
+
+tr:hover {
+  cursor: pointer; /* Laat de cursor veranderen als visuele feedback */
 }
 </style>

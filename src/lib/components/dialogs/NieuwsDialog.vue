@@ -5,6 +5,7 @@
       <v-card-text>
         <PrismicRichText :field="data.body" />
 
+        {{data}}
 
         <p><strong>Date:</strong> {{ data.date }}</p>
       </v-card-text>

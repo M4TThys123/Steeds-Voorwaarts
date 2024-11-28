@@ -14,16 +14,9 @@
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
           <!-- <li class="mr-10 mt-2" > -->
 
-<!--          Waarom werkt deze niet?-->
-         <li class="mr-10 mt-2" v-if="$vuetify.display.mdAndUp">
-
-            <router-link to="/nieuws" style="width: 32px; height: 32px;" >
-              <v-badge :content="1" color="red">
-                <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
-                </v-icon>
-              </v-badge>
-            </router-link>
-          </li>
+         <div class="mr-10 mt-2" v-if="$vuetify.display.mdAndUp">
+            <NieuwsOverzichtDialog :activatorColor="isScrolled ? 'black' : 'white'"/>
+          </div>
 
           <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index"  :class="{'nav-item__current' : $route.path === route.path}">
             <router-link
@@ -70,11 +63,12 @@ import router from "@/router/router";
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 import Prismic from "prismic-javascript";
 import { useDisplay } from 'vuetify';
+import NieuwsOverzichtDialog from "@/lib/components/nieuws/NieuwsOverzichtDialog.vue";
 
 
 export default {
   name: "HeaderComponent",
-  components: {ButtonComponent, HamburgerMenu, LogoComponent},
+  components: {NieuwsOverzichtDialog, ButtonComponent, HamburgerMenu, LogoComponent},
   setup() {
     const { mdAndDown } = useDisplay();
     return {
