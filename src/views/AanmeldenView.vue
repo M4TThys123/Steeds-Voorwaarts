@@ -51,8 +51,6 @@ export default {
   },
   methods:{
     async fetchAanmeldenVoorwaarden() {
-      console.log('fetchAanmeldenVoorwaarden');
-
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
@@ -66,15 +64,12 @@ export default {
       }
     },
     async fetchAanmeldenTarieven() {
-      console.log('fetchAanmeldenTarieven');
-
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
         const response = await api.query(Prismic.Predicates.at('document.type', 'tarieven'));
 
         this.aanmeldenTarievenData = response.results[0].data;
-        console.log('aanmeldenTarieven: ', this.aanmeldenTarievenData);
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {

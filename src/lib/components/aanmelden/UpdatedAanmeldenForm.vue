@@ -143,14 +143,6 @@
         if (!this.$refs.form.validate()) return;
 
         this.isSubmitting = true;
-        console.log({
-          naam: this.naam,
-          email: this.email,
-          telefoon: this.telefoon,
-          activiteit: this.activiteit,
-          opmerkingen: this.opmerkingen,
-          privacy: this.privacy,
-        });
 
         setTimeout(() => {
           this.isSubmitting = false;

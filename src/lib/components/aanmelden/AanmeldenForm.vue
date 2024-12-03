@@ -82,13 +82,6 @@ export default {
   methods: {
     submitForm() {
       // Hier zou je de logica kunnen plaatsen om het formulier te verwerken, zoals het verzenden van een e-mail naar de vereniging
-      console.log("Formulier ingediend!");
-      console.log("Naam:", this.naam);
-      console.log("E-mailadres:", this.email);
-      console.log("Telefoonnummer:", this.telefoon);
-      console.log("Activiteit:", this.activiteit);
-      console.log("Opmerkingen:", this.opmerkingen);
-      console.log("Privacy akkoord:", this.privacy);
       // Reset het formulier na het indienen
       this.naam = "";
       this.email = "";

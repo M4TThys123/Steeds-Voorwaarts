@@ -78,8 +78,6 @@ export default {
             ]
         );
         this.sporten = response.results;
-        console.log(this.sporten);
-        console.log(this.sporten.data.titel);
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {
@@ -87,7 +85,6 @@ export default {
       }
     },
     onImageLoaded() {
-      console.log('image loaded');
     },
     asHTML,
   }

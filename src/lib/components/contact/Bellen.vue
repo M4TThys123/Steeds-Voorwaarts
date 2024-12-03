@@ -17,7 +17,6 @@ export default {
     callNumber(number)
     {
       window.location.href = "tel:" + number;
-      console.log(`${number} wordt gebeld`);
     }
   }
 }

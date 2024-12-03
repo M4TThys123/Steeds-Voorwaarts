@@ -4,8 +4,7 @@
       <template v-if="!isLoading">
         <section class="sport col-md-6" v-for="sport in sporten" :key="sport.uid">
           <figure class="image-wrapper">
-            <!-- Toon de afbeelding -->
-            <PrismicImage :field="sport.data.image" @load="onImageLoaded" />
+            <PrismicImage :field="sport.data.image"  />
           </figure>
 
           <GenaricButon   :link="`lesaanbod/${sport.uid}`"
@@ -38,7 +37,6 @@
               <PrismicRichText :field="sport.data.bio" />
             </div>
 
-            {{ sport }}
           </section>
         </section>
       </template>
@@ -80,16 +78,13 @@ export default {
         );
 
         this.sporten = response.results;
-        console.log(this.sporten); // Controleer de volledige structuur van de data
       } catch (error) {
         console.error("Error fetching data from Prismic:", error);
       } finally {
         this.isLoading = false;
       }
     },
-    onImageLoaded() {
-      console.log("image loaded");
-    },
+
   },
 };
 </script>

@@ -14,7 +14,7 @@
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
           <!-- <li class="mr-10 mt-2" > -->
 
-         <div class="mr-10 mt-2" v-if="$vuetify.display.mdAndUp">
+         <div class="mr-8 mt-2" v-if="$vuetify.display.mdAndUp">
             <NieuwsOverzichtDialog :activatorColor="isScrolled ? 'black' : 'white'"/>
           </div>
 
@@ -41,12 +41,8 @@
       </div>
 
       <div class="d-flex gap-3" v-if="$vuetify.display.mdAndDown">
-        <router-link to="/nieuws" style="width: 32px; height: 32px;" >
-          <v-badge :content="1" color="red" style="padding-top: 5px">
-            <v-icon icon="mdi-message-bulleted" size="large" :color="!isScrolled ? 'white' : 'black'">
-            </v-icon>
-          </v-badge>
-        </router-link>
+        <NieuwsOverzichtDialog class="mt-2" :activatorColor="isScrolled ? 'black' : 'white'"/>
+
 
         <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled"
                         class="menu__trigger"></hamburger-menu>
@@ -61,7 +57,6 @@ import LogoComponent from "@/lib/components/header/LogoComponent.vue";
 import HamburgerMenu from "@/lib/components/header/HamburgerMenu.vue";
 import router from "@/router/router";
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
-import Prismic from "prismic-javascript";
 import { useDisplay } from 'vuetify';
 import NieuwsOverzichtDialog from "@/lib/components/nieuws/NieuwsOverzichtDialog.vue";
 
@@ -82,58 +77,16 @@ export default {
       isNewsLoaded: false,
       newNewsItems: [],
       newsItemsThisMonth: [],
+      prismicNavItems: [],
     }
   },
   mounted() {
-    console.log('mounted');
     document.body.addEventListener('scroll', this.handleScroll);
-    this.fetchUnreadNewsItems();
   },
   beforeUnmount() {
     document.body.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
-      async fetchUnreadNewsItems() {
-        try{
-          const prismicUrl = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
-          const api = await Prismic.api(prismicUrl);
-          const response = await api.query(
-              Prismic.Predicates.at('document.type', 'club_nieuws'),
-              {orderings: '[my.club_nieuws.date desc]',
-                fetch: ['document.id', 'document.data.datum']}
-          );
-
-          this.newNewsItems = response.results;
-          // console.log('newNewsItems', this.newNewsItems);
-          // console.log('id: ', this.newNewsItems[0].id)
-          // console.log('datum: ', this.newNewsItems[0].data.datum)
-
-          this.newNewsItems.map((doc) => {
-            const messageDate = new Date(doc.data.datum);
-            const now = new Date();
-            const oneMonthAgo = new Date();
-            oneMonthAgo.setMonth(now.getMonth() - 1);
-            const isWithinOneMonth = messageDate >= oneMonthAgo;
-
-            if (isWithinOneMonth) {
-              this.newsItemsThisMonth.push(doc.id, doc.data.datum, doc.data.onderwerp);
-            }
-            return{
-              id: doc.id,
-              date: doc.data.datum,
-
-            }
-          })
-      }
-      catch (error) {
-        console.error('Error fetching unread news items', error);
-      }
-      finally {
-        this.isNewsLoaded = true;
-        // console.log('newsItemsThisMonth', this.newsItemsThisMonth);
-      }
-    },
-
     openNav() {
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false
@@ -160,24 +113,17 @@ export default {
     },
 
     handleScroll(event) {
-    console.log('handleScroll');
 
       if(!event) {
         return;
       }
 
-      console.log('return');
-
-
       const scrollTop = event.target.scrollTop;
 
       if (scrollTop > 0) {
         this.isScrolled = true;
-        console.log('scrolled');
       } else {
         this.isScrolled = false;
-        console.log('scrolled back');
-
       }
     },
   },

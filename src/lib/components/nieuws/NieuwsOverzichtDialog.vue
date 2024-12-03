@@ -1,27 +1,52 @@
 <template>
   <div>
     <!-- Activator met badge -->
-    <v-badge :content="nieuwsItems.length" color="red" overlap>
+    <v-badge
+        v-if="unreadBadgeCount > 0"
+        :content="unreadBadgeCount"
+        color="red"
+        overlap
+    >
       <v-icon
           icon="mdi-message-bulleted"
           size="large"
           :color="activatorColor"
           @click="isDialogOpen = true"
           class="pointer"
-      >
-      </v-icon>
+      />
     </v-badge>
+    <v-icon
+        v-else
+        icon="mdi-message-bulleted"
+        size="large"
+        :color="activatorColor"
+        @click="isDialogOpen = true"
+        class="pointer"
+    />
 
     <!-- Dialog met VDataTable -->
-    <v-dialog v-model="isDialogOpen" max-width="800px">
-      <v-card>
-        <v-card-title class="headline">Club Nieuws</v-card-title>
+    <v-dialog v-model="isDialogOpen" max-width="1000px">
+      <v-card class="elevation-2 pa-5 rounded-xl">
+        <v-card-title class="content-heading">
+          <h2>
+            Club Nieuws
+          </h2>
+        </v-card-title>
+
         <v-card-text>
           <v-data-table
+              height="50vh"
+              fixed-header
               :headers="nieuwsHeaders"
               :items="nieuwsItems"
               :loading="isLoading"
               @click:row="openNieuwsDialog"
+              items-per-page-text="Berichten per pagina"
+              :items-per-page-options="[
+                {value: 5, title: '5'},
+                {value: 10, title: '10'},
+                {value: -1, title: 'Alles'}
+              ]"
           >
             <!-- Loading template -->
             <template v-slot:loading>
@@ -51,6 +76,7 @@
             </template>
           </v-data-table>
         </v-card-text>
+
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text @click="isDialogOpen = false">Sluiten</v-btn>
@@ -82,6 +108,7 @@ export default {
   },
   data() {
     return {
+      newsItemsThisMonth: [],
       nieuwsHeaders: [
         { title: "Onderwerp", value: "onderwerp", width: "15vw" },
         { title: "Mededeling", value: "mededeling", width: "65vw" },
@@ -92,46 +119,92 @@ export default {
       hoveredRow: null,
       isDialogOpen: false,
       isNieuwsDialogOpen: false,
-      selectedItem: {},
+      selectedItem: [],
       isLoading: false,
     };
   },
   methods: {
     openNieuwsDialog(item) {
-      console.log("Geselecteerde rij:", item);
       this.selectedItem = item;
       this.isNieuwsDialogOpen = true;
+      this.markAsRead(item)
     },
-    async fetchPrismicData() {
+
+    async fetchNieuwsData() {
       try {
         this.isLoading = true;
         const apiEndpoint = "https://streeds-voorwaarts.cdn.prismic.io/api/v2";
         const api = await Prismic.api(apiEndpoint);
+
         const response = await api.query(
             Prismic.Predicates.at("document.type", "club_nieuws"),
             { orderings: "[document.last_publication_date desc]" }
         );
 
-        this.nieuwsItems = response.results.map((doc) => ({
-          id: doc.id,
-          onderwerp: doc.data.onderwerp || "Geen onderwerp",
-          mededeling: doc.data.mededeling[0]?.text || "Geen mededeling",
-          date: doc.data.datum || "Onbekende datum",
-        }));
+        const now = new Date();
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(now.getMonth() - 1);
+
+        const storedItems = JSON.parse(localStorage.getItem('readNewsItems')) || [];
+
+        this.nieuwsItems = response.results.map((doc) => {
+          const messageDate = new Date(doc.data.datum);
+          const isWithinOneMonth = messageDate >= oneMonthAgo;
+          const isRead = storedItems.includes(doc.id);
+
+          const highlight = isWithinOneMonth && !isRead;
+
+          if (highlight) {
+            this.newsItemsThisMonth.push(doc.id); // Keep track of highlighted items if needed
+          }
+
+          return {
+            id: doc.id,
+            onderwerp: doc.data.onderwerp || "Geen onderwerp",
+            mededeling: doc.data.mededeling[0]?.text || "Geen mededeling",
+            body: doc.data.mededeling,
+            date: doc.data.datum || "Onbekende datum",
+            highlight: highlight
+          };
+        });
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching nieuws data:', error);
       } finally {
         this.isLoading = false;
       }
     },
     getRowClass(item) {
-      return item.unread ? "highlight" : "";
+      return item.highlight ? "highlight" : "";
     },
+    markAsRead(item) {
+      const readItems = JSON.parse(localStorage.getItem('readNewsItems')) || [];
+
+      if (!readItems.includes(item.id)) {
+        // Add the ID of the item to the list of read items
+        readItems.push(item.id);
+
+        // Update localStorage
+        localStorage.setItem('readNewsItems', JSON.stringify(readItems));
+
+        // Update the status of the item locally
+        item.highlight = false;
+
+        this.newsItemsThisMonth = this.newsItemsThisMonth.filter(id => id !== item.id);
+
+        // Force a re-render by reassigning the items
+        this.nieuwsItems = [...this.nieuwsItems];
+      }
+  },
   },
   created() {
-    this.fetchPrismicData();
-  },
-};
+      this.fetchNieuwsData();
+    },
+  computed:{
+    unreadBadgeCount() {
+      return this.newsItemsThisMonth.length;
+    },
+}
+  }
 </script>
 
 <style scoped>
@@ -144,7 +217,7 @@ export default {
 }
 
 .hover-class {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--light-green-color);
   transition: background-color 0.2s ease;
 }
 

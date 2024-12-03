@@ -109,7 +109,6 @@ export default {
             return isWithinOneMonth && isUnread;
           });
 
-          console.log('Filtered News Items This Month:', this.newsItemsThisMonth);
         } catch (error) {
           console.error('Error fetching unread news items', error);
         } finally {

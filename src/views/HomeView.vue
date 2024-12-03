@@ -93,20 +93,6 @@ export default {
         console.error('Error fetching data from Prismic:', error);
       }
     },
-    // async fetchContactInformatie() {
-    //   try {
-    //     const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
-    //     const api = await Prismic.api(apiEndpoint);
-    //     const response = await api.query(Prismic.Predicates.at('document.type', 'contactinformatie'));
-    //
-    //     this.contactInformatieData = response.results;
-    //     // console.log('fetchContactInformatie', this.contactInformatieData)
-    //
-    //     this.isDocumentLoading = false;
-    //   } catch (error) {
-    //     console.error('Error fetching data from Prismic:', error);
-    //   }
-    // },
     async fetchOverOns() {
       try {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
@@ -114,7 +100,6 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'over_ons'));
 
         this.overOnsData = response.results;
-        // console.log('fetchOverOns', this.overOnsData)
 
         this.isDocumentLoading = false;
       } catch (error) {

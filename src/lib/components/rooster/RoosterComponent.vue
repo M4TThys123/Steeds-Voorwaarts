@@ -44,7 +44,6 @@ export default {
   methods: {
     async fetchRoosters() {
       try {
-        console.log('functie voert uit');
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
         const response = await api.query(

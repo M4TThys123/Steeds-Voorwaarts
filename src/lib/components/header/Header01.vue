@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     openNav(){
-      console.log('click op de button')
       this.isNavOpen = !this.isNavOpen
       this.isScrolled = false
       document.body.classList.add('no-scroll'); // Add no-scroll class

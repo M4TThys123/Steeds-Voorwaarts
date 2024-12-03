@@ -150,7 +150,6 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'contactinformatie'));
 
         this.contactInformatieData = response.results[0].data;
-        console.log('fetchContactInformatie', this.contactInformatieData)
 
         // Adres
         this.address.street = this.contactInformatieData.adres[0].straat
@@ -173,7 +172,6 @@ export default {
     },
 
     openInGoogleMaps(address) {
-      console.log('address', address);
       const query = `${address.street}, ${address.postalcode}, ${address.city}`;
       const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
       window.open(url, '_blank');
@@ -188,7 +186,6 @@ export default {
     copyIban() {
       const iban = this.iban;
       navigator.clipboard.writeText(iban).then(() => {
-        console.log('IBAN gekopieerd:', iban);
       });
     },
     callPhone(phoneNumber) {

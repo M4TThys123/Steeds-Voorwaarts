@@ -33,8 +33,6 @@ export default {
         const response = await api.query(Prismic.Predicates.at('document.type', 'sporten'));
 
         this.sporten = response.results;
-        console.log(this.sporten)
-        console.log(this.sporten.data.titel)
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {

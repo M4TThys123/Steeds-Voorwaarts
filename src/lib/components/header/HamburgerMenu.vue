@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     toggleNav() {
-      console.log('toggle nav')
       this.$emit('click');
     }
   }

@@ -1,12 +1,13 @@
 <template>
   <v-dialog :model-value="isOpen" @update:model-value="updateIsOpen" max-width="600px" >
     <v-card>
-      <v-card-title class="headline">{{ data.onderwerp }}</v-card-title>
+      <v-card-title>
+        <h2 class="xsmall-heading">
+          {{ data.onderwerp }}
+        </h2>
+      </v-card-title>
       <v-card-text>
         <PrismicRichText :field="data.body" />
-
-        {{data}}
-
         <p><strong>Date:</strong> {{ data.date }}</p>
       </v-card-text>
       <v-card-actions>
@@ -35,7 +36,6 @@ export default {
     }
   },
   mounted() {
-    // console.log(this.data);
   },
   methods: {
     closeDialog() {

@@ -40,10 +40,6 @@
         :data="selectedItem"
         @update:isOpen="isDialogOpen = $event"
     />
-    <h3>Headers</h3>
-    <pre>{{ nieuwsHeaders }}</pre>
-    <h3>Items</h3>
-    <pre>{{ nieuwsItems }}</pre>
 
   </section>
 </template>
@@ -67,7 +63,7 @@ export default {
       hoveredRow: null,
       nieuwsItems: [],
       isDialogOpen: false,
-      selectedItem: { title: '', message: '', date: '' },
+      selectedItem: {},
       prismicData: null,
       isLoading: false,
       newNewsItems: [],
@@ -76,7 +72,6 @@ export default {
   },
   methods: {
     openDialog(item) {
-      console.log('item.id', item.id);
       this.selectedItem = item;
       this.isDialogOpen = true;
       this.markAsRead(item)

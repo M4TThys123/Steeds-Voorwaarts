@@ -62,7 +62,6 @@ export default {
         this.contactOpnemenData = response.results[0].data;
 
         this.afbeelding = this.contactOpnemenData.afbeelding.url;
-        console.log(this.afbeelding);
         this.alt = this.contactOpnemenData.afbeelding.alt;
 
       } catch (error) {
