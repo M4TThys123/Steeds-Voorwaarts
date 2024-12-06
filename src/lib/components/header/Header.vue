@@ -18,6 +18,8 @@
             <NieuwsOverzichtDialog :activatorColor="isScrolled ? 'black' : 'white'"/>
           </div>
 
+          <DropdownMenu/>
+
           <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index"  :class="{'nav-item__current' : $route.path === route.path}">
             <router-link
                 class="nav-link"
@@ -59,11 +61,12 @@ import router from "@/router/router";
 import ButtonComponent from "@/lib/components/elements/ButtonComponent.vue";
 import { useDisplay } from 'vuetify';
 import NieuwsOverzichtDialog from "@/lib/components/nieuws/NieuwsOverzichtDialog.vue";
+import DropdownMenu from "@/lib/components/header/VDropDown.vue";
 
 
 export default {
   name: "HeaderComponent",
-  components: {NieuwsOverzichtDialog, ButtonComponent, HamburgerMenu, LogoComponent},
+  components: {DropdownMenu, NieuwsOverzichtDialog, ButtonComponent, HamburgerMenu, LogoComponent},
   setup() {
     const { mdAndDown } = useDisplay();
     return {
@@ -129,7 +132,9 @@ export default {
   },
   computed: {
     filteredRoutes() {
-      return router.options.routes.filter(route => !route.meta.hide);
+      const filteredRoutes = router.options.routes.filter(route => !route.meta.hide);
+      console.log('filteredRoutes', filteredRoutes)
+      return filteredRoutes
     }
   }
 };

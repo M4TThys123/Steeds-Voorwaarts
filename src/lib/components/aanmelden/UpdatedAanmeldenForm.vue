@@ -1,7 +1,7 @@
  <template>
     <v-container class="py-5">
-      <v-card class="mx-auto" elevation="2" max-width="600" rounded="lg">
-        <v-card-title class="text-h5"><h2 class="mb-4">Aanmelden TEST</h2></v-card-title>
+      <v-card class="mx-auto" elevation="2" max-width="600" rounded="xl">
+        <v-card-title class="text-h5"><h2 class="mb-4">Aanmelden</h2></v-card-title>
 
 
         <v-card-text>
@@ -83,12 +83,13 @@
         <!-- Verzenden -->
         <v-card-actions>
           <v-btn
-              class="custom-btn"
+              class="custom-btn mono px-4"
               rounded
               @click="submitForm"
+              style="color: white !important; background-color: #398070; text-transform: none;"
           >
-            <v-icon left>mdi-send</v-icon>
-            Verzenden
+            <v-icon left size="small" class="mr-2">mdi-send</v-icon>
+              <span class="text-white">Verzenden</span>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -173,5 +174,8 @@
    }
   .custom-btn .v-icon {
     color: #FFFFFF !important;
+  }
+  .custom-btn .v-btn__content{
+    color: white!important;
   }
   </style>

@@ -28,6 +28,12 @@ const routes = [
         path: '/lesaanbod/:les',
         name: 'Lesaanbod - :les',
         component: SportView,
+        dropdown: [
+            {
+                name: "",
+                route: "",
+            }
+        ],
         meta: {
             hide: true,
         },
