@@ -17,6 +17,31 @@ export default {
     Header,
     Footer
   },
+  data() {
+    return {
+      isScrolled: false,
+      isBlur: false,
+    }
+  },
+  methods() {
+    return {
+    handleScroll() {
+      console.log('functie werkt.')
+      if (window.pageYOffset > 65) {
+        this.isScrolled = true;
+        this.isBlur = true
+        console.log('isCrolled')
+      } else {
+        this.isScrolled = false;
+        this.isBlur = false
+        console.log('isNotCrolled')
+      }
+      }
+    }
+  },
+  mounted() {
+    document.body.addEventListener('scroll', this.handleScroll);
+  }
 }
 </script>
 
@@ -55,6 +80,14 @@ export default {
 
   --header-height: 45px;
 }
+html{
+  overflow-x: auto!important;
+}
+
+
+*, html {
+  scroll-behavior: auto !important;
+}
 
 * {
   padding: 0;
@@ -65,13 +98,13 @@ export default {
 }
 
 html ::-webkit-scrollbar {
-  display: none;
+  /*display: none;*/
 }
 
 html {
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /*scroll-behavior: smooth;*/
+  /*-ms-overflow-style: none;*/
+  /*scrollbar-width: none;*/
 }
 
 body{

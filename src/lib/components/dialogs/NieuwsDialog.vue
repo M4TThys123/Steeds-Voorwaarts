@@ -1,7 +1,7 @@
 <template>
   <v-dialog :model-value="isOpen" @update:model-value="updateIsOpen" max-width="600px" >
     <v-card>
-      <v-card-title>
+      <v-card-title class="pt-4">
         <h2 class="xsmall-heading">
           {{ data.onderwerp }}
         </h2>

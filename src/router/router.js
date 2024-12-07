@@ -22,18 +22,36 @@ const routes = [
         component: LesAanbodView,
         meta: {
             hide: false,
+            dropdown: [
+                {
+                    name: 'Fysiogym',
+                    route: 'fysiogym',
+                },
+                {
+                    name: 'Bootcamp',
+                    route: 'bootcamp',
+                },
+                {
+                    name: 'Hiphop',
+                    route: 'hiphop',
+                },
+                {
+                    name: 'Freerunning',
+                    route: 'freerunning',
+                },
+                {
+                    name: 'Seniorengym',
+                    route: 'seniorengym',
+                },
+            ],
         },
     },
+
     {
         path: '/lesaanbod/:les',
         name: 'Lesaanbod - :les',
         component: SportView,
-        dropdown: [
-            {
-                name: "",
-                route: "",
-            }
-        ],
+
         meta: {
             hide: true,
         },

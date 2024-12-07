@@ -27,7 +27,7 @@
     <!-- Dialog met VDataTable -->
     <v-dialog v-model="isDialogOpen" max-width="1000px">
       <v-card class="elevation-2 pa-5 rounded-xl">
-        <v-card-title class="content-heading">
+        <v-card-title class="content-heading pt-4">
           <h2>
             Club Nieuws
           </h2>

@@ -18,10 +18,10 @@
             <NieuwsOverzichtDialog :activatorColor="isScrolled ? 'black' : 'white'"/>
           </div>
 
-          <DropdownMenu/>
 
           <li class="nav-item" v-for="(route, index) in filteredRoutes" :key="index"  :class="{'nav-item__current' : $route.path === route.path}">
             <router-link
+                v-if="!route.meta.dropdown"
                 class="nav-link"
                 :to="route.path"
                 @click="closeNav"
@@ -35,6 +35,7 @@
                 {{ route.name }}
               </span>
             </router-link>
+            <DropdownMenu :is-scrolled="isScrolled" :route="route" :index="index" v-else/>
           </li>
           <li class="mt-3 mt-lg-0">
             <ButtonComponent textColor="#fff"></ButtonComponent>
@@ -81,13 +82,20 @@ export default {
       newNewsItems: [],
       newsItemsThisMonth: [],
       prismicNavItems: [],
+      menuStories: [
+        { title: "Fysiogym", route: "/lesaanbod/fysiogym" },
+        { title: "Bootcamp", route: "/lesaanbod/bootcamp" },
+        { title: "Hiphop", route: "/lesaanbod/hiphop" },
+        { title: "Freerunning", route: "/lesaanbod/freerunning" },
+        { title: "Seniorengym", route: "/lesaanbod/seniorengym" },
+      ],
     }
   },
   mounted() {
-    document.body.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
-    document.body.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
     openNav() {
@@ -110,18 +118,16 @@ export default {
       } else {
         document.body.classList.remove('no-scroll');
       }
+
+
     },
     router() {
       return router
     },
 
-    handleScroll(event) {
-
-      if(!event) {
-        return;
-      }
-
-      const scrollTop = event.target.scrollTop;
+    handleScroll() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      // console.log('ScrollTop:', scrollTop);
 
       if (scrollTop > 0) {
         this.isScrolled = true;
@@ -141,7 +147,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 
 header {
   position: fixed;
