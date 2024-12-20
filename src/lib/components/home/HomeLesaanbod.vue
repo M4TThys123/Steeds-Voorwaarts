@@ -67,10 +67,10 @@
           </a>
         </swiper-slide>
         <swiper-slide class="swiper-slide__last">
-          <h3 class="heading-bold">Ontdek all onze sporten</h3>
-          <GenaricButon link="/lesaanbod"
-                        icon="bx bx-right-arrow-alt"
-                        text="Lees meer"></GenaricButon>
+          <h3 class="heading-bold">Doe een gratis proefles!</h3>
+          <GenaricButon link="/aanmelden"
+                        icon="bx bxs-user-plus"
+                        text="Aanmelden"></GenaricButon>
         </swiper-slide>
       </swiper>
     </div>

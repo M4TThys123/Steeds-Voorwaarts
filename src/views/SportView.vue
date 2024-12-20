@@ -1,11 +1,10 @@
 <template>
-  <ViewHero title="Sportet x" paragraph="infomratie over deze sport"></ViewHero>
+  <ViewHero :title="category" paragraph="infomratie over deze sport"></ViewHero>
 
 <!--  <BreadCrubmsComponent></BreadCrubmsComponent>-->
   <!--   <pre v-html="JSON.stringify(response, null, 2)"></pre>-->
 
-
-  <SportDetailSection></SportDetailSection>
+  <SportDetailSection :sportdata="sportData" :is-loading="isloading"></SportDetailSection>
 
   <RoosterComponent></RoosterComponent>
 </template>
@@ -15,6 +14,7 @@ import ViewHero from "@/lib/components/hero/ViewHero.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 // import BreadCrubmsComponent from "@/lib/components/breadcrums/BreadCrubmsComponent.vue";
 import SportDetailSection from "@/lib/components/sporten/detail/SportDetailSection.vue";
+import Prismic from "prismic-javascript";
 
 export default {
   name: "SportenView",
@@ -23,24 +23,39 @@ export default {
     ViewHero, RoosterComponent},
   data() {
     return {
-      response: null
+      response: null,
+      sportData: [],
+      isLoading: true,
     };
   },
   methods: {
-    // async getContent() {
-    //   // Query the API and assign the response to "response"
-    //   const response = await this.$prismic.client.query('seniorengym')
-    //   $prismic.client.getByUID('blog-post', 'hello-world')
-    //   this.response = response
-    // }
+    async fetchSporten() {
+      try {
+        const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
+        const api = await Prismic.api(apiEndpoint);
+        const response = await api.query(
+            [
+              Prismic.Predicates.at('document.type', 'sporten'),
+              Prismic.Predicates.at('my.sporten.uid', this.category)
+            ]
+        );
+        this.sportData = response.results[0];
+        console.log(this.category, this.sportData)
+      } catch (error) {
+        console.error('Error fetching data from Prismic:', error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
   },
-  created() {
-    // const uid = this.$route.params.uid || this.$route.path.split('/').pop();
-
-    // Call the API query method
-    // this.getContent(uid)
-  }
-  
+  computed: {
+    category() {
+      return this.$route.params.les; // haalt 'fysiogym' op
+    }
+  },
+  mounted() {
+    this.fetchSporten()
+  },
 }
 </script>
 
