@@ -2,23 +2,26 @@
   <ViewHero :pageLoaded="pageLoaded" title="Lesaanbod" paragraph="Hier vind je het lesaanbod van onze vereniging
 "></ViewHero>
 
-  <SportenSection>
-<!--    /*data*/-->
+<!---->
 
-  </SportenSection>
+
+  <HomeLesaanbod />
+
+
+
 
   <RoosterComponent></RoosterComponent>
 </template>
 
 <script>
 import ViewHero from "@/lib/components/hero/ViewHero.vue";
-import SportenSection from "@/lib/components/sporten/SportenSection.vue";
 import RoosterComponent from "@/lib/components/rooster/RoosterComponent.vue";
 import Prismic from "prismic-javascript";
+import HomeLesaanbod from "@/lib/components/home/HomeLesaanbod.vue";
 
 export default {
   name: "LesAanbodView",
-  components: {RoosterComponent, SportenSection, ViewHero},
+  components: {HomeLesaanbod, RoosterComponent, ViewHero},
   data() {
     return {
       pageLoaded: false,

@@ -84,6 +84,10 @@ html{
   overflow-x: auto!important;
 }
 
+html, body {
+  overscroll-behavior: none; /* voorkomt het bounce-effect */
+}
+
 
 *, html {
   scroll-behavior: auto !important;
