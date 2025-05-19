@@ -2,11 +2,11 @@
   <section class="content-section container py-5">
     <div class="row justify-content-between">
 
-      <div class="col-md-4 d-flex flex-column">
+      <div class="col-12 col-md-6 col-lg-5 d-flex flex-column">
         <ContactInformation/>
       </div>
 
-      <div class="col-md-7 d-flex flex-column justify-content-center mb-5">
+      <div class="col-12 col-md-6 col-lg-7 d-flex flex-column justify-content-center mb-5">
         <slot name="left">
           <h2 class="content-heading mb-4">{{ title }}</h2>
           <p class="content-subheading mb-4">{{ overOnsData.beschrijving_subtitle }}</p>

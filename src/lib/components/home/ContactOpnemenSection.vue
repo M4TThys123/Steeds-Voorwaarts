@@ -2,7 +2,7 @@
   <section>
     <div class="container">
       <div class="row align-center">
-        <div class="col-md-8 col pr-md-15">
+        <div class="col-12  col-md-6 col-lg-8 col">
           <div class="swiper-image__wrapper">
             <router-link to="/aanmelden" style=" display: block;width: 100%; height: 100%;">
               <GenericButon link="/aanmelden"
@@ -28,7 +28,7 @@
             </router-link>
           </div>
         </div>
-        <div class="col-md-4 col">
+        <div class="col-12 col-md-6 col-lg-4">
           <UpdatedContactForm/>
         </div>
       </div>
