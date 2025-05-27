@@ -1,9 +1,9 @@
 <template>
-  <footer class="py-5 text-grey">
+  <footer class="text-grey">
     <section class="footer-content">
       <section class="footer-top">
         <section class="">
-          <h3 class="mb-3 text-white footer-title">Gratis proefles</h3>
+          <h3 class="mb-4 text-white footer-title">Gratis proefles</h3>
           <ButtonComponent background="rgb(57, 128, 112)"></ButtonComponent>
         </section>
 
@@ -91,9 +91,9 @@
           </section>
         </section>
 
-        <section class="col-12 col-md-8 order-md-2 mb-3 mb-md-0">
+        <section class="col-12 col-md-8 order-md-2 mb-3 mb-md-0 mt-3 mt-md-0">
           <section>
-          <p class=" footer-link text-end">&copy; Steeds Voorwaarts {{ new Date().getFullYear() }} - <a href="https://www.matthijsblauw.nl/" style="color: white !important; font-weight: ;">Matthijs Blauw</a></p>
+          <p class="footer-link">&copy; {{ new Date().getFullYear() }} Steeds Voorwaarts  - <a href="https://www.matthijsblauw.nl/" style="color: white !important; font-weight: ;">Matthijs Blauw</a></p>
         </section>
         </section>
       </section>
@@ -161,21 +161,29 @@ footer {
 }
 
 .footer-content{
-  padding: 8.3333333333vw 12.5vw 4.1666666667vw 8.3333333333vw;
+  padding: 4rem 1rem 1rem;
 }
 
 .footer-title{
-  font-size: 41px;
+  font-size: 36px;
+     width: 40vw;
+    flex-grow: 1;
 }
 
 .footer-link-list {
   flex-direction: column;
 }
+.footer-link-list li {
+  margin-bottom: 0.35rem;
+}
 
 .footer-link, .footer-link > *{
   text-decoration: none;
-  font-size: 16px;
+  /* font-size: 16px; */
   color: #9C9C9D !important;
+  font-size: .875rem;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
 .ml {
@@ -207,10 +215,20 @@ footer {
   gap: 2em;
   margin-top: 2.5em;
   flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  height: auto  !important;
+  align-items: flex-start !important;
+  font-size: 11px !important;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px;
 }
-
+.footer-nav a,.footer-nav a span  {
+    font-size: 12px;
+}
 .footer-link-list {
   flex-direction: column;
+      width: 40vw;
+    flex-grow: 1;
   /*flex: 1 1 100%; !* Each list takes up full width on smaller devices *!*/
 
 }
@@ -231,7 +249,7 @@ hr {
 
 .footer-link-prm {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 14px !important;
   text-decoration: none;
   margin-bottom: 12px;
 }
@@ -281,5 +299,23 @@ hr {
     text-align: right;
     margin: 0;
   }
+  .footer-title{
+    font-size: 41px;
+  }
+  .footer-content{
+
+  padding: 8.3333333333vw 12.5vw 4.1666666667vw 8.3333333333vw;
+}
+
+.footer-nav a,.footer-nav a span  {
+    font-size: 16px !important;
+}
+
+.footer-link-prm {
+  font-size: 20px !important;
+}
+.footer-link {
+  text-align: end;
+}
 }
 </style>
