@@ -4,9 +4,9 @@
       <router-link to="/" class="logo__link d-flex" @click="closeNav">
         <div class="logo-wrapper">
 
-          <LogoComponent :is-scrolled="isScrolled"></LogoComponent>
-          <span class="logo-text mobile-logo" :class="{'text-color__scroll' : isScrolled}">SVW</span>
-          <span class="logo-text desktop-logo" :class="{'text-color__scroll' : isScrolled}">Steeds Voorwaarts</span>
+          <LogoComponent :is-scrolled="isScrolled || isNavOpen"></LogoComponent>
+          <span class="logo-text mobile-logo" :class="{'text-color__scroll' : isScrolled || isNavOpen}">SVW</span>
+          <span class="logo-text desktop-logo" :class="{'text-color__scroll' : isScrolled || isNavOpen}">Steeds Voorwaarts</span>
         </div>
       </router-link>
 
@@ -26,7 +26,7 @@
                 :to="route.path"
                 @click="closeNav"
                 :class="{
-                'text-color__scroll': isScrolled,
+                'text-color__scroll': isScrolled || isNavOpen,
                 'text-color__nav-open': isNavOpen,
                 'nav-link__active': $route.path === route.path
             }"
@@ -35,7 +35,7 @@
                 {{ route.name }}
               </span>
             </router-link>
-            <DropdownMenu :is-scrolled="isScrolled" :route="route" :index="index" v-else/>
+            <DropdownMenu :is-scrolled="isScrolled || isNavOpen" :route="route" :index="index" v-else/>
           </li>
           <li class="mt-3 mt-lg-0">
             <ButtonComponent textColor="#fff"></ButtonComponent>
@@ -44,10 +44,10 @@
       </div>
 
       <div class="d-flex gap-3" v-if="$vuetify.display.mdAndDown">
-        <NieuwsOverzichtDialog class="mt-2" :activatorColor="isScrolled ? 'black' : 'white'"/>
+        <NieuwsOverzichtDialog class="mt-2" :activatorColor="isScrolled || isNavOpen ? 'black' : 'white'"/>
 
 
-        <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled"
+        <hamburger-menu @click="toggleNav" :is-nav-open="isNavOpen" :is-scrolled="isScrolled || isNavOpen"
                         class="menu__trigger"></hamburger-menu>
       </div>
     </nav>

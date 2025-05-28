@@ -17,7 +17,6 @@
     </v-badge>
     <v-icon
         v-else
-        style="transition: none !important;"
         icon="mdi-message-bulleted"
         size="large"
         :color="activatorColor"
@@ -224,5 +223,12 @@ export default {
 
 tr:hover {
   cursor: pointer;
+}
+
+/* SM (for tablets - screens ≥ than 768px wide) */
+@media (width <= 768px) { 
+  .pointer {
+  transition: none !important;
+}
 }
 </style>
