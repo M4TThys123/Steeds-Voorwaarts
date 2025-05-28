@@ -295,7 +295,7 @@ nav {
 
 
 .text-color__nav-open {
-  color: #FFFFFF;
+  color: var(--text) !important;
 }
 
 .nav__list--open {

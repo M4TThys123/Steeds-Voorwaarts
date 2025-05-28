@@ -134,7 +134,7 @@ export default {
 
 .nav-list__children {
   position: absolute;
-  top: 3em;
+  top: 1.5rem!;
   left: -1em;
   flex-direction: column;
   align-items: flex-start;
@@ -221,6 +221,10 @@ export default {
     box-shadow: none;
     background: transparent;
     padding: 0;
+  }
+
+  .nav-item__child{
+    font-size: 1.5rem !important;
   }
 }
 </style>

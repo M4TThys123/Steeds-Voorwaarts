@@ -17,6 +17,7 @@
     </v-badge>
     <v-icon
         v-else
+        style="transition: none !important;"
         icon="mdi-message-bulleted"
         size="large"
         :color="activatorColor"

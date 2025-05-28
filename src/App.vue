@@ -99,6 +99,7 @@ html, body {
   box-sizing: border-box;
   font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
   color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
 }
 
 html ::-webkit-scrollbar {

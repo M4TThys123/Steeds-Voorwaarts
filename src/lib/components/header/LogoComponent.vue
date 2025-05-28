@@ -39,7 +39,7 @@ export default {
   props: {
     fill: {
       type: String,
-      default: '#14151a',
+      default: '#14151B',
     },
     isScrolled:{
       type: Boolean,
@@ -63,7 +63,7 @@ export default {
   fill: #fff;
 }
 .dark .cls-2 {
-  fill: var(--text);
+  fill: #14151B;
 }
 
 svg {
