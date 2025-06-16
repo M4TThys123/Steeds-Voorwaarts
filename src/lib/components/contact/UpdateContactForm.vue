@@ -1,6 +1,5 @@
 <template>
-  <v-container class="py-5">
-    <v-card class="mx-auto" elevation="2" max-width="600" rounded="xl">
+    <v-card class="mx-auto mt-5 mt-sm-0 " elevation="2" max-width="600" rounded="xl">
       <v-card-title class="text-h5"><h2 class="mb-4">Contact</h2></v-card-title>
 
       <v-card-text>
@@ -73,7 +72,6 @@
       Formulier succesvol ingediend!
       <v-btn color="white" text @click="showSnackbar = false">Sluiten</v-btn>
     </v-snackbar>
-  </v-container>
 </template>
 
 <script>
