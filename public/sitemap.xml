@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Hoofdpagina -->
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+
+  <!-- Lesaanbod overzicht -->
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+
+  <!-- Dynamische lesaanbodpagina's -->
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod/fysiogym</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod/bootcamp</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod/hiphop</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod/freerunning</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/lesaanbod/seniorengym</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+
+  <!-- Overige pagina's -->
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/contact</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>https://steedsvoorwaarts.vercel.app/aanmelden</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+</urlset>
