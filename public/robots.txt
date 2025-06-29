@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://steedsvoorwaarts.vercel.app/sitemap.xml
