@@ -17,7 +17,8 @@
                                    :is-loading="isAanmeldenTarievenDataLoading"
                                    class="pb-10"/>
 
-        <UpdatedAanmeldenForm/>
+        <!-- <UpdatedAanmeldenForm/> -->
+        <TijdelijkAanmeldenForm />
       </div>
 
     </div>
@@ -32,14 +33,17 @@ import FacebookLink from "@/lib/components/elements/FacebookLink.vue";
 
 import Prismic from "prismic-javascript";
 import UpdatedAanmeldenTarieven from "@/lib/components/aanmelden/UpdateAanmeldenTarieven.vue";
-import UpdatedAanmeldenForm from "@/lib/components/aanmelden/UpdatedAanmeldenForm.vue";
+// import UpdatedAanmeldenForm from "@/lib/components/aanmelden/UpdatedAanmeldenForm.vue";
+import TijdelijkAanmeldenForm from "@/lib/components/aanmelden/TijdelijkAanmeldenForm.vue";
 
 
 export default {
   name: "AanmeldenView",
   components: {
-    UpdatedAanmeldenForm,
-    UpdatedAanmeldenTarieven, FacebookLink, AanmeldenVoorwaarden, ViewHero },
+    // UpdatedAanmeldenForm,
+    UpdatedAanmeldenTarieven, FacebookLink, 
+    AanmeldenVoorwaarden, 
+    ViewHero, TijdelijkAanmeldenForm },
   data() {
     return {
       aanmeldenVoorwaardenData: [],

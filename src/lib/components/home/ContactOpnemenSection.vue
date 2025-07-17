@@ -29,7 +29,8 @@
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-          <UpdatedContactForm/>
+          <!-- <UpdatedContactForm/> -->
+          <TijdelijkContactForm/>
         </div>
       </div>
     </div>
@@ -39,11 +40,15 @@
 <script>
 import Prismic from "prismic-javascript";
 import GenericButon from "@/lib/components/elements/GenaricButon.vue";
-import UpdatedContactForm from "@/lib/components/contact/UpdateContactForm.vue";
+// import UpdatedContactForm from "@/lib/components/contact/UpdateContactForm.vue";
+import TijdelijkContactForm from "@/lib/components/contact/TijdelijkContactForm.vue";
 
 export default {
   name: "ContactOpnemenSection",
-  components: {UpdatedContactForm, GenericButon},
+  components: {
+    // UpdatedContactForm, 
+    TijdelijkContactForm, GenericButon
+  },
   data() {
     return {
       isLoading: true,
