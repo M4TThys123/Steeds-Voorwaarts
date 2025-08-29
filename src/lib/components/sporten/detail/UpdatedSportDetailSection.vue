@@ -104,4 +104,14 @@ export default {
 h4 {
   font-size: 50px;
 }
+
+.data-container ul {
+ display: flex;
+ flex-direction: column;
+}
+.data-container li{
+  padding-left: 20px;
+  margin-bottom: 8px;
+  list-style-type: disc;
+}
 </style>

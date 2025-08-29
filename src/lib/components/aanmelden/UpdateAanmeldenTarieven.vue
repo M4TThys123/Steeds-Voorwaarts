@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h2 class="mb-3">Tarieven {{ new Date().getFullYear() }}</h2>
+    <h2 class="mb-3">Tarieven {{ schoolYearLabel }}</h2>
 
     <v-data-table
-        :headers="tariefHeaders"
-        :items="tariefContent"
-        class="elevation-0 class"
-        dense
-        hide-default-footer
-        style="background: none !important;"
+      :headers="tariefHeaders"
+      :items="tariefContent"
+      class="elevation-0 class"
+      dense
+      hide-default-footer
+      style="background: none !important;"
     >
       <template v-slot:top></template>
     </v-data-table>
@@ -27,8 +27,29 @@ export default {
       type: Boolean,
       required: true,
     },
+    // Optioneel: instelbare start van zomervakantie (cutoff)
+    schoolYearCutoffMonth: { // 1–12
+      type: Number,
+      default: 7, // 1 juli = maand 7
+    },
+    schoolYearCutoffDay: { // 1–31
+      type: Number,
+      default: 1, // dag 1
+    },
   },
   computed: {
+    schoolYearLabel() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const cutoffThisYear = new Date(
+        year,
+        (this.schoolYearCutoffMonth || 7) - 1,
+        this.schoolYearCutoffDay || 1,
+        0, 0, 0, 0
+      );
+      const startYear = now >= cutoffThisYear ? year : year - 1;
+      return `${startYear}-${startYear + 1}`;
+    },
     tariefHeaders() {
       return [
         { title: this.aanmeldenTarievenData?.tarief_headers?.[0]?.kolom1 || "Activiteit", value: "activiteit" },
@@ -52,7 +73,6 @@ export default {
   font-weight: bold;
 }
 .class, class *, class > * {
-  /*background: none !important;*/
   background-color: transparent !important;
 }
 </style>
