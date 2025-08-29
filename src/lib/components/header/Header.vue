@@ -82,13 +82,6 @@ export default {
       newNewsItems: [],
       newsItemsThisMonth: [],
       prismicNavItems: [],
-      menuStories: [
-        { title: "Fysiogym", route: "/lesaanbod/fysiogym" },
-        { title: "Bootcamp", route: "/lesaanbod/bootcamp" },
-        { title: "Hiphop", route: "/lesaanbod/hiphop" },
-        { title: "Freerunning", route: "/lesaanbod/freerunning" },
-        { title: "Seniorengym", route: "/lesaanbod/seniorengym" },
-      ],
     }
   },
   mounted() {

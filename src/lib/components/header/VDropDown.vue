@@ -134,8 +134,8 @@ export default {
 
 .nav-list__children {
   position: absolute;
-  top: 1.5rem!;
-  left: -1em;
+  top: 150%;      /* Place directly below the parent */
+  left: -1em;        /* Align left with parent */
   flex-direction: column;
   align-items: flex-start;
   padding: 1rem;
@@ -148,6 +148,7 @@ export default {
   z-index: 9999;
   box-shadow: 0px 32px 60px 32px rgba(20, 21, 26, 0.1);
 }
+
 
 /* Hover gedrag op basis van CSS */
 .nav-item.has-children:hover .nav-list__children {

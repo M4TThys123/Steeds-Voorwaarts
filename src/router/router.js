@@ -37,11 +37,13 @@ const routes = [
         }
       ],
       dropdown: [
-        { name: 'Fysiogym', route: 'fysiogym' },
-        { name: 'Bootcamp', route: 'bootcamp' },
+        { name: 'Kleuterdans', route: 'kleuterdans' },
         { name: 'Hiphop', route: 'hiphop' },
+        { name: 'Seniorengym', route: 'seniorengym' },
         { name: 'Freerunning', route: 'freerunning' },
-        { name: 'Seniorengym', route: 'seniorengym' }
+        { name: 'Demodans', route: 'demodans' },
+        { name: 'Bootcamp', route: 'bootcamp' },
+        { name: 'Fysiogym', route: 'fysiogym' }
       ]
     }
   },

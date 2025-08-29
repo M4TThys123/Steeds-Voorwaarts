@@ -117,25 +117,29 @@ export default {
           url: 'kleuterdans'
         },
         {
-          name: 'Seniorengym',
-          url: 'seniorengym'
-        },
-        {
           name: 'Hiphop',
           url: 'hiphop'
         },
         {
-          name: 'Fysiogym',
-          url: 'fysiogym'
+          name: 'Seniorengym',
+          url: 'seniorengym'
         },
         {
           name: 'Freerunning',
           url: 'freerunning'
         },
         {
+          name: 'Demodans',
+          url: 'demodans'
+        },
+        {
           name: 'Bootcamp',
           url: 'bootcamp'
-        }
+        },
+        {
+          name: 'Fysiogym',
+          url: 'fysiogym'
+        },
       ]
     }
   }
