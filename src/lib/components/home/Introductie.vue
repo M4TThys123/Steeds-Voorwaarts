@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-6 d-flex flex-column justify-content-center mb-5">
 
-        <!-- <h2 class="home-par__heading mb-4">
+        <h2 class="home-par__heading mb-4">
           {{ introductieData.titel }}
-        </h2> -->
+        </h2>
 
 
         <p class="home-par__sub_heading mb-4">
