@@ -14,7 +14,7 @@
       <v-btn
         class="custom-btn mono px-4"
         rounded
-        :href="'mailto:svwabbekerk@quicknet.nl'"
+        :href="'mailto:svwabbekerk1913@gmail.com'"
         style="color: white !important; background-color: #398070; text-transform: none;"
       >
         <v-icon left size="small" class="mr-2">mdi-email</v-icon>

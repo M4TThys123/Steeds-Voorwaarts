@@ -47,7 +47,8 @@ export default {
         const apiEndpoint = 'https://streeds-voorwaarts.cdn.prismic.io/api/v2';
         const api = await Prismic.api(apiEndpoint);
         const response = await api.query(
-            Prismic.Predicates.at('document.type', 'schedule')
+            Prismic.Predicates.at('document.type', 'schedule'),
+              { orderings: '[my.schedule.dag_nummer]' }
         );
         this.schemaData = response.results; // Haal alle resultaten op
       } catch (error) {
