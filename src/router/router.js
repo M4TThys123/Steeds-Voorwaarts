@@ -14,7 +14,7 @@ const routes = [
     component: HomeView,
     meta: {
       hide: false,
-      title: 'Welkom bij Steedsvoorwaarts',
+      title: 'Steeds Voorwaarts - Sportvereniging voor jong en oud',
       metaTags: [
         {
           name: 'description',
@@ -29,11 +29,11 @@ const routes = [
     component: LesAanbodView,
     meta: {
       hide: false,
-      title: 'Lesaanbod - Steedsvoorwaarts',
+      title: 'Lesaanbod - Steeds Voorwaarts',
       metaTags: [
         {
           name: 'description',
-          content: 'Bekijk het uitgebreide lesaanbod van Steedsvoorwaarts: van freerunning tot seniorengym.'
+          content: 'Bekijk het uitgebreide lesaanbod van Steeds Voorwaarts: van freerunning tot seniorengym.'
         }
       ],
       dropdown: [
@@ -53,11 +53,11 @@ const routes = [
     component: SportView,
     meta: {
       hide: true,
-      title: 'Lesdetail - Steedsvoorwaarts',
+      title: 'Lesdetail - Steeds Voorwaarts',
       metaTags: [
         {
           name: 'description',
-          content: 'Meer informatie over deze specifieke les bij Steedsvoorwaarts.'
+          content: 'Meer informatie over deze specifieke les bij Steeds Voorwaarts.'
         }
       ]
     }
@@ -68,7 +68,7 @@ const routes = [
     component: ContactView,
     meta: {
       hide: false,
-      title: 'Contact - Steedsvoorwaarts',
+      title: 'Contact - Steeds Voorwaarts',
       metaTags: [
         {
           name: 'description',
@@ -83,11 +83,11 @@ const routes = [
     component: AanmeldenView,
     meta: {
       hide: true,
-      title: 'Aanmelden - Steedsvoorwaarts',
+      title: 'Aanmelden - Steeds Voorwaarts',
       metaTags: [
         {
           name: 'description',
-          content: 'Word lid van Steedsvoorwaarts! Meld je eenvoudig online aan.'
+          content: 'Word lid van Steeds Voorwaarts! Meld je eenvoudig online aan.'
         }
       ]
     }
@@ -98,11 +98,11 @@ const routes = [
     component: NieuwsView,
     meta: {
       hide: true,
-      title: 'Nieuws - Steedsvoorwaarts',
+      title: 'Nieuws - Steeds Voorwaarts',
       metaTags: [
         {
           name: 'description',
-          content: 'Blijf op de hoogte van het laatste nieuws van Steedsvoorwaarts.'
+          content: 'Blijf op de hoogte van het laatste nieuws van Steeds Voorwaarts.'
         }
       ]
     }
