@@ -36,16 +36,30 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SportsOrganization",
-      "name": "Steedsvoorwaarts",
-      "url": "https://steedsvoorwaarts.nl/",
-      "logo": "https://steedsvoorwaarts.nl/logo.png",
-      "sameAs": [
-        "https://www.facebook.com/steedsvoorwaartsabbekerk",
-        "https://www.instagram.com/steedsvoorwaarts"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://steedsvoorwaarts.nl/#website",
+          "url": "https://steedsvoorwaarts.nl/",
+          "name": "Steeds Voorwaarts",
+          "alternateName": "Steeds Voorwaarts Abbekerk",
+          "inLanguage": "nl-NL"
+        },
+        {
+          "@type": "SportsClub",
+          "@id": "https://steedsvoorwaarts.nl/#organization",
+          "name": "Steeds Voorwaarts",
+          "url": "https://steedsvoorwaarts.nl/",
+          "logo": "https://steedsvoorwaarts.nl/logo.png",
+          "sameAs": [
+            "https://www.facebook.com/steedsvoorwaartsabbekerk",
+            "https://www.instagram.com/steedsvoorwaarts"
+          ]
+        }
       ]
     }
     </script>
+
   </head>
   <body>
     <noscript>
