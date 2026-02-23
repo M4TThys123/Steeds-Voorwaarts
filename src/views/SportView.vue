@@ -57,7 +57,9 @@ export default {
     },
     formattedCategory() {
       if (!this.category) return '';
-      return this.category.charAt(0).toUpperCase() + this.category.slice(1);
+      let title = this.category.charAt(0).toUpperCase() + this.category.slice(1); 
+      title = title.replace(/-/g, ' ');
+      return title
     },
 
     paragraphText() {

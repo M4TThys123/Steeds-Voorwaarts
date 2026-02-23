@@ -51,6 +51,7 @@ export default {
               { orderings: '[my.schedule.dag_nummer]' }
         );
         this.schemaData = response.results; // Haal alle resultaten op
+        console.log('Fetched schedule data:', this.schemaData);
       } catch (error) {
         console.error('Error fetching data from Prismic:', error);
       } finally {

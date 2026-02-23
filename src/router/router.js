@@ -33,13 +33,13 @@ const routes = [
       metaTags: [
         {
           name: 'description',
-          content: 'Bekijk het uitgebreide lesaanbod van Steeds Voorwaarts: van freerunning tot seniorengym.'
+          content: 'Bekijk het uitgebreide lesaanbod van Steeds Voorwaarts: van freerunning tot fit en vitaal.'
         }
       ],
       dropdown: [
         { name: 'Kleuterdans', route: 'kleuterdans' },
         { name: 'Hiphop', route: 'hiphop' },
-        { name: 'Seniorengym', route: 'seniorengym' },
+        { name: 'Fit en Vitaal', route: 'fit-en-vitaal' },
         { name: 'Freerunning', route: 'freerunning' },
         { name: 'Demodans', route: 'demodans' },
         { name: 'Bootcamp', route: 'bootcamp' },

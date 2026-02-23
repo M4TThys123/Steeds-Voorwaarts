@@ -13,13 +13,13 @@
               <router-link to="/" class="footer-link-prm text-white">Home</router-link>
             </li>
             <li>
-              <router-link to="#lesaanbod" class="footer-link">Lesaanbod</router-link>
+              <router-link to="/lesaanbod" class="footer-link">Lesaanbod</router-link>
             </li>
             <li>
-              <router-link to="#rooster" class="footer-link">Rooster</router-link>
+              <router-link to="/rooster" class="footer-link">Rooster</router-link>
             </li>
             <li>
-              <router-link to="#over" class="footer-link">Over ons</router-link>
+              <router-link to="/contact" class="footer-link">Over ons</router-link>
             </li>
           </ul>
           <ul class="list-unstyled footer-link-list">
@@ -27,7 +27,7 @@
               <router-link to="/lesaanbod" class="footer-link-prm text-white">Lesaanbod</router-link>
             </li>
             <li v-for="(item, index) in links" :key="index">
-              <router-link :to="`lesaanbod/${item.url}`" class="footer-link">{{ item.name }}</router-link>
+              <router-link :to="`/lesaanbod/${item.url}`" class="footer-link">{{ item.name }}</router-link>
             </li>
           </ul>
           <ul class="list-unstyled footer-link-list">
@@ -61,13 +61,6 @@
                 <i class='bx bxs-user-plus'></i>
                 <span class="ml">
                   Aanmelden
-                </span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/contact" class="footer-link">
-                <span class="ml">
-                  Over ons
                 </span>
               </router-link>
             </li>
@@ -121,8 +114,8 @@ export default {
           url: 'hiphop'
         },
         {
-          name: 'Seniorengym',
-          url: 'seniorengym'
+          name: 'Fit en Vitaal',
+          url: 'fit-en-vitaal'
         },
         {
           name: 'Freerunning',
