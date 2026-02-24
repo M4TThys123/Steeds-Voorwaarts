@@ -16,9 +16,6 @@
               <router-link to="/lesaanbod" class="footer-link">Lesaanbod</router-link>
             </li>
             <li>
-              <router-link to="/rooster" class="footer-link">Rooster</router-link>
-            </li>
-            <li>
               <router-link to="/contact" class="footer-link">Over ons</router-link>
             </li>
           </ul>
