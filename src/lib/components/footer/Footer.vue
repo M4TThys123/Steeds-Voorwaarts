@@ -18,6 +18,9 @@
             <li>
               <router-link to="/contact" class="footer-link">Over ons</router-link>
             </li>
+            <li>
+              <router-link to="/aanmelden" class="footer-link">Aanmelden</router-link>
+            </li>
           </ul>
           <ul class="list-unstyled footer-link-list">
             <li>
@@ -50,14 +53,6 @@
                 <i class='bx bxs-message'></i>
                 <span class="ml">
                   Bericht sturen
-                </span>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/contact" class="footer-link">
-                <i class='bx bxs-user-plus'></i>
-                <span class="ml">
-                  Aanmelden
                 </span>
               </router-link>
             </li>
