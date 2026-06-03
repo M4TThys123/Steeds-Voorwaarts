@@ -14,7 +14,7 @@
         <ul class="nav-list" :class="{ 'nav__list--open': isNavOpen, 'blur': isNavOpen }">
           <!-- <li class="mr-10 mt-2" > -->
 
-         <div class="mr-8 mt-2" v-if="$vuetify.display.mdAndUp">
+         <div class="mr-8 mt-2" v-if="isDesktopNav">
             <NieuwsOverzichtDialog :activatorColor="isScrolled ? 'black' : 'white'"/>
           </div>
 
@@ -43,7 +43,7 @@
         </ul>
       </div>
 
-      <div class="d-flex gap-3" v-if="$vuetify.display.mdAndDown">
+      <div class="d-flex gap-3" v-if="!isDesktopNav">
         <NieuwsOverzichtDialog class="mt-2" :activatorColor="isScrolled || isNavOpen ? 'black' : 'white'"/>
 
 
@@ -130,6 +130,12 @@ export default {
     },
   },
   computed: {
+    // Eén bron van waarheid voor het omschakelen desktop-nav <-> hamburger.
+    // Grens op 1024px, gelijk aan de hamburger-CSS (@media max-width: 1024px),
+    // zodat het nieuws-icoon altijd op precies één plek staat (geen overlap).
+    isDesktopNav() {
+      return this.$vuetify.display.width > 1024;
+    },
     filteredRoutes() {
       const filteredRoutes = router.options.routes.filter(route => !route.meta.hide);
       console.log('filteredRoutes', filteredRoutes)
