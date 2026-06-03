@@ -16,6 +16,18 @@
                                    :is-loading="isAanmeldenTarievenDataLoading"
                                    class="pb-10"/>
 
+        <v-btn
+            class="custom-btn mono px-4 mb-10"
+            rounded
+            href="/assets/pdf/Privacyverklaring.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color: white !important; background-color: #398070; text-transform: none;"
+        >
+          <v-icon left size="small" class="mr-2">mdi-file-pdf-box</v-icon>
+          <span class="text-white">Privacyverklaring (PDF)</span>
+        </v-btn>
+
         <FacebookLink width="320px" class="py-10" />
       </div>
 
@@ -86,5 +98,14 @@ export default {
 </script>
 
 <style scoped>
-
+.custom-btn {
+  background-color: #398070 !important;
+  color: #FFFFFF !important;
+}
+.custom-btn .v-icon {
+  color: #FFFFFF !important;
+}
+.custom-btn .v-btn__content {
+  color: white !important;
+}
 </style>
